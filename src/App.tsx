@@ -1,8 +1,9 @@
 import Layout from '@/components/common/Layout';
-import About from '@/pages/about/About';
-import Home from '@/pages/home/Home';
-import Post from '@/pages/post/Post';
-import Write from '@/pages/write/Write';
+import PostPage from '@/pages/post/PostPage';
+import AboutPage from '@/pages/about/AboutPage';
+import HomePage from '@/pages/home/HomePage';
+import WritePage from '@/pages/write/WritePage';
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 function App() {
@@ -11,10 +12,10 @@ function App() {
       path: '/',
       element: <Layout />,
       children: [
-        { index: true, element: <Home /> },
-        { path: 'about', element: <About /> },
-        { path: 'write', element: <Write /> },
-        { path: 'post/:slug', element: <Post /> },
+        { index: true, element: <HomePage /> },
+        { path: 'about', element: <AboutPage /> },
+        { path: 'write', element: <WritePage /> },
+        { path: 'post/:slug', element: <PostPage /> },
       ],
     },
   ]);

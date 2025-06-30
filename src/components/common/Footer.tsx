@@ -8,7 +8,7 @@ const Footer = () => {
       <div className='flex flex-col gap-1'>
         <p className='text-muted font-bold'>
           © 2025 Velogit — Created{' '}
-          <a href='https://github.com/letYuchan/' className='text-link underline'>
+          <a href='https://github.com/letYuchan/' className='text-primary underline'>
             letYuchan
           </a>
           . Licensed under CC BY-NC 4.0 &#40;Personal and non-commercial use only&#41;.

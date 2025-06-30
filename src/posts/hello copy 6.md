@@ -1,10 +1,12 @@
 ---
 title: '첫 글입니다'
-date: '2025-06-21'
-tags: ['intro', 'vite']
+date: '2025-06-25'
+tags: ['intro', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite']
+summary: '안녕하세요 반갑습니다. '
+category: 'dev'
 ---
 
-# 안녕하세요!
+안녕하세요! 이 문장은 첫 문장입니다 감사합니다
 
 이건 첫 마크다운 블로그 글입니다.
 
