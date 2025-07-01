@@ -1,25 +1,44 @@
+import ArrowUpButton from '@/components/common/ArrowUpButton';
+import ShareButton from '@/components/common/home/ShareButton';
 import MarkdownRenderer from '@/components/test/MarkdownRenderer';
 import { posts } from '@/utils/postList';
-import { FiShare2 } from 'react-icons/fi';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const PostPage = () => {
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1150);
   const { slug } = useParams();
+
   const post = posts.find(p => p.slug === slug);
 
-  if (!post) return <div>Post not found</div>;
+  const mainContent = post!.content.replace(/^---\n[\s\S]*?\n---/, '').trim();
 
-  const body = post.content.replace(/^---\n[\s\S]*?\n---/, '').trim();
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 1150);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <div className='flex w-full'>
-      <aside>
-        <button className='fixed left-10 top-1/2 z-50 hidden size-20 -translate-y-1/2 transform items-center justify-center rounded-full border border-gray-400 bg-background p-4 opacity-70 shadow-md lg:flex'>
-          <FiShare2 className='text-3xl' />
-        </button>
-      </aside>
-      <MarkdownRenderer content={body} />
-    </div>
+    <main className='flex w-full flex-col items-center justify-start'>
+      {isDesktop && (
+        <aside className='fixed left-8 top-1/2 flex size-20 translate-y-1/2 transform items-center justify-center rounded-full border border-gray-400 bg-background p-4 hover:opacity-80'>
+          <ShareButton />
+        </aside>
+      )}
+      <MarkdownRenderer content={mainContent} />
+      {!isDesktop && (
+        <aside className='flex w-[80%] flex-nowrap items-center justify-center gap-2 border-t border-border py-2'>
+          <p className='text-3xl text-muted'>Share this post</p>
+          <ShareButton />
+        </aside>
+      )}
+      {/* ArrowUP button */}
+      <ArrowUpButton />
+    </main>
   );
 };
 

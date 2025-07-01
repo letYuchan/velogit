@@ -94,7 +94,7 @@ const HomePage = () => {
       {/* posts section */}
       <section aria-label='post list section' className='w-full'>
         <ul
-          className='grid w-full grid-cols-1 gap-6 px-4 py-4 sm:grid-cols-2 sm:px-10 xl:grid-cols-3 xl:px-36 2xl:grid-cols-4 2xl:px-64'
+          className='grid w-full grid-cols-1 gap-6 px-4 py-4 sm:grid-cols-2 sm:px-10 xl:grid-cols-3 xl:px-36 2xl:grid-cols-5 2xl:px-64'
           style={{ gridAutoRows: '1fr' }}
         >
           {currentPosts.map(post => (

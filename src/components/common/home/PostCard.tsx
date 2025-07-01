@@ -27,8 +27,12 @@ const PostCard = ({ post }: { post: PostMeta }) => {
       </div>
       {/* thumbnail */}
       {post.thumbnail && (
-        <div className='aspect-[4/3] h-36 w-full overflow-hidden rounded-md bg-border'>
-          <img src={post.thumbnail} alt={post.title} className='object-cotain mb-4 h-full w-full' />
+        <div className='relative aspect-[4/3] h-full w-full overflow-hidden rounded-md bg-border'>
+          <img
+            src={post.thumbnail}
+            alt={post.title}
+            className='absolute inset-0 h-full w-full object-contain object-center'
+          />
         </div>
       )}
       {/* footer */}
