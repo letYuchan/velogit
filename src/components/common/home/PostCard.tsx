@@ -11,7 +11,6 @@ const PostCard = ({ post }: { post: PostMeta }) => {
       {/* header */}
       <div className='flex flex-1 flex-col gap-2'>
         <h2 className='line-clamp-1 font-title text-2xl font-bold text-foreground'>{post.title}</h2>
-        <h3 className='text-xl font-bold text-foreground'>category: {post.category}</h3>
         <p className='line-clamp-3 w-full text-base text-muted'>{post.summary}</p>
         <div className='flex flex-wrap gap-2 pt-1'>
           {post.tags.map((tag, idx) => (
@@ -26,12 +25,20 @@ const PostCard = ({ post }: { post: PostMeta }) => {
         <p className='text-sm text-muted'>{post.date}</p>
       </div>
       {/* thumbnail */}
-      {post.thumbnail && (
-        <div className='relative aspect-[4/3] h-full w-full overflow-hidden rounded-md bg-border'>
+      {post.thumbnail ? (
+        <div className='relative aspect-[4/3] w-full overflow-hidden rounded-md bg-background'>
           <img
             src={post.thumbnail}
             alt={post.title}
-            className='absolute inset-0 h-full w-full object-contain object-center'
+            className='absolute inset-0 h-full w-full object-contain'
+          />
+        </div>
+      ) : (
+        <div className='relative aspect-[4/3] w-full overflow-hidden rounded-md bg-background'>
+          <img
+            src='/images/watermark.png'
+            alt='watermark'
+            className='absolute inset-0 h-full w-full object-contain'
           />
         </div>
       )}

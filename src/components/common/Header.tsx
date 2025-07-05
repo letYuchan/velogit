@@ -30,16 +30,16 @@ const Header = () => {
   return (
     <header
       className={clsx(
-        'fixed left-0 top-0 flex h-16 w-full flex-nowrap justify-between border-b border-border bg-background p-5 shadow-sm transition-all duration-200 ease-in-out md:h-[70px]',
+        'fixed left-0 top-0 z-50 flex h-16 w-full flex-nowrap justify-between gap-1 overflow-hidden border-b border-border bg-background p-5 shadow-sm transition-all duration-200 ease-in-out md:h-[70px]',
         showHeader ? 'translate-y-0' : '-translate-y-full',
       )}
     >
-      <p
+      <img
+        src='/images/logo.png'
+        alt='siteLogo'
         onClick={goToHomePage}
-        className='cursor-pointer items-stretch font-title text-xl font-bold text-foreground sm:text-2xl'
-      >
-        Velogit
-      </p>
+        className='relative -top-11 size-28 cursor-pointer items-stretch sm:-top-10'
+      />
       <div className='flex flex-nowrap items-stretch justify-around gap-4'>
         <Link
           to='/'
