@@ -1,4 +1,3 @@
-import type { PostMeta } from '@/types/postType';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -11,18 +10,32 @@ const PostCard = ({ post }: { post: PostMeta }) => {
       {/* header */}
       <div className='flex flex-1 flex-col gap-2'>
         <h2 className='line-clamp-1 font-title text-2xl font-bold text-foreground'>{post.title}</h2>
-        <p className='line-clamp-3 w-full text-base text-muted'>{post.summary}</p>
+        {post.summary && post.summary != '' ? (
+          <p className='line-clamp-3 w-full text-base text-muted'>{post.summary}</p>
+        ) : (
+          <p className='w-full text-base text-muted'>No summary info</p>
+        )}
         <div className='flex flex-wrap gap-2 pt-1'>
-          {post.tags.map((tag, idx) => (
-            <span
-              key={`${post.slug}-${tag}-${idx}`}
-              className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary'
-            >
-              #{tag}
-            </span>
-          ))}
+          {post.tags && post.tags[0] != '' ? (
+            post.tags.map((tag, idx) => (
+              <span
+                key={`${post.slug}-${tag}-${idx}`}
+                className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary'
+              >
+                #{tag}
+              </span>
+            ))
+          ) : (
+            <p className='rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-primary'>
+              This post doesn't have any tags
+            </p>
+          )}
         </div>
-        <p className='text-sm text-muted'>{post.date}</p>
+        {post.date && post.date != '' ? (
+          <p className='text-sm text-muted'>{post.date}</p>
+        ) : (
+          <p className='text-sm text-muted'>No date info</p>
+        )}
       </div>
       {/* thumbnail */}
       {post.thumbnail ? (

@@ -1,15 +1,25 @@
-import ArrowUpButton from '@/components/common/ArrowUpButton';
-import ShareButton from '@/components/common/home/ShareButton';
+import ArrowUpButton from '@/components/common/post/ArrowUpButton';
+import ShareButton from '@/components/common/post/ShareButton';
+import TableOfContentsBar from '@/components/common/post/TableOfContentsBar';
 import MarkdownRenderer from '@/components/test/MarkdownRenderer';
 import { posts } from '@/utils/postList';
+import { buildTocTree } from '@/utils/tocTree';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const PostPage = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1150);
+  const [tableOfContentsTree, setTableOfContentsTree] = useState<TableOfContentsItemType[]>([]);
   const { slug } = useParams();
 
   const post = posts.find(p => p.slug === slug);
+
+  const parsedFrontMatter: ParsedFrontMatterType = {
+    title: post!.title,
+    date: post!.date,
+    tags: post!.tags,
+    category: post!.category,
+  };
 
   const mainContent = post!.content.replace(/^---\n[\s\S]*?\n---/, '').trim();
 
@@ -22,15 +32,39 @@ const PostPage = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    // wait until MarkdownRenderer content has rendered
+    const timeout = setTimeout(() => {
+      const tocElements = Array.from(document.querySelectorAll('h1, h2'));
+      const mappedTocElements: TableOfContentsItemType[] = tocElements
+        .filter(
+          element =>
+            (element.tagName === 'H1' || element.tagName === 'H2') &&
+            element.id &&
+            element.id !== 'headerTag',
+        )
+        .map(element => ({
+          id: element.id ?? '',
+          text: element.textContent ?? '',
+          level: element.tagName === 'H1' ? 1 : 2,
+        }));
+      const tocTree = buildTocTree(mappedTocElements);
+      setTableOfContentsTree(tocTree);
+    }, 0);
+
+    return () => clearTimeout(timeout);
+  }, [mainContent]); // 💡 이걸로 markdown content 변경 시 다시 실행됨
+
   return (
     <main className='flex w-full flex-col items-center justify-start'>
-      {isDesktop && (
-        <aside className='fixed left-8 top-1/2 flex size-20 translate-y-1/2 transform items-center justify-center rounded-full border border-gray-400 bg-background p-4 hover:opacity-80'>
-          <ShareButton />
+      <MarkdownRenderer parsedFrontMatter={parsedFrontMatter} content={mainContent} />
+      {isDesktop ? (
+        <aside className='fixed left-8 top-1/2 z-50 translate-y-1/2 transform'>
+          <div className='group flex size-14 items-center justify-center rounded-full border border-border bg-white/70 shadow-md backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-lg'>
+            <ShareButton />
+          </div>
         </aside>
-      )}
-      <MarkdownRenderer content={mainContent} />
-      {!isDesktop && (
+      ) : (
         <aside className='flex w-[80%] flex-nowrap items-center justify-center gap-2 border-t border-border py-2'>
           <p className='text-3xl text-muted'>Share this post</p>
           <ShareButton />
@@ -38,6 +72,8 @@ const PostPage = () => {
       )}
       {/* ArrowUP button */}
       <ArrowUpButton />
+      {/* sideBar */}
+      <TableOfContentsBar tableOfContentsTree={tableOfContentsTree} />
     </main>
   );
 };

@@ -1,246 +1,34 @@
 ---
 title: '첫 글입니다'
 date: '2025-06-21'
-tags: ['intro', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite', 'vite']
+tags: ['intro', 'vite']
 summary: '요약부분'
 category: 'dev'
 ---
 
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
+# 시작하기 전에
 
-이건 첫 마크다운 블로그 글입니다.
+이 문서는 Markdown 기반 블로그의 목차 테스트를 위한 예시 문서입니다.
 
-# 테스트 이미지
+## 프로젝트 개요
 
+이 섹션에서는 프로젝트의 개요를 설명합니다.
 ![테스트이미지](/images/test.jpg)
 
-# 테스트 코드 블럭
+## 주요 기능
 
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
+- 블로그 포스트 렌더링
+- 목차 자동 생성
+- 스크롤 위치에 따라 활성화 표시
 
-\
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
+---
 
-이건 첫 마크다운 블로그 글입니다.
+# Vite 소개
 
-# 테스트 이미지
+빠르고 가벼운 번들러인 Vite에 대해 간단히 알아보자.
 
-![테스트이미지](/images/test.jpg)
+## 설치 방법
 
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
-```
-
-안녕하세요! 이 문장은 첫 문장입니다 감사합니다
-
-이건 첫 마크다운 블로그 글입니다.
-
-# 테스트 이미지
-
-![테스트이미지](/images/test.jpg)
-
-# 테스트 코드 블럭
-
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet('World');
+```bash
+pnpm create vite
 ```

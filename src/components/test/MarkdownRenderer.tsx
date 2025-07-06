@@ -1,14 +1,27 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
-import 'highlight.js/styles/github.css'; // 필요에 따라 다른 테마로 교체 가능
+import 'highlight.js/styles/github.css';
+import rehypeSlug from 'rehype-slug';
+import PostPageHeader from '@/components/common/post/PostPageHeader';
 
-const MarkdownRenderer = ({ content }: { content: string }) => {
+interface MarkdownRendererProps {
+  parsedFrontMatter: ParsedFrontMatterType;
+  content: string;
+}
+
+const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps) => {
   return (
-    <div className='prose prose-lg prose-zinc mx-auto max-w-4xl px-4 py-10 dark:prose-invert'>
+    <div className='prose prose-lg prose-zinc mx-auto max-w-3xl px-4 py-10 dark:prose-invert'>
+      <PostPageHeader
+        title={parsedFrontMatter.title}
+        date={parsedFrontMatter.date}
+        tags={parsedFrontMatter.tags}
+        category={parsedFrontMatter.category}
+      />
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight]}
+        rehypePlugins={[rehypeHighlight, rehypeSlug]}
         components={{
           h1: props => (
             <h1

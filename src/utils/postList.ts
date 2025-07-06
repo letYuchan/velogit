@@ -8,8 +8,6 @@ result obj exmaple
   './posts/b.md': () => import('./posts/b.md'),
 }
 */
-import type { PostMeta } from '@/types/postType';
-
 export const posts: PostMeta[] = Object.entries(
   import.meta.glob('/src/posts/*.md', { eager: true, as: 'raw' }),
 ).map(([path, content]) => {

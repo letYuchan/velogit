@@ -6,11 +6,19 @@ const ArrowUpButton = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setShowButton(scrollPosition > 300);
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      const isScrolledEnough = scrollY > 300;
+      const isAtBottom = windowHeight + scrollY >= docHeight - 10;
+
+      setShowButton(isScrolledEnough && !isAtBottom);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // mount 시 한 번 실행
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -18,11 +26,11 @@ const ArrowUpButton = () => {
     <>
       {showButton && (
         <button
-          className='fixed bottom-6 right-6 z-50 rounded-full bg-primary p-3 text-white opacity-70 shadow-md transition hover:bg-blue-700'
+          className='fixed bottom-6 right-6 z-50 rounded-full bg-primary p-2 text-white shadow-md transition hover:bg-blue-700 sm:p-3'
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label='Scroll to top'
         >
-          <MdArrowUpward className='text-2xl' />
+          <MdArrowUpward className='text-xl sm:text-2xl' />
         </button>
       )}
     </>
