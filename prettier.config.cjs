@@ -1,7 +1,7 @@
 module.exports = {
   singleQuote: true, // ' 사용
   trailingComma: 'all', // 여러 줄일 때 마지막에도 쉼표 추가
-  tabWidth: 2, // 들여쓰기 2칸
+  tabWidth: 4, // 들여쓰기 2칸
   printWidth: 100, // 한 줄 최대 길이 100자
   jsxSingleQuote: true, // JSX에서 ' 사용
   bracketSpacing: true, // { foo: bar } 처럼 공백 추가

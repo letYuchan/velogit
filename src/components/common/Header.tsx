@@ -1,8 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
+import { FiEdit } from 'react-icons/fi';
 
 const Header = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
   const navigate = useNavigate();
   const goToHomePage = () => navigate('/');
 
@@ -26,6 +29,15 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <header
@@ -63,6 +75,19 @@ const Header = () => {
             ABOUT
           </button>
         </Link>
+        {!isActive('/write') && (
+          <Link to='/write'>
+            {isMobile ? (
+              <button className='font-title font-semibold text-foreground active:text-primary'>
+                <FiEdit className='text-xl' />
+              </button>
+            ) : (
+              <button className='relative bottom-1.5 flex rounded-2xl bg-primary px-3 py-1 font-title text-xl font-semibold text-white hover:bg-blue-700'>
+                Write
+              </button>
+            )}
+          </Link>
+        )}
       </div>
     </header>
   );

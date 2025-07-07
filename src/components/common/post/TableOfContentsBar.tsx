@@ -9,15 +9,15 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
   const [hasValidItems, setHasValidItems] = useState(false);
   const [activeId, setActiveId] = useState('');
 
-  // 1. 유효한 아이템 있는지 검사
   useEffect(() => {
     const isValid = tableOfContentsTree.some(item => item.id.trim() && item.text.trim());
     setHasValidItems(isValid);
   }, [tableOfContentsTree]);
 
-  // 2. activeId 추적 (props 기반)
   useEffect(() => {
     const flatList = tableOfContentsTree.flatMap(h1 => [h1, ...(h1.children || [])]);
+
+    if (flatList.length === 0) return;
 
     const observer = new IntersectionObserver(
       entries => {
@@ -31,11 +31,19 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
         if (visible.length > 0) {
           const nearest = visible.reduce((a, b) => (Math.abs(a.top) < Math.abs(b.top) ? a : b));
           setActiveId(nearest.id);
+        } else {
+          const above = entries.filter(entry => entry.boundingClientRect.top < 0);
+          if (above.length > 0) {
+            const nearestAbove = above.reduce((a, b) =>
+              Math.abs(a.boundingClientRect.top) < Math.abs(b.boundingClientRect.top) ? a : b,
+            );
+            setActiveId(nearestAbove.target.id);
+          }
         }
       },
       {
-        rootMargin: '0px 0px -30% 0px', // 하단을 너무 빨리 무시하지 않게
-        threshold: 0.1,
+        rootMargin: '0px 0px -35% 0px',
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
       },
     );
 
@@ -63,7 +71,20 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
     window.addEventListener('scroll', handleScrollToBottom);
     return () => window.removeEventListener('scroll', handleScrollToBottom);
   }, [tableOfContentsTree]);
-  console.log(tableOfContentsTree);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.substring(1);
+        setTimeout(() => setActiveId(id), 300);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   if (!hasValidItems) return null;
 
   return (
