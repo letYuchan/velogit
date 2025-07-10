@@ -1,6 +1,6 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import WritePageHeader from '@/components/common/write/WritePageHeader';
+import LayoutHeaderForWritePage from '@/components/common/write/LayoutHeaderForWritePAge';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
@@ -9,8 +9,8 @@ const Layout = () => {
 
   return (
     <div className='flex h-screen w-full shrink-0 flex-col flex-nowrap justify-start'>
-      {isActive('/write') ? <WritePageHeader /> : <Header />}
-      <div className='mt-16 flex-1 bg-gray-100 sm:mt-[70px]'>
+      {isActive('/write') ? <LayoutHeaderForWritePage /> : <Header />}
+      <div className='mt-16 flex-1 bg-gray-100 md:mt-[70px]'>
         <Outlet />
       </div>
       {!isActive('/write') && <Footer />}

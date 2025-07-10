@@ -11,7 +11,7 @@ const PostPageHeader = ({ title, date, tags, category }: PostPageProps) => {
       {/* Title */}
       <h1
         id='headerTag'
-        className='mb-4 font-title text-[50px] font-extrabold leading-tight text-foreground md:text-5xl'
+        className='mb-4 line-clamp-2 font-title text-[50px] font-extrabold leading-tight text-foreground md:text-5xl'
       >
         {title}
       </h1>

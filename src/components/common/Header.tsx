@@ -83,7 +83,7 @@ const Header = () => {
               </button>
             ) : (
               <button className='relative bottom-1.5 flex rounded-2xl bg-primary px-3 py-1 font-title text-xl font-semibold text-white hover:bg-blue-700'>
-                Write
+                <span className='relative top-0.5'>Write</span>
               </button>
             )}
           </Link>

@@ -1,9 +1,11 @@
+import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { useEffect, useState } from 'react';
 import { MdArrowBack, MdSave } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 
-const WritePageHeader = () => {
+const LayoutHeaderForWritePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const { reset } = usePostWriteStore();
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
@@ -20,7 +22,10 @@ const WritePageHeader = () => {
   const navigation = useNavigate();
 
   const goToBack = () => {
-    if (confirm('Do you want to go to home?')) navigation('/');
+    if (confirm('Do you want to go to home?')) {
+      reset();
+      navigation('/');
+    }
   };
 
   return (
@@ -35,9 +40,11 @@ const WritePageHeader = () => {
       ) : (
         <button
           onClick={goToBack}
-          className='font-title text-lg font-semibold text-foreground transition-transform ease-in-out hover:scale-110 sm:text-xl'
+          className='flex justify-center rounded-2xl border border-foreground bg-background px-3 py-1 hover:bg-gray-300'
         >
-          Back
+          <span className='relative bottom-[5px] font-title text-lg font-semibold text-foreground md:bottom-0.5 md:text-xl'>
+            Back
+          </span>
         </button>
       )}
       {isMobile ? (
@@ -50,13 +57,15 @@ const WritePageHeader = () => {
       ) : (
         <button
           onClick={handleSavePost}
-          className='font-title text-lg font-semibold text-foreground transition-transform ease-in-out hover:scale-110 sm:text-xl'
+          className='flex justify-center rounded-2xl border border-primary bg-primary px-3 py-1 hover:bg-blue-700'
         >
-          Save
+          <span className='relative bottom-[5px] font-title text-lg font-semibold text-white md:bottom-0.5 md:text-xl'>
+            Save
+          </span>
         </button>
       )}
     </header>
   );
 };
 
-export default WritePageHeader;
+export default LayoutHeaderForWritePage;
