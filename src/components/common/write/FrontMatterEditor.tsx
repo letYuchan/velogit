@@ -95,7 +95,7 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
           onChange={handleOnChange}
           placeholder='Enter a brief summary'
           rows={3}
-          className='placeholder:text-muted-foreground w-full rounded-md border border-muted bg-white px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+          className='placeholder:text-muted-foreground w-full rounded-md border border-border bg-white px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
         ></textarea>
 
         <input
@@ -104,7 +104,7 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
           value={thumbnail}
           onChange={handleOnChange}
           placeholder='Thumbnail image path (e.g., images/thumbnail.png)'
-          className='placeholder:text-muted-foreground w-full rounded-md border border-muted bg-white px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+          className='placeholder:text-muted-foreground w-full rounded-md border border-border bg-white px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
         />
 
         <input
@@ -113,7 +113,7 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
           value={category}
           onChange={handleOnChange}
           placeholder='Enter category'
-          className='placeholder:text-muted-foreground w-full rounded-md border border-muted bg-white px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+          className='placeholder:text-muted-foreground w-full rounded-md border border-border bg-white px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
         />
       </div>
       <button
