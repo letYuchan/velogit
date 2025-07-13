@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
-import { FiEdit } from 'react-icons/fi';
 import { Home, Info, Pencil } from 'lucide-react';
 
 const Header = () => {

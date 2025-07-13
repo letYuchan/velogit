@@ -1,4 +1,5 @@
 import { usePostWriteStore } from '@/store/usePostWriteStore';
+import clsx from 'clsx';
 import { useState, type ChangeEvent, type KeyboardEvent } from 'react';
 
 interface FrontMatterEditorProps {
@@ -8,6 +9,10 @@ interface FrontMatterEditorProps {
 const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
     const { title, date, tags, summary, thumbnail, category, setField } = usePostWriteStore();
     const [tagsInput, setTagsInput] = useState(tags.join(', '));
+
+    const [isTitleInvalid, setIsTitleInvalid] = useState(false);
+    const [isDateInvalid, setIsDateInvalid] = useState(false);
+    const [isCategoryInvalid, setIsCategoryInvalid] = useState(false);
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -38,10 +43,19 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
     };
 
     const goToContentEditStep = () => {
-        if (title.trim() === '' || date.trim() === '' || category.trim() === '') {
+        const titleInvalid = title.trim() === '';
+        const dateInvalid = date.trim() === '';
+        const categoryInvalid = category.trim() === '';
+
+        setIsTitleInvalid(titleInvalid);
+        setIsDateInvalid(dateInvalid);
+        setIsCategoryInvalid(categoryInvalid);
+
+        if (titleInvalid || dateInvalid || categoryInvalid) {
             alert('Title, date, and category are required fields, so please fill them all out.');
             return;
         }
+
         if (confirm('Did you enter the metadata correctly?')) {
             setStep('content');
         }
@@ -56,15 +70,27 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
                     value={title}
                     onChange={handleOnChange}
                     placeholder='Enter title'
-                    className='w-full border-l-8 border-primary bg-background px-3 py-2 text-3xl text-foreground focus:outline-none'
+                    className={clsx(
+                        'w-full border-l-8 bg-background px-3 py-2 text-3xl text-foreground focus:outline-none',
+                        isTitleInvalid
+                            ? 'border-error transition-colors duration-200 ease-in-out placeholder:text-error'
+                            : 'border-primary',
+                    )}
                 />
+
                 <input
                     type='date'
                     name='date'
                     value={date}
                     onChange={handleOnChange}
-                    className='w-full rounded-md border border-border bg-background px-3 py-2 text-base text-foreground shadow-sm transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+                    className={clsx(
+                        'w-full rounded-md border bg-background px-3 py-2 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
+                        isDateInvalid
+                            ? 'border-error transition-colors duration-200 ease-in-out focus:ring-error'
+                            : 'border-border focus:border-primary focus:ring-primary',
+                    )}
                 />
+
                 <div className='flex flex-wrap justify-start gap-2'>
                     <input
                         type='text'
@@ -107,13 +133,19 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
                     placeholder='Thumbnail image path (e.g., images/thumbnail.png)'
                     className='w-full rounded-md border border-border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
                 />
+
                 <input
                     type='text'
                     name='category'
                     value={category}
                     onChange={handleOnChange}
                     placeholder='Enter category'
-                    className='w-full rounded-md border border-border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+                    className={clsx(
+                        'w-full rounded-md border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:outline-none focus:ring-2',
+                        isCategoryInvalid
+                            ? 'border-error transition-colors duration-200 ease-in-out placeholder:text-error focus:ring-error'
+                            : 'border-border focus:border-primary focus:ring-primary',
+                    )}
                 />
             </div>
             <button
