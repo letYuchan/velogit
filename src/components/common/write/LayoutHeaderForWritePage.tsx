@@ -50,7 +50,7 @@ const LayoutHeaderForWritePage = () => {
                 {/* controller */}
                 <button
                     onClick={goToBack}
-                    className='flex h-6 flex-nowrap items-center gap-1 rounded-2xl border border-border bg-background px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-gray-100 active:bg-gray-100 sm:h-8 sm:text-xl'
+                    className='border-borderDark flex h-6 flex-nowrap items-center gap-1 rounded-2xl border bg-background px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-gray-100 active:bg-gray-100 sm:h-8 sm:text-xl'
                 >
                     <MdArrowBack className='size-6' />
                     {!isMobile && <span className='relative top-0.5'>BACK</span>}
@@ -59,7 +59,7 @@ const LayoutHeaderForWritePage = () => {
                 <div className='flex flex-nowrap items-stretch justify-around gap-2'>
                     <button
                         onClick={() => setShowModal(true)}
-                        className='flex h-6 flex-nowrap items-center gap-1 rounded-2xl border border-border bg-background px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-gray-100 active:bg-gray-100 sm:h-8 sm:text-xl'
+                        className='border-borderDark flex h-6 flex-nowrap items-center gap-1 rounded-2xl border bg-background px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-gray-100 active:bg-gray-100 sm:h-8 sm:text-xl'
                     >
                         <MdRestore className='size-6' />
                         {!isMobile && <span className='relative top-0.5'>RESTORE</span>}
@@ -115,13 +115,13 @@ const LayoutHeaderForWritePage = () => {
                         </ul>
                         <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                             <button
-                                className='h-8 rounded-xl bg-muted px-3 py-1 text-sm text-white hover:bg-muted/70 active:bg-muted/70'
+                                className='border-borderDark bg-backgroundDark h-8 rounded-xl border px-3 py-1 text-sm text-white hover:bg-muted/70 active:bg-muted/70'
                                 onClick={() => setShowModal(false)}
                             >
                                 Close
                             </button>
                             <button
-                                className='active:bg-error-70 h-8 rounded-xl bg-error px-4 py-2 text-sm text-white hover:bg-error/70'
+                                className='active:bg-error-70 h-8 rounded-xl border border-error bg-error px-3 py-1 text-sm text-white hover:bg-error/70'
                                 onClick={async () => {
                                     await localStorage.setItem(
                                         DRAFT_STORAGE_KEY,

@@ -13,9 +13,9 @@ const PostCard = ({ post }: { post: PostData }) => {
                     {post.title}
                 </h2>
                 {post.summary && post.summary != '' ? (
-                    <p className='line-clamp-3 w-full text-base text-muted'>{post.summary}</p>
+                    <p className='line-clamp-3 w-full text-lg text-muted'>{post.summary}</p>
                 ) : (
-                    <p className='w-full text-base text-muted'>No summary info</p>
+                    <p className='w-full text-lg text-muted'>No summary info</p>
                 )}
                 <div className='flex flex-wrap gap-2 pt-1'>
                     {post.tags && post.tags[0] != '' ? (

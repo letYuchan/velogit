@@ -7,11 +7,11 @@ interface PostPageProps {
 
 const PostPageHeader = ({ title, date, tags, category }: PostPageProps) => {
     return (
-        <header className='mb-10 w-full rounded-xl border border-primary bg-background p-6 shadow-md'>
+        <header className='mb-10 w-full border-x-2 border-y-4 border-x-border border-y-primary bg-background p-6'>
             {/* Title */}
             <h1
                 id='headerTag'
-                className='mb-4 line-clamp-2 font-title text-[50px] font-extrabold leading-tight text-foreground md:text-5xl'
+                className='mb-4 line-clamp-2 text-center font-title text-[50px] font-extrabold leading-tight text-foreground md:text-5xl'
             >
                 {title}
             </h1>

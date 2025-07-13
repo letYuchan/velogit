@@ -22,9 +22,9 @@ const FrontMatterPreview = () => {
                             </h2>
                         )}
                         {summary && summary != '' ? (
-                            <p className='line-clamp-3 w-full text-base text-muted'>{summary}</p>
+                            <p className='line-clamp-3 w-full text-lg text-muted'>{summary}</p>
                         ) : (
-                            <p className='w-full text-base text-muted'>No summary info</p>
+                            <p className='w-full text-lg text-muted'>No summary info</p>
                         )}
                         <div className='flex flex-wrap gap-2 pt-1'>
                             {tags.length > 0 && tags.some(tag => tag.trim() !== '') ? (
