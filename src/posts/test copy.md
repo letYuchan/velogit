@@ -15,7 +15,7 @@ category: 'mother'
 
 ```js
 function greet(name) {
-  console.log(`Hello, ${name}!`);
+    console.log(`Hello, ${name}!`);
 }
 greet('World');
 ```

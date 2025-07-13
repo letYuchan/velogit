@@ -1,11 +1,7 @@
-interface PostInputData {
-  title: string;
-  date: string;
-  tags?: string[];
-  summary: string;
-  thumbnail?: string;
-  content?: string;
-  category: string;
+interface TempPost {
+    id: number;
+    data: Omit<
+        ReturnType<typeof usePostWriteStore.getState>,
+        'setField' | 'reset' | 'buildMarkdown ' | 'saveDraftToLocal' | 'restoreDraftsFromLocal'
+    >;
 }
-
-type PostInputDataWithoutTags = Omit<PostInputData, 'tags'>;
