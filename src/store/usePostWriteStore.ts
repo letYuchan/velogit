@@ -88,7 +88,7 @@ export const usePostWriteStore = create<PostWriteState>((set, get) => ({
             localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(updatedDrafts));
             alert('saved successfully!');
         } catch (e) {
-            alert(`Saved failed so try again. errorMessage: ${e}`);
+            alert(`Failed to save so try again. Error: ${e}`);
         }
     },
 
@@ -99,7 +99,7 @@ export const usePostWriteStore = create<PostWriteState>((set, get) => ({
         try {
             return JSON.parse(rawDraftsInLocalStorage) as TempPost[];
         } catch (e) {
-            alert(`Failed to parse temp-draft from localStorage. errorMessage: ${e}`);
+            alert(`Failed to parse temp-draft from localStorage. Error: ${e}`);
             return [];
         }
     },

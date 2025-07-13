@@ -9,7 +9,7 @@ result obj exmaple
 }
 */
 export const posts: PostData[] = Object.entries(
-    import.meta.glob('/src/posts/*.md', { eager: true, as: 'raw' }),
+    import.meta.glob('/posts/*.md', { eager: true, as: 'raw' }),
 ).map(([path, content]) => {
     const slug = path.split('/').pop()?.replace('.md', '') || '';
 

@@ -15,7 +15,7 @@ interface MarkdownRendererProps {
 
 const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps) => {
     return (
-        <article className='prose prose-zinc mx-auto max-w-3xl px-6 py-12 dark:prose-invert'>
+        <article className='prose prose-zinc mx-auto w-full max-w-3xl px-4 py-2 dark:prose-invert'>
             <PostPageHeader
                 title={parsedFrontMatter.title}
                 date={parsedFrontMatter.date}
@@ -29,13 +29,13 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                 components={{
                     h1: ({ node, ...props }) => (
                         <h1
-                            className='mb-4 mt-8 font-title text-4xl font-bold text-foreground'
+                            className='border-borderDark mb-4 mt-8 border-b-2 pb-2 font-title text-4xl font-bold text-foreground'
                             {...props}
                         />
                     ),
                     h2: ({ node, ...props }) => (
                         <h2
-                            className='mb-3 mt-6 font-title text-3xl font-semibold text-foreground'
+                            className='border-borderSemiDark mb-3 ml-2 mt-6 border-b pb-1 font-title text-3xl font-semibold text-foreground'
                             {...props}
                         />
                     ),

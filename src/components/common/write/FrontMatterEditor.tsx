@@ -103,7 +103,7 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
                     />
                     <button
                         onClick={initTags}
-                        className='grow rounded-md border border-primary bg-primary text-xl font-semibold text-white hover:bg-blue-700 active:bg-blue-700'
+                        className='grow rounded-md border border-error bg-error text-xl font-semibold text-white hover:bg-error/70 active:bg-error/70'
                     >
                         Init
                     </button>
@@ -150,7 +150,7 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
             </div>
             <button
                 onClick={goToContentEditStep}
-                className='flex justify-center rounded-2xl border border-primary bg-primary px-3 py-1 font-title text-lg font-semibold text-white hover:bg-blue-700'
+                className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-white hover:bg-blue-700 active:bg-blue-700'
             >
                 Next
             </button>
