@@ -34,30 +34,57 @@ const ContentEditor = () => {
 
     const navigate = useNavigate();
 
-    const savePostToLocal = () => {
-        if (!confirm('Do you want to save post for publish?')) return;
+    const exportPostAsJson = () => {
+        if (!confirm('Do you want to export the post for publishing?')) return;
 
         if (!title || !date || !category) {
-            alert('Invalid access: missing frontmatter');
+            alert('Invalid frontmatter (title/date/category)');
             navigate('/');
             return;
         }
 
         const contentInvalid = content.trim() === '';
         setIsContentInvalid(contentInvalid);
-
         if (contentInvalid) {
-            alert('Content is required field, so please fill it.');
+            alert('Content is required.');
             return;
         }
 
-        try {
-            const markdown = buildMarkdown();
-            localStorage.setItem(POST_KEY, JSON.stringify(markdown));
-            alert('Post saved to localStorage successfully.');
-        } catch (e) {
-            alert(`Failed to save so try again. Error: ${e}`);
+        const markdown = buildMarkdown();
+
+        const inputFileName = prompt('Enter filename to export (without .json):', 'post-sample');
+        if (!inputFileName || !inputFileName.trim()) {
+            alert('Invalid file name. Export cancelled.');
+            return;
         }
+
+        const sanitizedName = inputFileName.trim().replace(/\s+/g, '-');
+        const fileName = `${sanitizedName}.json`;
+
+        const blob = new Blob([JSON.stringify({ [POST_KEY]: markdown }, null, 2)], {
+            type: 'application/json',
+        });
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        const cmd = `npx tsx scripts/autoPublish.ts ${sanitizedName}`;
+        navigator.clipboard
+            .writeText(cmd)
+            .then(() => {
+                alert(
+                    `JSON exported as "${fileName}"\nTerminal command copied!\n\nNow open your terminal and run:\n${cmd}`,
+                );
+            })
+            .catch(() => {
+                alert(
+                    `JSON exported as "${fileName}"\nCould not copy command. Please run manually:\n${cmd}`,
+                );
+            });
     };
 
     return (
@@ -74,15 +101,13 @@ const ContentEditor = () => {
                     onKeyDown={handleTextareaTabKey}
                     className={clsx(
                         'min-h-[400px] w-full resize-y rounded-md border-l-8 bg-background p-4 text-base leading-relaxed text-foreground transition-colors duration-200 ease-in-out focus:outline-none',
-                        isContentInvalid // 이건 적절한 boolean으로 조건 처리 필요
-                            ? 'border-error placeholder:text-error'
-                            : 'border-primary',
+                        isContentInvalid ? 'border-error placeholder:text-error' : 'border-primary',
                     )}
                 />
             </div>
 
             <button
-                onClick={savePostToLocal}
+                onClick={exportPostAsJson}
                 className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-white hover:bg-blue-700 active:bg-blue-700'
             >
                 Publish
