@@ -8,19 +8,7 @@ const LayoutHeaderForWritePage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
     const [showModal, setShowModal] = useState(false);
     const [savedTempDrafts, setSavedTempDrafts] = useState<TempPost[]>([]);
-    const {
-        reset,
-        setField,
-        saveDraftToLocal,
-        restoreFastDraftsFromLocal,
-        title,
-        date,
-        tags,
-        summary,
-        thumbnail,
-        category,
-        content,
-    } = usePostWriteStore();
+    const { reset, saveDraftToLocal, restoreFastDraftsFromLocal } = usePostWriteStore();
 
     const navigation = useNavigate();
 
@@ -42,6 +30,20 @@ const LayoutHeaderForWritePage = () => {
             reset();
             navigation('/');
         }
+    };
+
+    const removeDraft = (idx: number) => {
+        const existingDraftsJson = localStorage.getItem(DRAFT_STORAGE_KEY);
+        if (existingDraftsJson === null) {
+            return;
+        }
+        const parsedExistingDrafts = JSON.parse(existingDraftsJson);
+        parsedExistingDrafts.splice(idx, 1);
+        const updatedDraftsJson = JSON.stringify(parsedExistingDrafts);
+        localStorage.setItem(DRAFT_STORAGE_KEY, updatedDraftsJson);
+
+        const updatedArray = restoreFastDraftsFromLocal();
+        setSavedTempDrafts(updatedArray);
     };
 
     return (
@@ -81,28 +83,38 @@ const LayoutHeaderForWritePage = () => {
             {/* TempDrafts modal */}
             {showModal && (
                 <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-                    <div className='w-full max-w-md rounded-lg bg-white p-6 shadow-xl'>
+                    <div className='w-full max-w-md rounded-sm bg-white p-6 shadow-xl'>
                         <h2 className='mb-4 font-title text-xl font-semibold'>Saved Drafts</h2>
                         <ul className='space-y-3'>
                             {savedTempDrafts.length > 0 ? (
-                                savedTempDrafts.map(draft => (
+                                savedTempDrafts.map((draft, idx) => (
                                     <li
                                         key={draft.id}
-                                        className='flex flex-col rounded-xl border border-border p-3 hover:bg-gray-100'
+                                        className='flex flex-col rounded-md border border-border p-3 hover:bg-gray-100'
                                     >
                                         <div className='mb-1 flex flex-nowrap items-center justify-between gap-1'>
                                             <span className='text-sm font-semibold text-foreground'>
                                                 {draft.data.title?.trim() || 'No title'}
                                             </span>
-                                            <button
-                                                onClick={() => {
-                                                    restoreFastDraftsFromLocal();
-                                                    setShowModal(false);
-                                                }}
-                                                className='rounded-xl border border-primary bg-primary px-3 py-1 text-sm text-white hover:bg-blue-700 active:bg-blue-700'
-                                            >
-                                                Restore
-                                            </button>
+                                            <div className='flex flex-nowrap gap-1'>
+                                                <button
+                                                    onClick={() => {
+                                                        restoreFastDraftsFromLocal();
+                                                        setShowModal(false);
+                                                    }}
+                                                    className='rounded-md border border-primary bg-primary px-3 py-1 text-sm text-white hover:bg-blue-700 active:bg-blue-700'
+                                                >
+                                                    Restore
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        removeDraft(idx);
+                                                    }}
+                                                    className='rounded-md border border-error bg-error px-3 py-1 text-sm text-white hover:bg-error/70 active:bg-error/70'
+                                                >
+                                                    Init
+                                                </button>
+                                            </div>
                                         </div>
                                         <span className='text-xs text-muted'>
                                             {new Date(draft.id).toLocaleString()}
@@ -115,13 +127,13 @@ const LayoutHeaderForWritePage = () => {
                         </ul>
                         <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                             <button
-                                className='border-borderDark bg-backgroundDark h-8 rounded-xl border px-3 py-1 text-sm text-white hover:bg-muted/70 active:bg-muted/70'
+                                className='border-borderDark bg-backgroundDark h-8 w-20 rounded-md border px-3 py-1 text-sm text-white hover:bg-muted/70 active:bg-muted/70'
                                 onClick={() => setShowModal(false)}
                             >
                                 Close
                             </button>
                             <button
-                                className='active:bg-error-70 h-8 rounded-xl border border-error bg-error px-3 py-1 text-sm text-white hover:bg-error/70'
+                                className='active:bg-error-70 h-8 w-20 rounded-md border border-error bg-error px-3 py-1 text-sm text-white hover:bg-error/70'
                                 onClick={async () => {
                                     await localStorage.setItem(
                                         DRAFT_STORAGE_KEY,
@@ -132,7 +144,7 @@ const LayoutHeaderForWritePage = () => {
                                     alert('remove all drafts successfully');
                                 }}
                             >
-                                Init
+                                ALL init
                             </button>
                         </div>
                     </div>
