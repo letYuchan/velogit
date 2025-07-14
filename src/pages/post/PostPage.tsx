@@ -1,4 +1,5 @@
 import ArrowUpButton from '@/components/common/post/ArrowUpButton';
+import RelatedPostsByCategory from '@/components/common/post/RelatedPostsByCategory';
 import ShareButton from '@/components/common/post/ShareButton';
 import TableOfContentsBar from '@/components/common/post/TableOfContentsBar';
 import MarkdownRenderer from '@/components/test/MarkdownRenderer';
@@ -33,7 +34,6 @@ const PostPage = () => {
     }, []);
 
     useEffect(() => {
-        // wait until MarkdownRenderer content has rendered
         const timeout = setTimeout(() => {
             const tocElements = Array.from(document.querySelectorAll('h1, h2'));
             const mappedTocElements: TableOfContentsItemType[] = tocElements
@@ -53,7 +53,7 @@ const PostPage = () => {
         }, 0);
 
         return () => clearTimeout(timeout);
-    }, [mainContent]); // 이걸로 markdown content 변경 시 다시 실행됨
+    }, [mainContent]);
 
     return (
         <main className='flex w-full flex-col items-center justify-start'>
@@ -74,6 +74,8 @@ const PostPage = () => {
             <ArrowUpButton />
             {/* sideBar */}
             <TableOfContentsBar tableOfContentsTree={tableOfContentsTree} />
+            {/* RelatedPostList */}
+            <RelatedPostsByCategory currentSlug={slug ?? ''} category={post!.category} />
         </main>
     );
 };

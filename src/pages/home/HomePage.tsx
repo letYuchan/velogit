@@ -55,7 +55,7 @@ const HomePage = () => {
                     <button
                         onClick={() => handleSelectedCategory('all')}
                         className={clsx(
-                            'rounded-2xl border px-3 py-1 font-title text-lg font-bold transition-transform ease-in-out hover:scale-110 sm:text-xl',
+                            'rounded-full border px-3 py-1 font-title text-lg font-bold transition-transform ease-in-out hover:scale-110 sm:text-xl',
                             selectedCategory === 'all'
                                 ? 'border-primary bg-primary text-white'
                                 : 'border-border bg-background text-foreground hover:bg-primary-bg',
@@ -69,7 +69,7 @@ const HomePage = () => {
                             key={category}
                             onClick={() => handleSelectedCategory(category)}
                             className={clsx(
-                                'rounded-2xl border bg-background px-3 py-1 font-title text-lg font-bold transition-transform ease-in-out hover:scale-110 sm:text-xl',
+                                'rounded-full border bg-background px-3 py-1 font-title text-lg font-bold transition-transform ease-in-out hover:scale-110 sm:text-xl',
                                 selectedCategory === category
                                     ? 'border-primary bg-primary text-white'
                                     : 'border-border bg-background text-foreground hover:bg-primary-bg',

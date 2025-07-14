@@ -20,11 +20,11 @@ const PostPageHeader = ({ title, date, tags, category }: PostPageProps) => {
             <div className='mb-4 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center'>
                 <div className='flex items-center gap-3'>
                     {category ? (
-                        <span className='rounded-2xl bg-primary px-3 py-1 font-title text-lg font-bold text-white'>
+                        <span className='rounded-full bg-primary px-3 py-1 font-title text-lg font-bold text-white'>
                             {category}
                         </span>
                     ) : (
-                        <span className='rounded-2xl bg-error/10 px-3 py-1 font-title text-lg font-bold text-error'>
+                        <span className='rounded-full bg-error/10 px-3 py-1 font-title text-lg font-bold text-error'>
                             Category is required
                         </span>
                     )}
