@@ -5,6 +5,7 @@ import HomePage from '@/pages/home/HomePage';
 import WritePage from '@/pages/write/WritePage';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import EditPage from '@/pages/edit/EditPage';
 
 function App() {
     const router = createBrowserRouter([
@@ -15,6 +16,7 @@ function App() {
                 { index: true, element: <HomePage /> },
                 { path: 'about', element: <AboutPage /> },
                 { path: 'write', element: <WritePage /> },
+                { path: 'edit/:slug', element: <EditPage /> },
                 { path: 'post/:slug', element: <PostPage /> },
             ],
         },
