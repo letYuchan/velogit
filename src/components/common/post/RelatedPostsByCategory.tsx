@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 import { MdExpandMore, MdExpandLess } from 'react-icons/md';
 import clsx from 'clsx';
 
-interface Props {
+interface RelatedPostsByCategoryProps {
     currentSlug: string;
     category: string;
 }
 
-const RelatedPostsByCategory = ({ currentSlug, category }: Props) => {
+const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategoryProps) => {
     const sortedRelatedPosts = posts
         .filter(post => post.category === category && post.slug !== currentSlug)
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -28,7 +28,7 @@ const RelatedPostsByCategory = ({ currentSlug, category }: Props) => {
 
     return (
         <section className='my-20 w-full max-w-3xl border-t border-t-primary p-4'>
-            {/* Header */}
+            {/* header */}
             <div
                 className='mb-4 flex cursor-pointer items-center justify-between'
                 onClick={() => setIsOpen(prev => !prev)}
