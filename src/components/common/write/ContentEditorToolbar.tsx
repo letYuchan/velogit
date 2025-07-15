@@ -106,7 +106,7 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             newSelectionStart = before.length + 1;
             newSelectionEnd = newSelectionStart + 4;
         } else if (marker === 'image') {
-            const url = prompt('Enter image URL:', 'images/');
+            const url = prompt('Enter image URL:', '/images/');
             if (url === null) return;
             newValue = before + `![alt text](${url})` + after;
             newSelectionStart = before.length + 2;

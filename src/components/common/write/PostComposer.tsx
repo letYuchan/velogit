@@ -1,15 +1,39 @@
 import PostContentEditor from '@/components/common/write/PostContentEditor';
 import PostMetaBuilder from '@/components/common/write/PostMetaBuilder';
-import { useState } from 'react';
+import { posts } from '@/utils/postList';
+import { useEffect, useState } from 'react';
 
-const PostComposer = () => {
-  const [step, setStep] = useState<'meta' | 'content'>('meta');
-  console.log('step');
-  return (
-    <main className='flex w-full flex-row overflow-hidden'>
-      {step === 'meta' ? <PostMetaBuilder setStep={setStep} /> : <PostContentEditor />}
-    </main>
-  );
+interface PostComposerProps {
+    mode: 'write' | 'edit';
+    slug?: string;
+}
+
+const PostComposer = ({ mode, slug }: PostComposerProps) => {
+    const [matchedPost, setMatchedPost] = useState<PostData | undefined>(undefined);
+    useEffect(() => {
+        if (slug && mode === 'edit') {
+            const correctPost = posts.find(post => {
+                if (post.slug === slug) return post;
+            });
+
+            if (correctPost) {
+                setMatchedPost(correctPost);
+            } else {
+                setMatchedPost(undefined);
+            }
+        }
+    }, [slug, mode]);
+
+    const [step, setStep] = useState<'meta' | 'content'>('meta');
+    return (
+        <main className='flex w-full flex-row overflow-hidden'>
+            {step === 'meta' ? (
+                <PostMetaBuilder setStep={setStep} mode={mode} editablePost={matchedPost} />
+            ) : (
+                <PostContentEditor setStep={setStep} mode={mode} editablePost={matchedPost} />
+            )}
+        </main>
+    );
 };
 
 export default PostComposer;

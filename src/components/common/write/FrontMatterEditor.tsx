@@ -1,12 +1,14 @@
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import clsx from 'clsx';
-import { useState, type ChangeEvent, type KeyboardEvent } from 'react';
+import { useEffect, useState, type ChangeEvent, type KeyboardEvent } from 'react';
 
 interface FrontMatterEditorProps {
     setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;
+    mode: 'write' | 'edit';
+    editablePost: PostData | undefined;
 }
 
-const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
+const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorProps) => {
     const { title, date, tags, summary, thumbnail, category, setField } = usePostWriteStore();
     const [tagsInput, setTagsInput] = useState(tags.join(', '));
 
@@ -24,6 +26,18 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
             setField(name as MetaKeysExceptOfTags, value);
         }
     };
+
+    useEffect(() => {
+        if (mode === 'edit' && editablePost) {
+            setField('title', editablePost.title);
+            setField('date', editablePost.date);
+            setField('tags', editablePost.tags);
+            setField('summary', editablePost.summary);
+            setField('thumbnail', editablePost.thumbnail);
+            setField('category', editablePost.category);
+            setTagsInput(editablePost.tags.join(', '));
+        }
+    }, [mode, editablePost]);
 
     const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' || e.key === ',') {
@@ -111,7 +125,10 @@ const FrontMatterEditor = ({ setStep }: FrontMatterEditorProps) => {
                 {tags ? (
                     <div className='flex flex-wrap justify-start gap-2'>
                         {tags.map(tag => (
-                            <span className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary'>
+                            <span
+                                key={tag}
+                                className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary'
+                            >
                                 {tag}
                             </span>
                         ))}

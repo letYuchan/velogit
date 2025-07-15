@@ -1,13 +1,12 @@
 import MarkdownRenderer from '@/components/test/MarkdownRenderer';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const ContentPreview = () => {
-    const { category, content, date, reset, setField, summary, tags, thumbnail, title } =
-        usePostWriteStore();
+interface ContentPreviewProps {
+    mode: 'write' | 'edit';
+}
 
-    const [isRequiredInputsFilled, setIsRequiredInputsFilled] = useState(true);
+const ContentPreview = ({ mode }: ContentPreviewProps) => {
+    const { category, content, date, tags, title } = usePostWriteStore();
 
     const parsedFrontMatter: ParsedFrontMatterType = {
         title: title,
@@ -18,7 +17,12 @@ const ContentPreview = () => {
 
     return (
         <section className='flex w-full flex-1 flex-col justify-between gap-4 border-r border-border bg-gray-100 p-4 sm:w-1/2'>
-            <MarkdownRenderer content={content} parsedFrontMatter={parsedFrontMatter} />
+            <MarkdownRenderer
+                content={
+                    mode === 'edit' ? content.replace(/^---\n[\s\S]*?\n---/, '').trim() : content
+                }
+                parsedFrontMatter={parsedFrontMatter}
+            />
         </section>
     );
 };

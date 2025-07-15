@@ -6,8 +6,10 @@ import { categories } from '@/utils/categories';
 import clsx from 'clsx';
 import { categoryCountMap } from '@/utils/categoryCount';
 import { HiSortAscending, HiSortDescending } from 'react-icons/hi';
+import { usePostWriteStore } from '@/store/usePostWriteStore';
 
 const HomePage = () => {
+    const { reset } = usePostWriteStore();
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
@@ -20,6 +22,10 @@ const HomePage = () => {
         selectedCategory === 'all'
             ? posts
             : posts.filter(post => post.category === selectedCategory);
+
+    useEffect(() => {
+        reset();
+    }, []);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -72,7 +78,7 @@ const HomePage = () => {
                                 'rounded-full border bg-background px-3 py-1 font-title text-lg font-bold transition-transform ease-in-out hover:scale-110 sm:text-xl',
                                 selectedCategory === category
                                     ? 'border-primary bg-primary text-white'
-                                    : 'border-border bg-background text-foreground hover:bg-primary-bg',
+                                    : 'border-border bg-background text-foreground hover:bg-primary-bg active:bg-primary-bg',
                             )}
                         >
                             {category.toUpperCase()} {categoryCountMap[category] ?? 0}
@@ -83,7 +89,7 @@ const HomePage = () => {
                 <section aria-label='sort section' className='flex items-center justify-center'>
                     <button
                         onClick={() => setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'))}
-                        className='text-sm text-primary underline hover:opacity-70'
+                        className='text-sm text-primary hover:opacity-70 active:opacity-70'
                     >
                         {sortOrder === 'asc' ? (
                             <HiSortAscending className='size-10' />

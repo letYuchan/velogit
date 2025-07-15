@@ -33,16 +33,16 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
                 className='mb-4 flex cursor-pointer items-center justify-between'
                 onClick={() => setIsOpen(prev => !prev)}
             >
-                <h2 className='text-2xl font-bold text-foreground'>
-                    More posts in{' '}
-                    <span className='rounded-full bg-primary px-3 py-1 font-title font-bold text-white'>
+                <h2 className='text-xl font-bold text-foreground sm:text-2xl'>
+                    More posts in
+                    <span className='relative left-2 rounded-full bg-primary px-3 py-1 font-title font-bold text-white'>
                         {category}
                     </span>
                 </h2>
                 {isOpen ? (
-                    <MdExpandLess className='text-3xl text-foreground' />
+                    <MdExpandLess className='text-2xl text-foreground sm:text-3xl' />
                 ) : (
-                    <MdExpandMore className='text-3xl text-foreground' />
+                    <MdExpandMore className='text-2xl text-foreground sm:text-3xl' />
                 )}
             </div>
 

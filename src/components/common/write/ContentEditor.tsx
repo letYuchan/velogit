@@ -5,11 +5,25 @@ import clsx from 'clsx';
 import type { ChangeEvent } from 'react';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const ContentEditor = () => {
+interface ContentEditorProps {
+    setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;
+    mode: 'write' | 'edit';
+    editablePost: PostData | undefined;
+}
+
+const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
     const [isContentInvalid, setIsContentInvalid] = useState(false);
-    const { content, setField, buildMarkdown, title, date, category } = usePostWriteStore();
+    const { content, setField, buildMarkdown, title, date, category, reset } = usePostWriteStore();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+        if (mode === 'edit' && editablePost) {
+            const parsedContent = editablePost.content.replace(/^---\n[\s\S]*?\n---/, '').trim();
+            setField('content', parsedContent);
+        }
+    }, [mode, editablePost]);
 
     const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setField('content', e.target.value);
@@ -39,7 +53,15 @@ const ContentEditor = () => {
 
         if (!title || !date || !category) {
             alert('Invalid frontmatter (title/date/category)');
-            navigate('/');
+            reset();
+            setStep('meta');
+            if (mode === 'write') {
+                navigate('/write');
+            }
+
+            if (mode === 'edit') {
+                navigate('/edit');
+            }
             return;
         }
 
@@ -51,8 +73,11 @@ const ContentEditor = () => {
         }
 
         const markdown = buildMarkdown();
+        console.log('📝 Exporting markdown:\n', markdown);
 
-        const inputFileName = prompt('Enter filename to export (without .json):', 'post-sample');
+        const defaultFileName = mode === 'edit' && editablePost ? editablePost.slug : 'post-sample';
+
+        const inputFileName = prompt('Enter filename to export (without .json):', defaultFileName);
         if (!inputFileName || !inputFileName.trim()) {
             alert('Invalid file name. Export cancelled.');
             return;
@@ -72,13 +97,19 @@ const ContentEditor = () => {
         a.click();
         URL.revokeObjectURL(url);
 
-        const cmd = `npx tsx scripts/autoPublish.ts ${sanitizedName}`;
+        const isEdit = mode === 'edit';
+        const scriptToRun = isEdit ? 'autoEdit.ts' : 'autoPublish.ts';
+        const cmd = isEdit
+            ? `npx tsx scripts/${scriptToRun} ${sanitizedName} ${editablePost?.slug}`
+            : `npx tsx scripts/${scriptToRun} ${sanitizedName}`;
+
         navigator.clipboard
             .writeText(cmd)
             .then(() => {
                 alert(
                     `JSON exported as "${fileName}"\nTerminal command copied!\n\nNow open your terminal and run:\n${cmd}`,
                 );
+                navigate('/');
             })
             .catch(() => {
                 alert(
@@ -110,7 +141,7 @@ const ContentEditor = () => {
                 onClick={exportPostAsJson}
                 className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-white hover:bg-blue-700 active:bg-blue-700'
             >
-                Publish
+                {mode === 'edit' ? 'Edit' : 'Publish'}
             </button>
         </section>
     );
