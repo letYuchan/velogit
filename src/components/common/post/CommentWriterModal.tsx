@@ -62,7 +62,6 @@ const CommentWriterModal = ({
     };
 
     const navigate = useNavigate();
-
     const handlePostCommentWorkflow = () => {
         if (slug === '') {
             alert('Invalid Access.');
@@ -104,7 +103,11 @@ const CommentWriterModal = ({
             const sanitizedSlug = slug.trim().replace(/\s+/g, '-');
             const sanitizedUsername = commenterGithubName.trim().replace(/\s+/g, '-');
             const sanitizedDate = todayDate.trim();
-            const fileName = `${sanitizedSlug}__${sanitizedUsername}__${sanitizedDate}.json`;
+
+            // 고유 파일명을 위한 timestamp
+            const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, '');
+
+            const jsonFileName = `${sanitizedSlug}__${sanitizedUsername}__${timestamp}.json`;
 
             const commentData = {
                 slug: sanitizedSlug,
@@ -117,21 +120,21 @@ const CommentWriterModal = ({
                 type: 'application/json',
             });
 
-            saveAs(blob, fileName);
+            saveAs(blob, jsonFileName);
 
-            const cmd = `npx tsx scripts/postComment.ts ${fileName} ${ownerGithubName.trim()} ${ownerRepoName.trim()} ${commenterGithubName.trim()} ${githubToken.trim()}`;
+            const cmd = `npx tsx scripts/autoPostComment.ts ${jsonFileName} ${ownerGithubName.trim()} ${ownerRepoName.trim()} ${sanitizedUsername} ${githubToken.trim()}`;
 
             navigator.clipboard
                 .writeText(cmd)
                 .then(() => {
                     alert(
-                        `Comment JSON exported as "${fileName}"\n\nAuto command copied to clipboard:\n${cmd}`,
+                        `Comment JSON exported as "${jsonFileName}"\n\nAuto command copied to clipboard:\n${cmd}`,
                     );
                     closeCommentWriterModal();
                 })
                 .catch(() => {
                     alert(
-                        `Comment JSON exported as "${fileName}"\nCould not copy command. Run manually:\n${cmd}`,
+                        `Comment JSON exported as "${jsonFileName}"\nCould not copy command. Run manually:\n${cmd}`,
                     );
                 });
         }

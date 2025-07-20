@@ -21,7 +21,7 @@ const CommentsContainer = ({ slug }: CommentsContainerProps) => {
                     }}
                     className='rounded-2xl border border-primary bg-primary px-3 py-1 text-lg font-semibold text-white transition-all duration-150 ease-in-out hover:bg-blue-700 active:bg-blue-700 sm:text-xl'
                 >
-                    REPLY
+                    Comment
                 </button>
             </div>
             <CommentList />
