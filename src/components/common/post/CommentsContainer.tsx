@@ -2,7 +2,11 @@ import CommentList from '@/components/common/post/CommentList';
 import CommentWriterModal from '@/components/common/post/CommentWriterModal';
 import { useState } from 'react';
 
-const CommentsContainer = () => {
+interface CommentsContainerProps {
+    slug: string;
+}
+
+const CommentsContainer = ({ slug }: CommentsContainerProps) => {
     const [isCommentWriterModalOpen, setIsCommentWriterModalOpen] = useState(false);
 
     return (
@@ -23,7 +27,7 @@ const CommentsContainer = () => {
             <CommentList />
             {isCommentWriterModalOpen && (
                 <CommentWriterModal
-                    slug=''
+                    slug={slug}
                     isCommentWriterModalOpen={isCommentWriterModalOpen}
                     setIsCommentWriterModalOpen={setIsCommentWriterModalOpen}
                 />

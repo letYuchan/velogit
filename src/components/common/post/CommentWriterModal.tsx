@@ -1,6 +1,9 @@
+import { POST_COMMENT_KEY } from '@/constants/comment.constants';
+import { saveAs } from 'file-saver';
 import { getTodayDate } from '@/utils/date';
 import clsx from 'clsx';
 import { useState, type ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface CommentWriterModalProps {
     slug: string;
@@ -14,19 +17,26 @@ const CommentWriterModal = ({
     setIsCommentWriterModalOpen,
 }: CommentWriterModalProps) => {
     // form data
-    const [githubUserName, setGithubUserName] = useState('');
+
+    const [ownerGithubName, setOwnerGithubName] = useState('');
+    const [ownerRepoName, setOwnerRepoName] = useState('');
+    const [commenterGithubName, setCommenterGithubName] = useState('');
     const [githubToken, setGithubToken] = useState('');
     const [todayDate, setTodayDate] = useState('');
     const [comment, setComment] = useState('');
 
     // for fallback UI
-    const [isGithubUserNameInvalid, setIsGithubUserNameInValid] = useState(false);
+    const [isOwnerGithubNameInvalid, setIsOwnerGithubNameInvalid] = useState(false);
+    const [isOwnerRepoNameInvalid, setIsOwnerRepoNameInvalid] = useState(false);
+    const [isCommenterGithubNameInvalid, setIsCommenterGithubNameInValid] = useState(false);
     const [isGithubTokenInvalid, setIsGithubTokenInvalid] = useState(false);
     const [isTodayDateInvalid, setIsTodayDateInvalid] = useState(false);
     const [isCommentInvalid, setIsCommentInvalid] = useState(false);
 
     const closeCommentWriterModal = () => {
-        setGithubUserName('');
+        setOwnerGithubName('');
+        setOwnerRepoName('');
+        setCommenterGithubName('');
         setGithubToken('');
         setTodayDate('');
         setComment('');
@@ -36,9 +46,13 @@ const CommentWriterModal = ({
     const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
 
-        if (name === 'githubUserName') setGithubUserName(value);
+        if (name === 'ownerGithubName') setOwnerGithubName(value);
 
-        if (name == 'githubUserToken') setGithubToken(value);
+        if (name === 'ownerRepoName') setOwnerRepoName(value);
+
+        if (name === 'commenterGithubName') setCommenterGithubName(value);
+
+        if (name == 'githubToken') setGithubToken(value);
 
         if (name === 'todayDate') setTodayDate(value);
 
@@ -46,22 +60,39 @@ const CommentWriterModal = ({
 
         return;
     };
-    const handlePostCommentWorkflow = () => {
-        // validation inspection
-        const githubUserNameInvalid = githubUserName.trim() === '' ? true : false;
-        const githubUserTokenInvalid = githubToken.trim() === '' ? true : false;
-        const todayDateInvalid = todayDate.trim() === '' ? true : false;
-        const commentInvalid = comment.trim() === '' ? true : false;
 
-        setIsGithubUserNameInValid(githubUserNameInvalid);
+    const navigate = useNavigate();
+
+    const handlePostCommentWorkflow = () => {
+        if (slug === '') {
+            alert('Invalid Access.');
+            setIsCommentWriterModalOpen(false);
+            navigate('/');
+        }
+
+        const ownerGithubNameInvalid = ownerGithubName.trim() === '';
+        const ownerRepoNameInvalid = ownerRepoName.trim() === '';
+        const commenterGithubNameInvalid = commenterGithubName.trim() === '';
+        const githubUserTokenInvalid = githubToken.trim() === '';
+        const todayDateInvalid = todayDate.trim() === '';
+        const commentInvalid = comment.trim() === '';
+
+        setIsOwnerGithubNameInvalid(ownerGithubNameInvalid);
+        setIsOwnerRepoNameInvalid(ownerRepoNameInvalid);
+        setIsCommenterGithubNameInValid(commenterGithubNameInvalid);
         setIsGithubTokenInvalid(githubUserTokenInvalid);
         setIsTodayDateInvalid(todayDateInvalid);
         setIsCommentInvalid(commentInvalid);
 
-        if (githubUserNameInvalid || githubUserTokenInvalid || todayDateInvalid || commentInvalid) {
-            alert(
-                'Your Name, Today Date, Your Comment are required fields, so please fill them all out.',
-            );
+        if (
+            ownerGithubNameInvalid ||
+            ownerRepoNameInvalid ||
+            commenterGithubNameInvalid ||
+            githubUserTokenInvalid ||
+            todayDateInvalid ||
+            commentInvalid
+        ) {
+            alert('All fields are required. Please fill them out completely.');
             return;
         }
 
@@ -70,7 +101,39 @@ const CommentWriterModal = ({
                 'Ready to post your comment? Please note: comments can’t be edited once submitted.',
             )
         ) {
-            alert('success');
+            const sanitizedSlug = slug.trim().replace(/\s+/g, '-');
+            const sanitizedUsername = commenterGithubName.trim().replace(/\s+/g, '-');
+            const sanitizedDate = todayDate.trim();
+            const fileName = `${sanitizedSlug}__${sanitizedUsername}__${sanitizedDate}.json`;
+
+            const commentData = {
+                slug: sanitizedSlug,
+                user: sanitizedUsername,
+                date: sanitizedDate,
+                comment: comment.trim(),
+            };
+
+            const blob = new Blob([JSON.stringify({ [POST_COMMENT_KEY]: commentData }, null, 2)], {
+                type: 'application/json',
+            });
+
+            saveAs(blob, fileName);
+
+            const cmd = `npx tsx scripts/postComment.ts ${fileName} ${ownerGithubName.trim()} ${ownerRepoName.trim()} ${commenterGithubName.trim()} ${githubToken.trim()}`;
+
+            navigator.clipboard
+                .writeText(cmd)
+                .then(() => {
+                    alert(
+                        `Comment JSON exported as "${fileName}"\n\nAuto command copied to clipboard:\n${cmd}`,
+                    );
+                    closeCommentWriterModal();
+                })
+                .catch(() => {
+                    alert(
+                        `Comment JSON exported as "${fileName}"\nCould not copy command. Run manually:\n${cmd}`,
+                    );
+                });
         }
     };
 
@@ -82,17 +145,52 @@ const CommentWriterModal = ({
                 <h2 className='mb-3 border-b border-b-border font-title text-xl font-semibold'>
                     Comment Writer
                 </h2>
-                {/* GitHub ID */}
+                {/* Owner GitHub ID */}
                 <div className='mb-3 flex w-full flex-wrap gap-2 px-2'>
-                    <h3 className='relative top-2 text-sm font-bold'>Your GitHub username</h3>
+                    <h3 className='relative top-2 text-sm font-bold'>Owner GitHub Name</h3>
                     <input
                         onChange={handleOnChange}
+                        value={ownerGithubName}
                         type='text'
-                        name='githubUserName'
-                        placeholder='Enter your GitHub username'
+                        name='ownerGithubName'
+                        placeholder='Enter owner gitHub username.'
                         className={clsx(
                             'flex-1 rounded-md border bg-background px-2 py-1 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
-                            isGithubUserNameInvalid
+                            isOwnerGithubNameInvalid
+                                ? 'border-error transition-colors duration-200 ease-in-out focus:ring-error'
+                                : 'border-border focus:border-primary focus:ring-primary',
+                        )}
+                    />
+                </div>
+                {/* Owner repo name */}
+                <div className='mb-3 flex w-full flex-wrap gap-2 px-2'>
+                    <h3 className='relative top-2 text-sm font-bold'>Owner Repo Name</h3>
+                    <input
+                        onChange={handleOnChange}
+                        value={ownerRepoName}
+                        type='text'
+                        name='ownerRepoName'
+                        placeholder='Enter owner repo name.'
+                        className={clsx(
+                            'flex-1 rounded-md border bg-background px-2 py-1 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
+                            isOwnerRepoNameInvalid
+                                ? 'border-error transition-colors duration-200 ease-in-out focus:ring-error'
+                                : 'border-border focus:border-primary focus:ring-primary',
+                        )}
+                    />
+                </div>
+                {/* Commenter GitHub ID */}
+                <div className='mb-3 flex w-full flex-wrap gap-2 px-2'>
+                    <h3 className='relative top-2 text-sm font-bold'>Your GitHub Username</h3>
+                    <input
+                        onChange={handleOnChange}
+                        value={commenterGithubName}
+                        type='text'
+                        name='commenterGithubName'
+                        placeholder='Enter your github username.'
+                        className={clsx(
+                            'flex-1 rounded-md border bg-background px-2 py-1 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
+                            isCommenterGithubNameInvalid
                                 ? 'border-error transition-colors duration-200 ease-in-out focus:ring-error'
                                 : 'border-border focus:border-primary focus:ring-primary',
                         )}
@@ -104,9 +202,10 @@ const CommentWriterModal = ({
                     <div className='flex flex-1 flex-col justify-start gap-1'>
                         <input
                             onChange={handleOnChange}
+                            value={githubToken}
                             type='password'
-                            name='githubUserToken'
-                            placeholder='Enter your GitHub token'
+                            name='githubToken'
+                            placeholder='Enter your github token.'
                             className={clsx(
                                 'flex-1 rounded-md border bg-background px-2 py-1 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
                                 isGithubTokenInvalid
@@ -143,10 +242,11 @@ const CommentWriterModal = ({
                     <h3 className='text-left text-sm font-bold'>Your Comment</h3>
                     <textarea
                         onChange={handleOnChange}
+                        value={comment}
                         name='comment'
                         placeholder='Write comment here...'
                         className={clsx(
-                            'min-h-[200px] w-full rounded-md border bg-background px-2 py-1 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
+                            'min-h-[100px] w-full rounded-md border bg-background px-2 py-1 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
                             isCommentInvalid
                                 ? 'border-error transition-colors duration-200 ease-in-out focus:ring-error'
                                 : 'border-border focus:border-primary focus:ring-primary',

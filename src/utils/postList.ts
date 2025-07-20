@@ -13,7 +13,6 @@ export const posts: PostData[] = Object.entries(
 ).map(([path, content]) => {
     const slug = path.split('/').pop()?.replace('.md', '') || '';
 
-    // 카테고리 파싱 예시
     const title = content.match(/title:\s*['"](.*)['"]/)?.[1] ?? '';
     const date = content.match(/date:\s*['"](.*)['"]/)?.[1] ?? '';
     const summary = content.match(/summary:\s*['"](.*)['"]/)?.[1] ?? '';

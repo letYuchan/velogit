@@ -1,10 +1,10 @@
-interface PostMeta {
+interface PostData {
     slug: string;
     title: string;
     date: string;
-    tags?: string[];
+    tags: string[];
     summary: string;
-    thumbnail?: string;
-    content?: string;
+    thumbnail: string;
+    content: string;
     category: string;
 }

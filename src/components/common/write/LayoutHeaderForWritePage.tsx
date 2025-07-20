@@ -57,7 +57,6 @@ const LayoutHeaderForWritePage = () => {
                     <MdArrowBack className='size-6' />
                     {!isMobile && <span className='relative top-0.5'>BACK</span>}
                 </button>
-
                 <div className='flex flex-nowrap items-stretch justify-around gap-2'>
                     <button
                         onClick={() => setShowModal(true)}

@@ -11,3 +11,10 @@ interface ParsedFrontMatterType {
     tags: string[];
     category: string;
 }
+
+interface CommentData {
+    slug: string;
+    user: string;
+    date: string;
+    content: string;
+}

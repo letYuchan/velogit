@@ -73,7 +73,6 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
         }
 
         const markdown = buildMarkdown();
-        console.log('📝 Exporting markdown:\n', markdown);
 
         const defaultFileName = mode === 'edit' && editablePost ? editablePost.slug : 'post-sample';
 
@@ -107,13 +106,13 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
             .writeText(cmd)
             .then(() => {
                 alert(
-                    `JSON exported as "${fileName}"\nTerminal command copied!\n\nNow open your terminal and run:\n${cmd}`,
+                    `Post JSON exported as "${fileName}"\nTerminal command copied!\n\nNow open your terminal and run:\n${cmd}`,
                 );
                 navigate('/');
             })
             .catch(() => {
                 alert(
-                    `JSON exported as "${fileName}"\nCould not copy command. Please run manually:\n${cmd}`,
+                    `Post JSON exported as "${fileName}"\nCould not copy command. Please run manually:\n${cmd}`,
                 );
             });
     };

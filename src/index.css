@@ -22,8 +22,3 @@ body {
     @apply font-sans;
 }
 
-.required-label::after {
-    content: ' *';
-    color: red;
-    margin-left: 0.25rem;
-}
