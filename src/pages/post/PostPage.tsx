@@ -1,5 +1,4 @@
 import ArrowUpButton from '@/components/common/post/ArrowUpButton';
-import CommentsContainer from '@/components/common/post/CommentsContainer';
 import EditButton from '@/components/common/post/EditButton';
 import RelatedPostsByCategory from '@/components/common/post/RelatedPostsByCategory';
 import ShareButton from '@/components/common/post/ShareButton';
@@ -7,6 +6,7 @@ import TableOfContentsBar from '@/components/common/post/TableOfContentsBar';
 import MarkdownRenderer from '@/components/test/MarkdownRenderer';
 import { posts } from '@/utils/postList';
 import { buildTocTree } from '@/utils/tocTree';
+import Giscus from '@giscus/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -79,8 +79,23 @@ const PostPage = () => {
                     </div>
                 </aside>
             )}
-            {/* Comments */}
-            <CommentsContainer />
+            {/* Giscus: comment feature */}
+            <div className='mx-auto w-full max-w-3xl px-4'>
+                <Giscus
+                    id='comments'
+                    repo='letYuchan/velogit'
+                    repoId='R_kgDOO_WURQ'
+                    category='General'
+                    categoryId='DIC_kwDOO_WURc4CtPJ_'
+                    mapping='pathname'
+                    reactionsEnabled='1'
+                    emitMetadata='0'
+                    inputPosition='top'
+                    theme='light'
+                    lang='en'
+                    loading='lazy'
+                />
+            </div>
             {/* ArrowUP button */}
             <ArrowUpButton />
             {/* sideBar */}
