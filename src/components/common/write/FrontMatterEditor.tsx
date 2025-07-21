@@ -147,7 +147,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     name='thumbnail'
                     value={thumbnail}
                     onChange={handleOnChange}
-                    placeholder='Thumbnail image path (e.g., images/thumbnail.png)'
+                    placeholder='Thumbnail image path (e.g., /images/thumbnail.png)'
                     className='w-full rounded-md border border-border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
                 />
 

@@ -1,4 +1,4 @@
-import MarkdownRenderer from '@/components/test/MarkdownRenderer';
+import MarkdownRenderer from '@/components/common/MarkdownRenderer';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 
 interface ContentPreviewProps {

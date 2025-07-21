@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { FiShare2 } from 'react-icons/fi';
 
 const ShareButton = () => {
-    const [copied, setCopied] = useState(false);
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1150);
+    const [, setCopied] = useState(false);
+    const [isDesktop] = useState(window.innerWidth > 1150);
 
     const handleShare = async () => {
         const url = window.location.href;

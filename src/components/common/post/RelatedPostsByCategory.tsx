@@ -27,10 +27,10 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
     const currentPosts = sortedRelatedPosts.slice(indexOfFirst, indexOfLast);
 
     return (
-        <section className='my-20 w-full max-w-3xl border-t border-t-primary p-4'>
+        <section className='my-20 w-full max-w-3xl p-4'>
             {/* header */}
             <div
-                className='mb-4 flex cursor-pointer items-center justify-between'
+                className='mb-4 flex cursor-pointer items-center justify-between border-t border-t-primary py-4'
                 onClick={() => setIsOpen(prev => !prev)}
             >
                 <h2 className='text-xl font-bold text-foreground sm:text-2xl'>

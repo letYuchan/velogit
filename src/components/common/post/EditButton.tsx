@@ -8,7 +8,7 @@ interface EditButtonProps {
 }
 
 const EditButton = ({ slug }: EditButtonProps) => {
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1150);
+    const [isDesktop] = useState(window.innerWidth > 1150);
 
     return (
         <Link to={`/edit/${slug}`}>
