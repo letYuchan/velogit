@@ -1,10 +1,10 @@
+import MarkdownRenderer from '@/components/common/MarkdownRenderer';
 import ArrowUpButton from '@/components/common/post/ArrowUpButton';
 import EditButton from '@/components/common/post/EditButton';
 import GiscusCommentContainer from '@/components/common/post/GiscusCommentsContainer';
 import RelatedPostsByCategory from '@/components/common/post/RelatedPostsByCategory';
 import ShareButton from '@/components/common/post/ShareButton';
 import TableOfContentsBar from '@/components/common/post/TableOfContentsBar';
-import MarkdownRenderer from '@/components/common/MarkdownRenderer';
 import { posts } from '@/utils/postList';
 import { buildTocTree } from '@/utils/tocTree';
 import { useEffect, useState } from 'react';
@@ -62,19 +62,19 @@ const PostPage = () => {
             <MarkdownRenderer parsedFrontMatter={parsedFrontMatter} content={mainContent} />
             {isDesktop ? (
                 <aside className='fixed left-8 top-1/2 z-50 flex translate-y-1/2 transform flex-col gap-2 rounded-full bg-backgroundDark shadow-md'>
-                    <div className='group flex size-14 items-center justify-center rounded-full border border-border bg-white/70 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-lg'>
+                    <div className='bg-background-second group flex size-14 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
                         <ShareButton />
                     </div>
-                    <div className='group flex size-14 items-center justify-center rounded-full border border-border bg-white/70 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-lg'>
+                    <div className='bg-background-second group flex size-14 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
                         <EditButton slug={slug ?? ''} />
                     </div>
                 </aside>
             ) : (
                 <aside className='fixed bottom-40 left-4 z-50 flex flex-col gap-2 rounded-full bg-backgroundDark opacity-60 shadow-md'>
-                    <div className='group flex size-10 items-center justify-center rounded-full border border-border bg-white/70 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-lg'>
+                    <div className='bg-background-second group flex size-10 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
                         <ShareButton />
                     </div>
-                    <div className='group flex size-10 items-center justify-center rounded-full border border-border bg-white/70 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-white hover:shadow-lg'>
+                    <div className='bg-background-second group flex size-10 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
                         <EditButton slug={slug ?? ''} />
                     </div>
                 </aside>

@@ -12,7 +12,7 @@ const EditButton = ({ slug }: EditButtonProps) => {
 
     return (
         <Link to={`/edit/${slug}`}>
-            <MdOutlineEditNote className={clsx('size-5', isDesktop && 'size-4')} />
+            <MdOutlineEditNote className={clsx('size-5 text-foreground', isDesktop && 'size-4')} />
         </Link>
     );
 };

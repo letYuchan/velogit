@@ -35,7 +35,7 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
             >
                 <h2 className='text-xl font-bold text-foreground sm:text-2xl'>
                     More posts in
-                    <span className='relative left-2 rounded-full bg-primary px-3 py-1 font-title font-bold text-white'>
+                    <span className='text-main relative left-2 rounded-full bg-primary px-3 py-1 font-title font-bold'>
                         {category}
                     </span>
                 </h2>
@@ -57,12 +57,12 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
                                     className='group flex items-center justify-between border-b border-border pb-2'
                                 >
                                     <div className='flex items-center gap-2'>
-                                        <span className='mt-0.5 text-primary transition group-hover:translate-x-1'>
+                                        <span className='mt-0.5 text-primary transition group-hover:translate-x-1 group-active:translate-x-1'>
                                             →
                                         </span>
                                         <Link
                                             to={`/post/${post.slug}`}
-                                            className='text-base font-semibold text-foreground transition group-hover:text-primary'
+                                            className='text-base font-semibold text-foreground transition group-hover:text-primary group-active:text-primary'
                                         >
                                             {post.title}
                                         </Link>
@@ -90,8 +90,8 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
                                             className={clsx(
                                                 'rounded-md border px-3 py-1 transition-colors',
                                                 currentPage === idx + 1
-                                                    ? 'border-primary bg-primary text-white'
-                                                    : 'border-border bg-background text-foreground hover:bg-primary-bg',
+                                                    ? 'text-main border-primary bg-primary'
+                                                    : 'hover:bg-primary-light active:bg-primary-light border-border bg-background text-foreground',
                                             )}
                                         >
                                             {idx + 1}

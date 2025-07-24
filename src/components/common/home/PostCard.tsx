@@ -1,3 +1,4 @@
+import IconOctocat from '@/components/common/icons/IconOctocat';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -5,7 +6,7 @@ const PostCard = ({ post }: { post: PostData }) => {
     return (
         <article
             key={post.slug}
-            className='flex h-[27rem] flex-col justify-between rounded-xl border border-border bg-background p-6 shadow-md transition-transform duration-300 ease-in-out hover:translate-y-[-5px] hover:border-primary hover:shadow-lg'
+            className='flex h-[27rem] flex-col justify-between rounded-xl border border-border bg-background p-6 shadow-md transition-transform duration-300 ease-in-out hover:translate-y-[-5px] hover:border-primary hover:shadow-lg active:translate-y-[-5px] active:border-primary active:shadow-lg'
         >
             {/* header */}
             <div className='flex flex-1 flex-col gap-2'>
@@ -22,15 +23,15 @@ const PostCard = ({ post }: { post: PostData }) => {
                         post.tags.map((tag, idx) => (
                             <span
                                 key={`${post.slug}-${tag}-${idx}`}
-                                className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary'
+                                className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'
                             >
                                 #{tag}
                             </span>
                         ))
                     ) : (
-                        <p className='rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-primary'>
-                            This post doesn't have any tags
-                        </p>
+                        <span className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'>
+                            #No #tag
+                        </span>
                     )}
                 </div>
 
@@ -46,19 +47,19 @@ const PostCard = ({ post }: { post: PostData }) => {
                     />
                 </div>
             ) : (
-                <div className='relative aspect-[4/3] w-full overflow-hidden rounded-md bg-background'>
-                    <img
-                        src='/images/watermark.png'
-                        alt='watermark'
-                        className='absolute inset-0 h-full w-full object-contain'
-                    />
+                <div className='relative flex aspect-[4/3] w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-background'>
+                    <h1 className='cursor-pointer font-title text-4xl font-bold text-foreground'>
+                        velo<span className='text-primary'>git</span>
+                    </h1>
+
+                    <IconOctocat />
                 </div>
             )}
             {/* footer */}
             <div className='mt-4 border-t border-border pt-2 text-right'>
                 <Link
                     to={`/post/${post.slug}`}
-                    className='inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline'
+                    className='inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline active:underline'
                 >
                     Read more
                     <MdArrowForwardIos className='text-sm' />

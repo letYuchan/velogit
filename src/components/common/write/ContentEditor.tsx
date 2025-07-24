@@ -138,7 +138,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
 
             <button
                 onClick={exportPostAsJson}
-                className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-white hover:bg-blue-700 active:bg-blue-700'
+                className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
             >
                 {mode === 'edit' ? 'Edit' : 'Publish'}
             </button>

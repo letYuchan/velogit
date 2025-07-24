@@ -117,7 +117,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     />
                     <button
                         onClick={initTags}
-                        className='grow rounded-md border border-error bg-error text-xl font-semibold text-white hover:bg-error/70 active:bg-error/70'
+                        className='text-main grow rounded-md border border-error bg-error text-xl font-semibold hover:bg-error/70 active:bg-error/70'
                     >
                         Init
                     </button>
@@ -127,7 +127,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                         {tags.map(tag => (
                             <span
                                 key={tag}
-                                className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary'
+                                className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'
                             >
                                 {tag}
                             </span>
@@ -167,7 +167,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
             </div>
             <button
                 onClick={goToContentEditStep}
-                className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-white hover:bg-blue-700 active:bg-blue-700'
+                className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
             >
                 Next
             </button>

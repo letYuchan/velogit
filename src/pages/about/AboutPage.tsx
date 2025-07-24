@@ -21,13 +21,13 @@ const AboutPage = () => {
                         href='https://github.com/letYuchan'
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm text-foreground transition hover:border-primary hover:text-primary'
+                        className='flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm text-foreground transition hover:border-primary hover:text-primary'
                     >
                         <FaGithub /> GitHub
                     </a>
                     <a
                         href='mailto:yuchancho174@gmail.com'
-                        className='flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm text-foreground transition hover:border-primary hover:text-primary'
+                        className='flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm text-foreground transition hover:border-primary hover:text-primary'
                     >
                         <FaEnvelope /> Contact
                     </a>
@@ -88,7 +88,7 @@ const AboutPage = () => {
                     ].map((tech, _i) => (
                         <div
                             key={tech}
-                            className='flex transform items-center justify-center rounded-xl border border-border bg-background px-6 py-4 text-sm font-bold text-foreground shadow-sm transition hover:scale-110'
+                            className='flex transform items-center justify-center rounded-md border border-border bg-background px-6 py-4 text-sm font-bold text-foreground shadow-sm transition hover:scale-110'
                         >
                             {tech}
                         </div>
@@ -100,9 +100,9 @@ const AboutPage = () => {
                 <p className='mb-4 text-muted'>Interested in working with me?</p>
                 <a
                     href='mailto:yuchancho174@gmail.com'
-                    className='inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-white transition hover:bg-blue-700'
+                    className='text-main hover:bg-primary-deep active:bg-primary-deep inline-flex items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 transition'
                 >
-                    Let's connect <FaArrowRight className='text-white' />
+                    Let's connect <FaArrowRight className='text-main' />
                 </a>
             </section>
         </main>

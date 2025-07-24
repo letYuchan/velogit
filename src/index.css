@@ -21,3 +21,39 @@
 body {
     @apply font-sans;
 }
+
+:root {
+    --color-background: 255 255 255;
+    --color-background-second: 243 244 246;
+    --color-backgroundDark: 128 128 128;
+    --color-main: 255 255 255;
+    --color-foreground: 17 17 17;
+    --color-muted: 102 102 102;
+    --color-border: 229 231 235;
+    --color-borderSemiDark: 156 163 175;
+    --color-borderDark: 107 114 128;
+    --color-primary: 37 99 235;
+    --color-primary-deep: 29 78 216;
+    --color-primary-light: 239 246 255;
+    --color-highlight: 254 243 199;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}
+
+.dark {
+    --color-background: 13 17 23;
+    --color-background-second: 22 27 34;
+    --color-backgroundDark: 10 15 26;
+    --color-main: 255 255 255;
+    --color-foreground: 230 237 243;
+    --color-muted: 139 148 158;
+    --color-border: 48 54 61;
+    --color-borderSemiDark: 33 38 45;
+    --color-borderDark: 26 31 36;
+    --color-primary: 59 130 246;
+    --color-primary-deep: 30 64 175;
+    --color-primary-light: 30 41 59;
+    --color-highlight: 250 204 21;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}

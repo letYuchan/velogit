@@ -46,12 +46,12 @@ const Header = () => {
                 showHeader ? 'translate-y-0' : '-translate-y-full',
             )}
         >
-            <img
-                src='/images/logo.png'
-                alt='siteLogo'
+            <h1
+                className='cursor-pointer font-title text-3xl font-bold text-foreground sm:text-2xl'
                 onClick={goToHomePage}
-                className='relative -top-11 right-4 size-28 cursor-pointer items-stretch sm:-top-10'
-            />
+            >
+                velo<span className='text-primary'>git</span>
+            </h1>
             <div className='flex flex-nowrap items-stretch justify-around gap-4'>
                 <Link to='/'>
                     <button
@@ -77,7 +77,7 @@ const Header = () => {
                 </Link>
                 {!isActive('/write') && (
                     <Link to='/write' className='h-6 sm:h-8'>
-                        <button className='flex h-full flex-nowrap items-center gap-1 rounded-2xl border border-primary bg-primary px-3 py-1 text-lg font-semibold text-white transition-all duration-150 ease-in-out hover:bg-blue-700 active:bg-blue-700 sm:text-xl'>
+                        <button className='hover:bg-primary-deep active:bg-primary-deep text-main flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold transition-all duration-150 ease-in-out sm:text-xl'>
                             <Pencil className='size-6' />
                             {!isMobile && <span className='relative top-0.5'>WRITE</span>}
                         </button>

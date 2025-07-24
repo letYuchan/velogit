@@ -1,3 +1,4 @@
+import IconOctocat from '@/components/common/icons/IconOctocat';
 import PostPageHeader from '@/components/common/post/PostPageHeader';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { MdArrowForwardIos } from 'react-icons/md';
@@ -6,7 +7,7 @@ const FrontMatterPreview = () => {
     const { category, summary, tags, date, title, thumbnail } = usePostWriteStore();
 
     return (
-        <section className='flex w-full flex-1 flex-col items-center justify-start gap-10 bg-gray-100 p-4 sm:w-1/2'>
+        <section className='bg-background-second flex w-full flex-1 flex-col items-center justify-start gap-10 p-4 sm:w-1/2'>
             {/* post meta&postHeader */}
             <div className='flex w-full flex-col gap-2'>
                 <h2 className='font-title text-3xl font-bold text-foreground'>Post Card</h2>
@@ -31,15 +32,15 @@ const FrontMatterPreview = () => {
                                 tags.map((tag, idx) => (
                                     <span
                                         key={`${tag}-${idx}`}
-                                        className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary'
+                                        className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'
                                     >
                                         #{tag}
                                     </span>
                                 ))
                             ) : (
-                                <div className='rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm text-primary'>
-                                    This post doesn't have any tags
-                                </div>
+                                <span className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'>
+                                    #No #tag
+                                </span>
                             )}
                         </div>
                         {date && date != '' ? (
@@ -57,12 +58,12 @@ const FrontMatterPreview = () => {
                             />
                         </div>
                     ) : (
-                        <div className='relative aspect-[4/3] w-full overflow-hidden rounded-md bg-background'>
-                            <img
-                                src='/images/watermark.png'
-                                alt='watermark'
-                                className='absolute inset-0 h-full w-full object-contain'
-                            />
+                        <div className='relative flex aspect-[4/3] w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-background'>
+                            <h1 className='cursor-pointer font-title text-4xl font-bold text-foreground'>
+                                velo<span className='text-primary'>git</span>
+                            </h1>
+
+                            <IconOctocat />
                         </div>
                     )}
                     <div className='mt-4 border-t border-border pt-2 text-right'>

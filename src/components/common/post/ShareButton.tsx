@@ -22,7 +22,7 @@ const ShareButton = () => {
 
     return (
         <button onClick={handleShare}>
-            <FiShare2 className={clsx('size-5', isDesktop && 'size-4')} />
+            <FiShare2 className={clsx('size-5 text-foreground', isDesktop && 'size-4')} />
         </button>
     );
 };

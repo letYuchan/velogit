@@ -154,9 +154,9 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
                         type='button'
                         title={label}
                         onClick={() => handleClick(name, insert, marker)}
-                        className={`flex items-center gap-1 rounded-md border px-2 py-1 text-sm transition-colors duration-200 hover:bg-blue-200 ${
+                        className={`hover:bg-primary-light active:bg-primary-light flex items-center gap-1 rounded-md border px-2 py-1 text-sm transition-colors duration-200 ${
                             activeItem === name
-                                ? 'border-primary bg-primary text-white hover:border-border hover:text-muted'
+                                ? 'text-main border-primary bg-primary hover:border-border hover:text-muted active:border-border active:text-muted'
                                 : 'border-border bg-background text-muted'
                         }`}
                     >
@@ -166,7 +166,7 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             </div>
             <button
                 onClick={handleClear}
-                className='grow rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold text-white hover:bg-error/70 active:bg-error/70'
+                className='text-main grow rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold hover:bg-error/70 active:bg-error/70'
             >
                 Init
             </button>
