@@ -6,6 +6,9 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import 'highlight.js/styles/github-dark.css';
 import PostPageHeader from '@/components/common/post/PostPageHeader';
+import { useState } from 'react';
+import { Check, Copy } from 'lucide-react';
+import { extractTextFromReactChildren } from '@/utils/extractStringInCodeBlock';
 
 interface MarkdownRendererProps {
     parsedFrontMatter: ParsedFrontMatterType;
@@ -13,6 +16,8 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps) => {
+    const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
     return (
         <article className='mx-auto mb-6 w-full max-w-3xl border-b-2 border-b-primary px-4 py-4'>
             <PostPageHeader
@@ -84,24 +89,60 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                     ),
                     pre: ({ node, ...props }) => (
                         <pre
-                            className='text-main my-6 overflow-x-auto rounded-md bg-black p-5 text-sm shadow-inner'
+                            className='text-main my-6 overflow-x-auto rounded-md border border-border bg-black p-5 text-sm shadow-inner'
                             {...props}
                         />
                     ),
-                    code: ({ className, children, ...props }) => {
+                    code: ({ node, className, children, ...props }) => {
                         const isInline = !className;
+                        const codeText = extractTextFromReactChildren(children).trim();
 
-                        return isInline ? (
-                            <code
-                                className='rounded-md bg-muted/10 px-1.5 py-0.5 text-sm text-primary'
-                                {...props}
-                            >
-                                {children}
-                            </code>
-                        ) : (
-                            <code className={className} {...props}>
-                                {children}
-                            </code>
+                        if (isInline) {
+                            return (
+                                <code
+                                    className='rounded-md bg-muted/10 px-1.5 py-0.5 text-sm text-primary'
+                                    {...props}
+                                >
+                                    {children}
+                                </code>
+                            );
+                        }
+
+                        const index = node?.position?.start?.offset ?? Math.random();
+
+                        const handleCopy = () => {
+                            navigator.clipboard.writeText(codeText).then(() => {
+                                setCopiedIndex(index);
+                                setTimeout(() => setCopiedIndex(null), 1500);
+                            });
+                        };
+
+                        return (
+                            <div className='group relative my-4'>
+                                <button
+                                    onClick={handleCopy}
+                                    className='absolute right-2 top-2 hidden items-center gap-1 rounded bg-background px-2 py-1 text-xs text-muted shadow hover:text-foreground group-hover:flex'
+                                >
+                                    {copiedIndex === index ? (
+                                        <>
+                                            <Check size={14} />
+                                            Copied!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy size={14} />
+                                            Copy
+                                        </>
+                                    )}
+                                </button>
+
+                                <code
+                                    className={`${className} block overflow-x-auto rounded-md p-4`}
+                                    {...props}
+                                >
+                                    {children}
+                                </code>
+                            </div>
                         );
                     },
                     img: ({ node, ...props }) => (
