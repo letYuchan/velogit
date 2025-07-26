@@ -11,6 +11,7 @@ const Header = () => {
 
     const location = useLocation();
     const isActive = (path: string) => location.pathname === path;
+    const isLocalhost = window.location.hostname === 'localhost';
 
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -75,9 +76,9 @@ const Header = () => {
                         {!isMobile && <span className='relative top-0.5'>ABOUT</span>}
                     </button>
                 </Link>
-                {!isActive('/write') && (
+                {isLocalhost && (
                     <Link to='/write' className='h-6 sm:h-8'>
-                        <button className='hover:bg-primary-deep active:bg-primary-deep text-main flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold transition-all duration-150 ease-in-out sm:text-xl'>
+                        <button className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep sm:text-xl'>
                             <Pencil className='size-6' />
                             {!isMobile && <span className='relative top-0.5'>WRITE</span>}
                         </button>

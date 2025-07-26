@@ -15,6 +15,8 @@ const PostPage = () => {
     const [tableOfContentsTree, setTableOfContentsTree] = useState<TableOfContentsItemType[]>([]);
     const { slug } = useParams();
 
+    const isLocalhost = window.location.hostname === 'localhost';
+
     const post = posts.find(p => p.slug === slug);
 
     const parsedFrontMatter: ParsedFrontMatterType = {
@@ -62,21 +64,25 @@ const PostPage = () => {
             <MarkdownRenderer parsedFrontMatter={parsedFrontMatter} content={mainContent} />
             {isDesktop ? (
                 <aside className='fixed left-8 top-1/2 z-50 flex translate-y-1/2 transform flex-col gap-2 rounded-full bg-backgroundDark shadow-md'>
-                    <div className='bg-background-second group flex size-14 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
+                    <div className='group flex size-14 items-center justify-center rounded-full border border-border bg-background-second backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
                         <ShareButton />
                     </div>
-                    <div className='bg-background-second group flex size-14 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
-                        <EditButton slug={slug ?? ''} />
-                    </div>
+                    {isLocalhost && (
+                        <div className='group flex size-14 items-center justify-center rounded-full border border-border bg-background-second backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
+                            <EditButton slug={slug ?? ''} />
+                        </div>
+                    )}
                 </aside>
             ) : (
                 <aside className='fixed bottom-40 left-4 z-50 flex flex-col gap-2 rounded-full bg-backgroundDark opacity-60 shadow-md'>
-                    <div className='bg-background-second group flex size-10 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
+                    <div className='group flex size-10 items-center justify-center rounded-full border border-border bg-background-second backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
                         <ShareButton />
                     </div>
-                    <div className='bg-background-second group flex size-10 items-center justify-center rounded-full border border-border backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
-                        <EditButton slug={slug ?? ''} />
-                    </div>
+                    {isLocalhost && (
+                        <div className='group flex size-10 items-center justify-center rounded-full border border-border bg-background-second backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
+                            <EditButton slug={slug ?? ''} />
+                        </div>
+                    )}
                 </aside>
             )}
             {/* Giscus: comment feature */}
