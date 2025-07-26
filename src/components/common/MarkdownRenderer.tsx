@@ -33,31 +33,31 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                 components={{
                     h1: ({ node, ...props }) => (
                         <h1
-                            className='relative mb-8 mt-12 text-5xl font-extrabold tracking-tight text-foreground transition-all duration-200 ease-in-out after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-16 after:bg-gradient-to-r after:from-primary after:to-highlight hover:tracking-wider'
+                            className='relative mb-8 mt-12 whitespace-pre-wrap break-words text-5xl font-extrabold tracking-tight text-foreground transition-all duration-200 ease-in-out after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-16 after:bg-gradient-to-r after:from-primary after:to-highlight hover:tracking-wider'
                             {...props}
                         />
                     ),
                     h2: ({ node, ...props }) => (
                         <h2
-                            className='mb-6 mt-10 border-l-4 border-primary pl-4 text-3xl font-bold text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
+                            className='mb-6 mt-10 whitespace-pre-wrap break-words border-l-4 border-primary pl-4 text-3xl font-bold text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
                             {...props}
                         />
                     ),
                     h3: ({ node, ...props }) => (
                         <h3
-                            className='mb-3 mt-8 text-2xl font-semibold text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
+                            className='mb-3 mt-8 whitespace-pre-wrap break-words text-2xl font-semibold text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
                             {...props}
                         />
                     ),
                     h4: ({ node, ...props }) => (
                         <h4
-                            className='mb-2 mt-6 text-xl font-medium text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
+                            className='mb-2 mt-6 whitespace-pre-wrap break-words text-xl font-medium text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
                             {...props}
                         />
                     ),
                     p: ({ node, ...props }) => (
                         <p
-                            className='mb-5 text-[1.05rem] leading-8 tracking-wide text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
+                            className='mb-5 whitespace-pre-wrap break-words text-[1.05rem] leading-8 tracking-wide text-foreground transition-transform duration-200 ease-in-out hover:relative hover:translate-x-10 hover:scale-110 active:relative active:translate-x-10 active:scale-110'
                             {...props}
                         />
                     ),
@@ -73,9 +73,12 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                             {...props}
                         />
                     ),
+                    li: ({ node, ...props }) => (
+                        <li className='whitespace-pre-wrap break-words' {...props} />
+                    ),
                     blockquote: ({ node, ...props }) => (
                         <blockquote
-                            className='bg-primary-light relative my-8 rounded-md border-l-4 border-primary p-4 pl-6 text-[1rem] italic text-muted transition-transform duration-200 hover:scale-[1.01] active:scale-[1.01]'
+                            className='bg-primary-light relative my-8 whitespace-pre-wrap break-words rounded-md border-l-4 border-primary p-4 pl-6 text-[1rem] italic text-muted transition-transform duration-200 hover:scale-[1.01] active:scale-[1.01]'
                             {...props}
                         />
                     ),

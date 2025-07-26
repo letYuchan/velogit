@@ -6,6 +6,7 @@ import type { ChangeEvent } from 'react';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import UserViewPreview from '@/components/common/write/UserViewPreview';
 
 interface ContentEditorProps {
     setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;
@@ -15,6 +16,7 @@ interface ContentEditorProps {
 
 const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
     const [isContentInvalid, setIsContentInvalid] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const { content, setField, buildMarkdown, title, date, category, reset } = usePostWriteStore();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -120,7 +122,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
     };
 
     return (
-        <section className='flex w-full flex-1 flex-col justify-between gap-4 bg-background p-4 sm:w-1/2'>
+        <section className='flex w-full flex-1 flex-col justify-start gap-4 bg-background p-4 sm:w-1/2'>
             <div className='flex flex-col gap-2'>
                 <ContentEditorToolbar textareaRef={textareaRef} />
                 <textarea
@@ -137,13 +139,21 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
                     )}
                 />
             </div>
-
-            <button
-                onClick={exportPostAsJson}
-                className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
-            >
-                {mode === 'edit' ? 'Edit' : 'Publish'}
-            </button>
+            <div className='flex w-full flex-nowrap justify-between gap-1'>
+                <button
+                    onClick={() => setShowModal(true)}
+                    className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
+                >
+                    User Preview
+                </button>
+                <button
+                    onClick={exportPostAsJson}
+                    className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
+                >
+                    {mode === 'edit' ? 'Edit' : 'Publish'}
+                </button>
+            </div>
+            {showModal && <UserViewPreview setShowModal={setShowModal} />}
         </section>
     );
 };
