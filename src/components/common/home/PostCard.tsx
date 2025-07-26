@@ -39,11 +39,11 @@ const PostCard = ({ post }: { post: PostData }) => {
             </div>
             {/* thumbnail */}
             {post.thumbnail ? (
-                <div className='relative aspect-[4/3] w-full overflow-hidden rounded-md bg-background'>
+                <div className='relative aspect-[16/9] w-full overflow-hidden rounded-md bg-background'>
                     <img
                         src={`${import.meta.env.BASE_URL + post.thumbnail}`}
                         alt={post.title}
-                        className='absolute inset-0 h-full w-full object-contain'
+                        className='absolute inset-0 h-full w-full object-cover object-center'
                     />
                 </div>
             ) : (
