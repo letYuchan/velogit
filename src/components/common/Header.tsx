@@ -56,7 +56,7 @@ const Header = () => {
                 <Link to='/'>
                     <button
                         className={clsx(
-                            'flex flex-nowrap items-center gap-1 text-lg font-semibold transition-all duration-200 ease-in-out hover:scale-110 sm:text-xl',
+                            'flex flex-nowrap items-center gap-1 text-lg font-semibold transition-all duration-200 ease-in-out hover:scale-110 active:scale-110 sm:text-xl',
                             isActive('/') ? 'text-primary' : 'text-foreground',
                         )}
                     >
@@ -67,7 +67,7 @@ const Header = () => {
                 <Link to='/about'>
                     <button
                         className={clsx(
-                            'flex flex-nowrap items-center gap-1 text-lg font-semibold transition-all duration-200 ease-in-out hover:scale-110 sm:text-xl',
+                            'flex flex-nowrap items-center gap-1 text-lg font-semibold transition-all duration-200 ease-in-out hover:scale-110 active:scale-110 sm:text-xl',
                             isActive('/about') ? 'text-primary' : 'text-foreground',
                         )}
                     >

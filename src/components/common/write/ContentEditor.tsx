@@ -153,7 +153,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
                     {mode === 'edit' ? 'Edit' : 'Publish'}
                 </button>
             </div>
-            {showModal && <UserViewPreview setShowModal={setShowModal} />}
+            {showModal && <UserViewPreview showModal={showModal} setShowModal={setShowModal} />}
         </section>
     );
 };

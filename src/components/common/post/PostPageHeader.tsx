@@ -24,7 +24,7 @@ const PostPageHeader = ({ title, date, tags, category }: PostPageProps) => {
                             {category}
                         </span>
                     ) : (
-                        <span className='rounded-full bg-error/10 px-3 py-1 font-title text-lg font-bold text-error'>
+                        <span className='rounded-full bg-error/20 px-3 py-1 font-title text-lg font-bold text-error'>
                             Category is required
                         </span>
                     )}

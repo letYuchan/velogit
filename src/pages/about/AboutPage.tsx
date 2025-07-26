@@ -5,7 +5,7 @@ const AboutPage = () => {
     return (
         <main
             aria-label='A visually dynamic and interactive about page introducing the developer.'
-            className='flex w-full flex-col items-center justify-start bg-background px-4 py-12 md:px-20 lg:px-40'
+            className='flex w-full flex-col items-center justify-start px-4 py-12 md:px-20 lg:px-40'
         >
             {/* Hero Section */}
             <section className='relative mb-16 flex w-full max-w-5xl flex-col items-center text-center'>
@@ -68,6 +68,41 @@ const AboutPage = () => {
                         </p>
                     </li>
                 </ul>
+            </section>
+            {/* Peer Testimonials Section */}
+            <section className='mb-24 w-full max-w-5xl'>
+                <h2 className='mb-8 text-center font-title text-2xl font-bold text-foreground'>
+                    What Teammates Say
+                </h2>
+                <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+                    {[
+                        {
+                            name: 'Jisoo (Frontend Dev)',
+                            feedback:
+                                "Yuchan is incredibly reliable — he always delivers clean and efficient code with great attention to detail. He's also quick to understand requirements and takes initiative to improve UX.",
+                        },
+                        {
+                            name: 'Minho (UI/UX Designer)',
+                            feedback:
+                                "Working with Yuchan was seamless. He truly understands design intent and translates it beautifully into functional interfaces. He's also very collaborative during handoff.",
+                        },
+                        {
+                            name: 'Soyeon (Project Manager)',
+                            feedback:
+                                'Yuchan communicates clearly, manages timelines well, and consistently delivers more than expected. A team player I’d love to work with again.',
+                        },
+                    ].map(({ name, feedback }) => (
+                        <div
+                            key={name}
+                            className='rounded-md border border-border bg-background p-5 shadow-sm transition hover:shadow-md'
+                        >
+                            <p className='mb-3 text-muted'>"{feedback}"</p>
+                            <span className='block text-sm font-semibold text-foreground'>
+                                – {name}
+                            </span>
+                        </div>
+                    ))}
+                </div>
             </section>
 
             {/* Tech Stack Cards */}

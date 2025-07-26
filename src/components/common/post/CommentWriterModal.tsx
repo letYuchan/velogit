@@ -265,7 +265,7 @@ const CommentWriterModal = ({
                     </button>
                     <button
                         onClick={handlePostCommentWorkflow}
-                        className='active:bg-primary-70 h-8 w-20 rounded-md border border-primary bg-primary px-3 py-1 text-sm text-white hover:bg-primary/70'
+                        className='active:bg-primary-70 h-8 w-20 rounded-md border border-primary bg-primary px-3 py-1 text-sm text-white hover:bg-primary/70 active:bg-primary/70'
                     >
                         Post
                     </button>
