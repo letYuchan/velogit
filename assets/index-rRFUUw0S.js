@@ -272,7 +272,7 @@ Here's some \`inline code\` in a sentence.
 
 ---
 
-![귀여운 고양이](/images/test.jpg)
+![귀여운 고양이](/velogit/images/test.jpg)
 
 ---
 
