@@ -25,6 +25,22 @@ const LayoutHeaderForWritePage = () => {
         }
     }, []);
 
+    useEffect(() => {
+        const handleEscKeyForClosingModal = (e: KeyboardEvent) => {
+            if (e.key !== 'Escape') return;
+            console.log('event occur');
+            e.preventDefault();
+            if (showModal === true && e.key === 'Escape') {
+                setShowModal(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleEscKeyForClosingModal);
+        return () => {
+            window.removeEventListener('keydown', handleEscKeyForClosingModal);
+        };
+    }, [showModal]);
+
     const goToBack = () => {
         if (confirm('Are you sure you want to go back to home?')) {
             reset();
@@ -91,7 +107,7 @@ const LayoutHeaderForWritePage = () => {
                                 savedTempDrafts.map((draft, idx) => (
                                     <li
                                         key={draft.id}
-                                        className='flex flex-col rounded-md border border-border p-3 hover:bg-backgroundDark/70'
+                                        className='flex flex-col rounded-md border border-border p-3 hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
                                     >
                                         <div className='mb-1 flex flex-nowrap items-center justify-between gap-1'>
                                             <span className='text-sm font-semibold text-foreground'>

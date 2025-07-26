@@ -25,6 +25,8 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
         }
     }, [mode, editablePost]);
 
+    useEffect(() => {});
+
     const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setField('content', e.target.value);
     };
