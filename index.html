@@ -4,6 +4,11 @@
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/velogit/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script>
+            if (location.search.includes('giscus=')) {
+                location.replace(`${location.origin}${location.pathname}#${location.search}`);
+            }
+        </script>
         <title>Vite + React + TS</title>
       <script type="module" crossorigin src="/velogit/assets/index-Y8o5scqt.js"></script>
       <link rel="stylesheet" crossorigin href="/velogit/assets/index-Dpo9Wnwv.css">
