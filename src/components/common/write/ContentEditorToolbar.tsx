@@ -106,7 +106,7 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             newSelectionStart = before.length + 1;
             newSelectionEnd = newSelectionStart + 4;
         } else if (marker === 'image') {
-            const url = prompt('Enter image URL:', '/images/');
+            const url = prompt('Enter image URL:', '/velogit/images/');
             if (url === null) return;
             newValue = before + `![alt text](${url})` + after;
             newSelectionStart = before.length + 2;
@@ -154,9 +154,9 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
                         type='button'
                         title={label}
                         onClick={() => handleClick(name, insert, marker)}
-                        className={`hover:bg-primary-light active:bg-primary-light flex items-center gap-1 rounded-md border px-2 py-1 text-sm transition-colors duration-200 ${
+                        className={`flex items-center gap-1 rounded-md border px-2 py-1 text-sm transition-colors duration-200 hover:bg-primary-light active:bg-primary-light ${
                             activeItem === name
-                                ? 'text-main border-primary bg-primary hover:border-border hover:text-muted active:border-border active:text-muted'
+                                ? 'border-primary bg-primary text-main hover:border-border hover:text-muted active:border-border active:text-muted'
                                 : 'border-border bg-background text-muted'
                         }`}
                     >
@@ -166,7 +166,7 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             </div>
             <button
                 onClick={handleClear}
-                className='text-main grow rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold hover:bg-error/70 active:bg-error/70'
+                className='grow rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold text-main hover:bg-error/70 active:bg-error/70'
             >
                 Init
             </button>

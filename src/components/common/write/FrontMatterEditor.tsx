@@ -117,7 +117,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     />
                     <button
                         onClick={initTags}
-                        className='text-main grow rounded-md border border-error bg-error text-xl font-semibold hover:bg-error/70 active:bg-error/70'
+                        className='grow rounded-md border border-error bg-error text-xl font-semibold text-main hover:bg-error/70 active:bg-error/70'
                     >
                         Init
                     </button>
@@ -127,7 +127,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                         {tags.map(tag => (
                             <span
                                 key={tag}
-                                className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'
+                                className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'
                             >
                                 {tag}
                             </span>
@@ -147,7 +147,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     name='thumbnail'
                     value={thumbnail}
                     onChange={handleOnChange}
-                    placeholder='Thumbnail image path (e.g., /images/thumbnail.png)'
+                    placeholder='Thumbnail image path (e.g., /velogit/images/thumbnail.jpg)'
                     className='w-full rounded-md border border-border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
                 />
 
@@ -167,7 +167,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
             </div>
             <button
                 onClick={goToContentEditStep}
-                className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
+                className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
             >
                 Next
             </button>

@@ -4,11 +4,11 @@ import AboutPage from '@/pages/about/AboutPage';
 import HomePage from '@/pages/home/HomePage';
 import WritePage from '@/pages/write/WritePage';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import EditPage from '@/pages/edit/EditPage';
 
 function App() {
-    const router = createBrowserRouter([
+    const router = createHashRouter([
         {
             path: '/',
             element: <Layout />,

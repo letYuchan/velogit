@@ -23,13 +23,13 @@ const PostCard = ({ post }: { post: PostData }) => {
                         post.tags.map((tag, idx) => (
                             <span
                                 key={`${post.slug}-${tag}-${idx}`}
-                                className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'
+                                className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'
                             >
                                 #{tag}
                             </span>
                         ))
                     ) : (
-                        <span className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'>
+                        <span className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'>
                             #No #tag
                         </span>
                     )}
@@ -41,7 +41,7 @@ const PostCard = ({ post }: { post: PostData }) => {
             {post.thumbnail ? (
                 <div className='relative aspect-[4/3] w-full overflow-hidden rounded-md bg-background'>
                     <img
-                        src={post.thumbnail}
+                        src={`${import.meta.env.BASE_URL + post.thumbnail}`}
                         alt={post.title}
                         className='absolute inset-0 h-full w-full object-contain'
                     />
