@@ -63,8 +63,8 @@ const HomePage = () => {
                         className={clsx(
                             'rounded-full border px-3 py-1 font-title text-lg font-bold transition-transform ease-in-out hover:scale-110 sm:text-xl',
                             selectedCategory === 'all'
-                                ? 'text-main border-primary bg-primary'
-                                : 'hover:bg-primary-light border-border bg-background text-foreground',
+                                ? 'border-primary bg-primary text-main'
+                                : 'border-border bg-background text-foreground hover:bg-primary-light',
                         )}
                     >
                         ALL {posts.length}
@@ -77,8 +77,8 @@ const HomePage = () => {
                             className={clsx(
                                 'rounded-full border bg-background px-3 py-1 font-title text-lg font-bold transition-transform ease-in-out hover:scale-110 sm:text-xl',
                                 selectedCategory === category
-                                    ? 'text-main border-primary bg-primary'
-                                    : 'hover:bg-primary-light active:bg-primary-light border-border bg-background text-foreground',
+                                    ? 'border-primary bg-primary text-main'
+                                    : 'border-border bg-background text-foreground hover:bg-primary-light active:bg-primary-light',
                             )}
                         >
                             {category.toUpperCase()} {categoryCountMap[category] ?? 0}
@@ -122,8 +122,8 @@ const HomePage = () => {
                                 className={clsx(
                                     'rounded-md border px-3 py-1 transition-colors',
                                     currentPage === idx + 1
-                                        ? 'text-main border-primary bg-primary'
-                                        : 'hover:bg-primary-light border-border bg-background text-foreground',
+                                        ? 'border-primary bg-primary text-main'
+                                        : 'border-border bg-background text-foreground hover:bg-primary-light',
                                 )}
                             >
                                 {idx + 1}
