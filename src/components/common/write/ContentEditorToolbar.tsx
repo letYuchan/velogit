@@ -214,7 +214,6 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
                 };
                 const icon = iconMap[ext ?? ''] ?? '📎';
 
-                // 마크다운 형식 그대로
                 const markdown = `[${icon} ${fileName} (${fileSizeMB}MB)](${filePath})`;
 
                 const result = before + markdown + after;

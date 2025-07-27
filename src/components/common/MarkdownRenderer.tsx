@@ -30,6 +30,7 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
             'br',
             'code',
             'pre',
+            'img',
         ],
         attributes: {
             ...defaultSchema.attributes,
@@ -40,6 +41,7 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
             br: [],
             pre: ['className'],
             code: ['className'],
+            img: ['src', 'alt', 'width', 'height'],
             '*': ['className', 'data-language'],
         },
     };
