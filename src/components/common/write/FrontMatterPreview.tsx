@@ -7,7 +7,7 @@ const FrontMatterPreview = () => {
     const { category, summary, tags, date, title, thumbnail } = usePostWriteStore();
 
     return (
-        <section className='bg-background-second flex w-full flex-1 flex-col items-center justify-start gap-10 p-4 sm:w-1/2'>
+        <section className='flex w-full flex-1 flex-col items-center justify-start gap-10 bg-background-second p-4 sm:w-1/2'>
             {/* post meta&postHeader */}
             <div className='flex w-full flex-col gap-2'>
                 <h2 className='font-title text-3xl font-bold text-foreground'>Post Card</h2>
@@ -32,13 +32,13 @@ const FrontMatterPreview = () => {
                                 tags.map((tag, idx) => (
                                     <span
                                         key={`${tag}-${idx}`}
-                                        className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'
+                                        className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'
                                     >
                                         #{tag}
                                     </span>
                                 ))
                             ) : (
-                                <span className='bg-primary-light rounded-md px-2 py-1 text-sm font-semibold text-primary'>
+                                <span className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'>
                                     #No #tag
                                 </span>
                             )}
@@ -50,15 +50,15 @@ const FrontMatterPreview = () => {
                         )}
                     </div>
                     {thumbnail ? (
-                        <div className='relative aspect-[4/3] w-full overflow-hidden rounded-md bg-background'>
+                        <div className='relative aspect-[16/9] w-full overflow-hidden rounded-md bg-background'>
                             <img
                                 src={thumbnail}
                                 alt={title}
-                                className='absolute inset-0 h-full w-full object-contain'
+                                className='absolute inset-0 h-full w-full object-cover object-center'
                             />
                         </div>
                     ) : (
-                        <div className='relative flex aspect-[4/3] w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-background'>
+                        <div className='relative flex aspect-[16/9] w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-background'>
                             <h1 className='cursor-pointer font-title text-4xl font-bold text-foreground'>
                                 velo<span className='text-primary'>git</span>
                             </h1>

@@ -22,6 +22,12 @@ body {
     @apply font-sans;
 }
 
+textarea {
+    line-height: 24px; /* leading-[24px] */
+    font-size: 1.05rem;
+    font-family: 'Pretendard', sans-serif;
+}
+
 :root {
     --color-background: 255 255 255;
     --color-background-second: 243 244 246;

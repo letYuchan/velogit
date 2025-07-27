@@ -1,3 +1,4 @@
+import { usePostWriteStore } from '@/store/usePostWriteStore';
 import {
     Bold,
     Italic,
@@ -11,7 +12,13 @@ import {
     Minus,
     Strikethrough,
     Link2,
-    Image as ImageIcon,
+    ImagePlus,
+    FileImage,
+    Video,
+    Keyboard,
+    Highlighter,
+    PanelTopClose,
+    FileText,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -21,6 +28,7 @@ interface ContentEditorToolbarProps {
 
 const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
     const [activeItem, setActiveItem] = useState<string | null>(null);
+    const { setField } = usePostWriteStore();
 
     const TOOL_ITEMS = [
         { name: 'h1', icon: Heading1, label: 'H1', insert: '# ', marker: '# ' },
@@ -47,10 +55,46 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             marker: '```',
         },
         { name: 'link', icon: Link2, label: 'Link', insert: '', marker: 'link' },
-        { name: 'image', icon: ImageIcon, label: 'Image', insert: '', marker: 'image' },
+        {
+            name: 'image-md',
+            icon: ImagePlus,
+            label: 'Image (Markdown)',
+            insert: '',
+            marker: 'image-md',
+        },
+        {
+            name: 'image-html',
+            icon: FileImage,
+            label: 'Image (HTML)',
+            insert: '',
+            marker: 'image-html',
+        },
+        { name: 'video', icon: Video, label: 'Video', insert: '', marker: 'video' },
+        {
+            name: 'kbd',
+            icon: Keyboard,
+            label: 'Keyboard',
+            insert: '<kbd>text</kbd>',
+            marker: '<kbd>',
+        },
+        {
+            name: 'mark',
+            icon: Highlighter,
+            label: 'Highlighter',
+            insert: '<mark>text</mark>',
+            marker: '<mark>',
+        },
+        {
+            name: 'details',
+            icon: PanelTopClose,
+            label: 'Details',
+            insert: '<details>\n  <summary>Summary</summary>\n  Content\n</details>',
+            marker: 'details',
+        },
+        { name: 'file', icon: FileText, label: 'File', insert: '', marker: 'file' },
     ];
 
-    const handleClick = async (name: string, insert: string, marker: string) => {
+    const handleClick = (name: string, insert: string, marker: string) => {
         const textarea = textareaRef.current;
         if (!textarea) return;
 
@@ -105,12 +149,84 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             newValue = before + `[text](${url})` + after;
             newSelectionStart = before.length + 1;
             newSelectionEnd = newSelectionStart + 4;
-        } else if (marker === 'image') {
+        } else if (marker === 'image-md') {
             const url = prompt('Enter image URL:', '/velogit/images/');
             if (url === null) return;
             newValue = before + `![alt text](${url})` + after;
             newSelectionStart = before.length + 2;
             newSelectionEnd = newSelectionStart + 8;
+        } else if (marker === 'image-html') {
+            const url = prompt('Enter image URL:', '/velogit/images/');
+            if (url === null) return;
+            newValue = before + `<img src="${url}" width="600" height="400" alt="image" />` + after;
+            newSelectionStart = before.length + newValue.indexOf('alt="image"') + 5;
+            newSelectionEnd = newSelectionStart + 5;
+        } else if (marker === 'video') {
+            const url = prompt('Enter video URL:', '/velogit/videos/');
+            if (url === null) return;
+            newValue =
+                before + `<video src="${url}" width="720" height="480" controls></video>` + after;
+            newSelectionStart = before.length + newValue.indexOf(url);
+            newSelectionEnd = newSelectionStart + url.length;
+        } else if (marker === '<kbd>') {
+            newValue = before + `<kbd>text</kbd>` + after;
+            newSelectionStart = before.length + 5;
+            newSelectionEnd = newSelectionStart + 4;
+        } else if (marker === '<mark>') {
+            newValue = before + `<mark>text</mark>` + after;
+            newSelectionStart = before.length + 6;
+            newSelectionEnd = newSelectionStart + 4;
+        } else if (marker === 'details') {
+            newValue = before + insert + after;
+            const summaryIndex = insert.indexOf('Summary');
+            newSelectionStart = before.length + summaryIndex;
+            newSelectionEnd = newSelectionStart + 'Summary'.length;
+        } else if (marker === 'file') {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '*/*';
+
+            input.onchange = () => {
+                const file = input.files?.[0];
+                if (!file) return;
+
+                const fileName = file.name;
+                const encodedName = encodeURIComponent(fileName);
+                const filePath = `/velogit/uploads/${encodedName}`;
+                const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1);
+
+                const ext = fileName.split('.').pop()?.toLowerCase();
+                const iconMap: Record<string, string> = {
+                    pdf: '📄',
+                    doc: '📝',
+                    docx: '📝',
+                    xls: '📊',
+                    xlsx: '📊',
+                    ppt: '📽️',
+                    pptx: '📽️',
+                    png: '🖼️',
+                    jpg: '🖼️',
+                    jpeg: '🖼️',
+                    gif: '🖼️',
+                    zip: '🗜️',
+                    mp4: '🎞️',
+                    mp3: '🎵',
+                };
+                const icon = iconMap[ext ?? ''] ?? '📎';
+
+                // 마크다운 형식 그대로
+                const markdown = `[${icon} ${fileName} (${fileSizeMB}MB)](${filePath})`;
+
+                const result = before + markdown + after;
+                textarea.value = result;
+
+                textarea.selectionStart = textarea.selectionEnd = before.length + markdown.length;
+                textarea.focus();
+                textarea.dispatchEvent(new Event('input', { bubbles: true }));
+            };
+
+            input.click();
+            return;
         } else {
             const lines = value.split('\n');
             const cursorLineIndex = value.substring(0, selectionStart).split('\n').length - 1;
@@ -142,6 +258,7 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
         if (confirm('Do you want to clear all content?')) {
             textarea.value = '';
             textarea.dispatchEvent(new Event('input', { bubbles: true }));
+            setField('content', '');
         }
     };
 

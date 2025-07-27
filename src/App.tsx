@@ -7,7 +7,7 @@ import WritePage from '@/pages/write/WritePage';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import EditPage from '@/pages/edit/EditPage';
 
-function App() {
+const App = () => {
     const router = createHashRouter([
         {
             path: '/',
@@ -22,6 +22,6 @@ function App() {
         },
     ]);
     return <RouterProvider router={router} />;
-}
+};
 
 export default App;

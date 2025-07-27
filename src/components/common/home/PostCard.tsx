@@ -47,7 +47,7 @@ const PostCard = ({ post }: { post: PostData }) => {
                     />
                 </div>
             ) : (
-                <div className='relative flex aspect-[4/3] w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-background'>
+                <div className='relative flex aspect-[16/9] w-full items-center justify-center gap-2 overflow-hidden rounded-md bg-background'>
                     <h1 className='cursor-pointer font-title text-4xl font-bold text-foreground'>
                         velo<span className='text-primary'>git</span>
                     </h1>
