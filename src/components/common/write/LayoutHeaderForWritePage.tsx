@@ -68,7 +68,7 @@ const LayoutHeaderForWritePage = () => {
                 {/* controller */}
                 <button
                     onClick={goToBack}
-                    className='bg-background-second hover:bg-background-second/70 active:bg-background-second/70 flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out sm:h-8 sm:text-xl'
+                    className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark bg-background-second px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-background-second/70 active:bg-background-second/70 sm:h-8 sm:text-xl'
                 >
                     <MdArrowBack className='size-6' />
                     {!isMobile && <span className='relative top-0.5'>BACK</span>}
@@ -76,7 +76,7 @@ const LayoutHeaderForWritePage = () => {
                 <div className='flex flex-nowrap items-stretch justify-around gap-2'>
                     <button
                         onClick={() => setShowModal(true)}
-                        className='hover:bg-background-second/70 active:bg-background-second/70 bg-background-second flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out sm:h-8 sm:text-xl'
+                        className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark bg-background-second px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-background-second/70 active:bg-background-second/70 sm:h-8 sm:text-xl'
                     >
                         <MdRestore className='size-6' />
                         {!isMobile && <span className='relative top-0.5'>RESTORE</span>}
@@ -88,7 +88,7 @@ const LayoutHeaderForWritePage = () => {
                             const tempDrafts = await restoreFastDraftsFromLocal(); // 단순히 저장하는것뿐만 아니라 즉각적으로 modal에 최신 저장 draft 반영
                             setSavedTempDrafts(tempDrafts);
                         }}
-                        className='text-main hover:bg-primary-deep active:bg-primary-deep flex h-6 flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold transition-all duration-150 ease-in-out sm:h-8 sm:text-xl'
+                        className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep sm:h-8 sm:text-xl'
                     >
                         <MdSave className='size-6' />
                         {!isMobile && <span className='relative top-0.5'>SAVE DRAFT</span>}
@@ -119,7 +119,7 @@ const LayoutHeaderForWritePage = () => {
                                                         restoreFastDraftsFromLocal();
                                                         setShowModal(false);
                                                     }}
-                                                    className='text-main hover:bg-primary-deep active:bg-primary-deep rounded-md border border-primary bg-primary px-3 py-1 text-sm'
+                                                    className='rounded-md border border-primary bg-primary px-3 py-1 text-sm text-main hover:bg-primary-deep active:bg-primary-deep'
                                                 >
                                                     Restore
                                                 </button>
@@ -127,7 +127,7 @@ const LayoutHeaderForWritePage = () => {
                                                     onClick={() => {
                                                         removeDraft(idx);
                                                     }}
-                                                    className='text-main rounded-md border border-error bg-error px-3 py-1 text-sm hover:bg-error/70 active:bg-error/70'
+                                                    className='rounded-md border border-error bg-error px-3 py-1 text-sm text-main hover:bg-error/70 active:bg-error/70'
                                                 >
                                                     Init
                                                 </button>
@@ -144,13 +144,13 @@ const LayoutHeaderForWritePage = () => {
                         </ul>
                         <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                             <button
-                                className='text-main h-8 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
+                                className='h-8 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
                                 onClick={() => setShowModal(false)}
                             >
                                 Close
                             </button>
                             <button
-                                className='text-main h-8 w-20 rounded-md border border-error bg-error px-3 py-1 text-sm hover:bg-error/70 active:bg-error/70'
+                                className='h-8 w-20 rounded-md border border-error bg-error px-3 py-1 text-sm text-main hover:bg-error/70 active:bg-error/70'
                                 onClick={async () => {
                                     await localStorage.setItem(
                                         DRAFT_STORAGE_KEY,

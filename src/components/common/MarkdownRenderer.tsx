@@ -109,7 +109,7 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                     ),
                     blockquote: ({ node, ...props }) => (
                         <blockquote
-                            className='relative my-8 whitespace-pre-wrap break-words rounded-md border-l-4 border-primary bg-primary-light p-4 pl-6 text-[1rem] italic text-muted'
+                            className='relative my-8 whitespace-pre-wrap break-words rounded-md border-l-4 border-primary bg-background p-4 pl-6 text-[1rem] italic text-foreground'
                             {...props}
                         />
                     ),

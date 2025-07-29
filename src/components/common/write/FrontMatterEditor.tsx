@@ -127,9 +127,9 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                         {tags.map(tag => (
                             <span
                                 key={tag}
-                                className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'
+                                className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
                             >
-                                {tag}
+                                #{tag}
                             </span>
                         ))}
                     </div>

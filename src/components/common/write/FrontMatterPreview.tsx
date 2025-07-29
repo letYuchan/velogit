@@ -32,13 +32,13 @@ const FrontMatterPreview = () => {
                                 tags.map((tag, idx) => (
                                     <span
                                         key={`${tag}-${idx}`}
-                                        className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'
+                                        className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
                                     >
                                         #{tag}
                                     </span>
                                 ))
                             ) : (
-                                <span className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'>
+                                <span className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'>
                                     #No #tag
                                 </span>
                             )}

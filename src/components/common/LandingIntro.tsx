@@ -1,15 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import clsx from 'clsx';
+import { landingBackgroundMap } from '@/data/themeImgPathData';
 
-const LandingWaveIntro = () => {
+const LandingIntro = () => {
     const [isDismissed, setIsDismissed] = useState(false);
     const [isGone, setIsGone] = useState(false);
     const controls = useAnimation();
     const containerRef = useRef<HTMLDivElement>(null);
 
+    const [currentTheme, setCurrentTheme] = useState('default');
+
     useEffect(() => {
-        window.scrollTo({ top: 10, behavior: 'smooth' });
+        const htmlClass = document.documentElement.className;
+        const theme =
+            htmlClass
+                .split(' ')
+                .find(c => c.startsWith('theme-'))
+                ?.replace('theme-', '') || 'default';
+        setCurrentTheme(theme);
+
+        window.scrollTo({ top: 20, behavior: 'smooth' });
     }, []);
 
     useEffect(() => {
@@ -29,22 +40,27 @@ const LandingWaveIntro = () => {
 
     if (isGone) return null;
 
+    const bgImage = landingBackgroundMap[currentTheme] || landingBackgroundMap.default;
+
     return (
         <motion.div
             ref={containerRef}
             className={clsx(
-                'fixed left-0 top-0 z-40 h-screen w-screen overflow-hidden',
+                'fixed left-0 top-0 z-50 h-screen w-screen overflow-hidden',
                 'bg-gradient-to-b from-primary-deep to-primary text-main',
             )}
             initial={{ y: 0 }}
             animate={controls}
         >
             <div className='relative flex h-full w-full items-center justify-center'>
-                {/* Wave background animation */}
+                {/* Background image */}
                 <motion.div
-                    className='absolute left-0 top-0 h-full w-full bg-cover bg-center opacity-70'
+                    className='absolute left-0 top-0 h-full w-full bg-cover opacity-70'
                     style={{
-                        backgroundImage: "url('/velogit/images/wave.png')",
+                        backgroundImage: `url('${bgImage}')`,
+                        backgroundPosition: ['sakura', 'anime', 'cat'].includes(currentTheme)
+                            ? 'center 80%'
+                            : 'center',
                     }}
                     initial={{ scale: 1.1 }}
                     animate={{
@@ -64,23 +80,14 @@ const LandingWaveIntro = () => {
                         velo<span className='text-primary'>git</span>
                     </motion.h1>
 
-                    <motion.p
-                        className='mt-4 text-xl text-main/80'
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.2, duration: 1 }}
-                    >
-                        Click the button below to begin ↓
-                    </motion.p>
-
                     <motion.button
                         onClick={handleDismiss}
-                        className='mt-10 rounded-full bg-main px-6 py-3 text-lg font-bold text-primary shadow-lg transition-all hover:bg-primary-light hover:text-primary-deep active:scale-95'
+                        className='mt-10 rounded-full bg-background px-6 py-3 text-lg font-bold text-foreground shadow-lg transition-transform hover:scale-105 hover:bg-primary active:scale-95'
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 2, duration: 0.8 }}
+                        transition={{ delay: 1.2, duration: 0.8 }}
                     >
-                        Get Started
+                        Start
                     </motion.button>
                 </div>
             </div>
@@ -88,4 +95,4 @@ const LandingWaveIntro = () => {
     );
 };
 
-export default LandingWaveIntro;
+export default LandingIntro;

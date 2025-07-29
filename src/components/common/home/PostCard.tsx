@@ -10,7 +10,7 @@ const PostCard = ({ post }: { post: PostData }) => {
         >
             {/* header */}
             <div className='flex flex-1 flex-col gap-2'>
-                <h2 className='line-clamp-1 font-title text-2xl font-bold text-foreground'>
+                <h2 className='line-clamp-1 whitespace-pre-wrap break-words font-title text-2xl font-bold text-foreground'>
                     {post.title}
                 </h2>
                 {post.summary && post.summary != '' ? (
@@ -23,13 +23,13 @@ const PostCard = ({ post }: { post: PostData }) => {
                         post.tags.map((tag, idx) => (
                             <span
                                 key={`${post.slug}-${tag}-${idx}`}
-                                className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'
+                                className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
                             >
                                 #{tag}
                             </span>
                         ))
                     ) : (
-                        <span className='rounded-md bg-primary-light px-2 py-1 text-sm font-semibold text-primary'>
+                        <span className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'>
                             #No #tag
                         </span>
                     )}

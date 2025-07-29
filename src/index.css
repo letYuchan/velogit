@@ -63,3 +63,602 @@ textarea {
     --color-error: 220 38 38;
     --color-success: 22 163 74;
 }
+
+/* sakura */
+
+.theme-sakura {
+    --color-background: 255 250 252;
+    --color-background-second: 255 240 245;
+    --color-backgroundDark: 255 230 240;
+    --color-main: 255 255 255;
+    --color-foreground: 60 40 50;
+    --color-muted: 140 100 110;
+    --color-border: 240 220 230;
+    --color-borderSemiDark: 220 180 200;
+    --color-borderDark: 200 160 180;
+    --color-primary: 255 175 200;
+    --color-primary-deep: 235 130 170;
+    --color-primary-light: 255 230 240;
+    --color-highlight: 255 225 240;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}
+
+.theme-sakura.dark {
+    --color-background: 35 20 30;
+    --color-background-second: 50 30 40;
+    --color-backgroundDark: 25 15 25;
+    --color-main: 250 240 245;
+    --color-foreground: 240 200 220;
+    --color-muted: 180 140 160;
+    --color-border: 80 60 70;
+    --color-borderSemiDark: 100 70 85;
+    --color-borderDark: 120 80 95;
+    --color-primary: 255 155 185;
+    --color-primary-deep: 220 100 130;
+    --color-primary-light: 110 50 75;
+    --color-highlight: 180 100 140;
+    --color-error: 240 80 80;
+    --color-success: 100 200 140;
+}
+
+/* dragon */
+
+.theme-dragon {
+    --color-background: 30 20 20;
+    --color-background-second: 45 30 25;
+    --color-backgroundDark: 60 35 30;
+    --color-main: 255 245 220;
+    --color-foreground: 180 140 100;
+    --color-muted: 140 110 90;
+    --color-border: 100 70 50;
+    --color-borderSemiDark: 120 80 60;
+    --color-borderDark: 140 90 70;
+    --color-primary: 200 50 50;
+    --color-primary-deep: 120 30 30;
+    --color-primary-light: 240 180 180;
+    --color-highlight: 250 200 100;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}
+
+.theme-dragon.dark {
+    --color-background: 10 5 5;
+    --color-background-second: 20 10 10;
+    --color-backgroundDark: 15 8 8;
+    --color-main: 245 220 180;
+    --color-foreground: 200 160 120;
+    --color-muted: 140 110 100;
+    --color-border: 60 40 30;
+    --color-borderSemiDark: 80 60 45;
+    --color-borderDark: 100 75 60;
+    --color-primary: 180 40 40;
+    --color-primary-deep: 110 20 20;
+    --color-primary-light: 90 30 30;
+    --color-highlight: 200 140 60;
+    --color-error: 220 80 80;
+    --color-success: 120 200 160;
+}
+
+/* arctic */
+
+.theme-arctic {
+    --color-background: 240 248 255;
+    --color-background-second: 230 240 250;
+    --color-backgroundDark: 210 230 245;
+    --color-main: 255 255 255;
+    --color-foreground: 40 60 80;
+    --color-muted: 100 120 140;
+    --color-border: 200 220 235;
+    --color-borderSemiDark: 180 200 220;
+    --color-borderDark: 160 180 200;
+    --color-primary: 80 180 255;
+    --color-primary-deep: 40 120 200;
+    --color-primary-light: 190 230 255;
+    --color-highlight: 180 250 255;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}
+
+.theme-arctic.dark {
+    --color-background: 15 25 35;
+    --color-background-second: 25 35 45;
+    --color-backgroundDark: 20 30 40;
+    --color-main: 230 245 255;
+    --color-foreground: 180 210 240;
+    --color-muted: 120 140 160;
+    --color-border: 60 80 100;
+    --color-borderSemiDark: 80 100 120;
+    --color-borderDark: 100 120 140;
+    --color-primary: 100 200 255;
+    --color-primary-deep: 40 130 200;
+    --color-primary-light: 60 160 220;
+    --color-highlight: 100 200 240;
+    --color-error: 240 100 100;
+    --color-success: 100 220 180;
+}
+
+/* anime */
+
+.theme-anime {
+    --color-background: 255 249 245;
+    --color-background-second: 255 234 234;
+    --color-backgroundDark: 255 220 220;
+    --color-main: 255 255 255;
+    --color-foreground: 43 43 43;
+    --color-muted: 120 90 90;
+    --color-border: 255 200 200;
+    --color-borderSemiDark: 255 170 170;
+    --color-borderDark: 240 140 140;
+    --color-primary: 255 133 133;
+    --color-primary-deep: 225 77 77;
+    --color-primary-light: 255 190 190;
+    --color-highlight: 255 220 220;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}
+
+.theme-anime.dark {
+    --color-background: 27 27 47;
+    --color-background-second: 47 47 79;
+    --color-backgroundDark: 60 50 80;
+    --color-main: 245 235 235;
+    --color-foreground: 240 240 240;
+    --color-muted: 200 150 150;
+    --color-border: 90 60 90;
+    --color-borderSemiDark: 120 80 100;
+    --color-borderDark: 150 100 120;
+    --color-primary: 255 179 179;
+    --color-primary-deep: 255 118 118;
+    --color-primary-light: 255 200 200;
+    --color-highlight: 255 160 160;
+    --color-error: 255 100 100;
+    --color-success: 100 220 180;
+}
+
+/* space */
+
+.theme-space {
+    --color-background: 238 240 255;
+    --color-background-second: 219 224 255;
+    --color-backgroundDark: 200 210 255;
+    --color-main: 255 255 255;
+    --color-foreground: 44 44 58;
+    --color-muted: 90 90 110;
+    --color-border: 180 190 240;
+    --color-borderSemiDark: 160 170 220;
+    --color-borderDark: 140 150 200;
+    --color-primary: 94 110 255;
+    --color-primary-deep: 58 76 255;
+    --color-primary-light: 170 190 255;
+    --color-highlight: 200 210 255;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}
+
+.theme-space.dark {
+    --color-background: 14 16 37;
+    --color-background-second: 30 32 60;
+    --color-backgroundDark: 20 22 45;
+    --color-main: 235 240 255;
+    --color-foreground: 229 233 245;
+    --color-muted: 180 190 200;
+    --color-border: 80 90 120;
+    --color-borderSemiDark: 100 110 140;
+    --color-borderDark: 120 130 160;
+    --color-primary: 129 144 255;
+    --color-primary-deep: 102 116 255;
+    --color-primary-light: 170 185 255;
+    --color-highlight: 140 160 255;
+    --color-error: 255 100 100;
+    --color-success: 100 220 180;
+}
+
+/* mono */
+
+.theme-mono {
+    --color-background: 250 250 250;
+    --color-background-second: 240 240 240;
+    --color-backgroundDark: 230 230 230;
+    --color-main: 255 255 255;
+    --color-foreground: 30 30 30;
+    --color-muted: 100 100 100;
+    --color-border: 200 200 200;
+    --color-borderSemiDark: 180 180 180;
+    --color-borderDark: 160 160 160;
+    --color-primary: 0 0 0;
+    --color-primary-deep: 20 20 20;
+    --color-primary-light: 80 80 80;
+    --color-highlight: 220 220 220;
+    --color-error: 200 50 50;
+    --color-success: 30 150 90;
+}
+
+.theme-mono.dark {
+    --color-background: 10 10 10;
+    --color-background-second: 20 20 20;
+    --color-backgroundDark: 30 30 30;
+
+    --color-main: 20 20 20;
+    --color-foreground: 240 240 240;
+    --color-muted: 160 160 160;
+
+    --color-border: 60 60 60;
+    --color-borderSemiDark: 80 80 80;
+    --color-borderDark: 100 100 100;
+
+    --color-primary: 255 255 255;
+    --color-primary-deep: 200 200 200;
+    --color-primary-light: 160 160 160;
+
+    --color-highlight: 100 100 100;
+    --color-error: 255 100 100;
+    --color-success: 100 255 100;
+}
+
+/* dev */
+.theme-dev {
+    --color-background: 248 250 252;
+    --color-background-second: 235 240 245;
+    --color-backgroundDark: 220 225 230;
+    --color-main: 255 255 255;
+    --color-foreground: 30 30 30;
+    --color-muted: 100 100 110;
+    --color-border: 180 180 190;
+    --color-borderSemiDark: 150 150 160;
+    --color-borderDark: 130 130 140;
+    --color-primary: 40 100 255;
+    --color-primary-deep: 30 80 200;
+    --color-primary-light: 150 180 255;
+    --color-highlight: 220 225 255;
+    --color-error: 240 80 80;
+    --color-success: 80 180 120;
+}
+
+.theme-dev.dark {
+    --color-background: 10 12 25;
+    --color-background-second: 18 20 35;
+    --color-backgroundDark: 30 35 50;
+    --color-main: 15 18 28;
+    --color-foreground: 230 240 255;
+    --color-muted: 140 150 170;
+    --color-border: 60 70 90;
+    --color-borderSemiDark: 90 100 120;
+    --color-borderDark: 120 130 150;
+    --color-primary: 130 160 255;
+    --color-primary-deep: 90 120 230;
+    --color-primary-light: 160 190 255;
+    --color-highlight: 80 100 150;
+    --color-error: 255 110 110;
+    --color-success: 100 240 150;
+}
+
+/* cat */
+
+.theme-cat {
+    --color-background: 255 245 250;
+    --color-background-second: 255 235 245;
+    --color-backgroundDark: 250 225 235;
+    --color-main: 255 250 255;
+    --color-foreground: 80 60 80;
+    --color-muted: 140 110 130;
+    --color-border: 240 210 230;
+    --color-borderSemiDark: 220 190 210;
+    --color-borderDark: 200 170 190;
+    --color-primary: 255 140 180;
+    --color-primary-deep: 220 90 140;
+    --color-primary-light: 255 180 200;
+    --color-highlight: 255 220 230;
+    --color-error: 220 80 80;
+    --color-success: 150 220 180;
+}
+
+.theme-cat.dark {
+    --color-background: 30 20 40;
+    --color-background-second: 40 30 50;
+    --color-backgroundDark: 60 40 70;
+    --color-main: 35 25 45;
+    --color-foreground: 250 230 250;
+    --color-muted: 190 160 190;
+    --color-border: 90 70 100;
+    --color-borderSemiDark: 120 90 130;
+    --color-borderDark: 150 110 160;
+    --color-primary: 255 160 200;
+    --color-primary-deep: 200 100 160;
+    --color-primary-light: 255 200 220;
+    --color-highlight: 120 90 130;
+    --color-error: 255 120 150;
+    --color-success: 180 240 200;
+}
+
+/* dog */
+
+.theme-dog {
+    --color-background: 240 255 240;
+    --color-background-second: 230 250 230;
+    --color-backgroundDark: 220 245 220;
+    --color-main: 255 255 255;
+    --color-foreground: 40 60 30;
+    --color-muted: 110 130 100;
+    --color-border: 190 220 180;
+    --color-borderSemiDark: 160 200 150;
+    --color-borderDark: 130 180 120;
+    --color-primary: 80 170 90;
+    --color-primary-deep: 50 140 60;
+    --color-primary-light: 120 200 130;
+    --color-highlight: 220 255 220;
+    --color-error: 220 100 80;
+    --color-success: 60 180 80;
+}
+
+.theme-dog.dark {
+    --color-background: 15 25 15;
+    --color-background-second: 20 35 20;
+    --color-backgroundDark: 30 50 30;
+    --color-main: 20 30 20;
+    --color-foreground: 220 250 220;
+    --color-muted: 140 170 140;
+    --color-border: 60 90 60;
+    --color-borderSemiDark: 80 110 80;
+    --color-borderDark: 100 130 100;
+    --color-primary: 130 230 140;
+    --color-primary-deep: 90 180 100;
+    --color-primary-light: 170 255 180;
+    --color-highlight: 80 120 80;
+    --color-error: 255 110 110;
+    --color-success: 100 255 120;
+}
+
+/* neon nebula */
+.theme-neonnebula {
+    --color-background: 245 247 255;
+    --color-background-second: 230 235 255;
+    --color-backgroundDark: 215 225 255;
+    --color-main: 20 20 40; /* 더 진하고 또렷한 색으로 변경 */
+    --color-foreground: 50 50 90; /* 중간톤도 강화 */
+    --color-muted: 90 90 120;
+    --color-border: 200 200 230;
+    --color-borderSemiDark: 180 180 210;
+    --color-borderDark: 160 160 190;
+    --color-primary: 143 72 255;
+    --color-primary-deep: 114 50 230;
+    --color-primary-light: 180 140 255;
+    --color-highlight: 255 88 166;
+    --color-error: 220 38 38;
+    --color-success: 22 163 74;
+}
+
+.theme-neonnebula.dark {
+    --color-background: 10 10 35;
+    --color-background-second: 20 20 50;
+    --color-backgroundDark: 25 25 55;
+    --color-main: 245 245 250;
+    --color-foreground: 207 207 230;
+    --color-muted: 170 170 200;
+    --color-border: 54 54 78;
+    --color-borderSemiDark: 74 74 98;
+    --color-borderDark: 94 94 118;
+    --color-primary: 143 72 255;
+    --color-primary-deep: 114 50 230;
+    --color-primary-light: 180 140 255;
+    --color-highlight: 255 88 166;
+    --color-error: 255 100 100;
+    --color-success: 100 220 180;
+}
+
+/* hacker */
+
+.theme-hacker {
+    --color-background: 235 255 235;
+    --color-background-second: 215 240 215;
+    --color-backgroundDark: 195 225 195;
+    --color-main: 0 30 0;
+    --color-foreground: 10 70 10;
+    --color-muted: 40 110 40;
+    --color-border: 90 255 120;
+    --color-borderSemiDark: 70 220 100;
+    --color-borderDark: 50 180 80;
+    --color-primary: 0 255 130;
+    --color-primary-deep: 0 200 100;
+    --color-primary-light: 170 255 200;
+    --color-highlight: 90 255 160;
+    --color-error: 255 70 70;
+    --color-success: 0 180 90;
+}
+
+.theme-hacker.dark {
+    --color-background: 8 12 8;
+    --color-background-second: 16 24 16;
+    --color-backgroundDark: 20 30 20;
+
+    --color-main: 70 120 90;
+    --color-foreground: 130 200 130;
+    --color-muted: 110 170 110;
+
+    --color-border: 80 200 120;
+    --color-borderSemiDark: 60 160 100;
+    --color-borderDark: 40 130 80;
+
+    --color-primary: 40 240 130;
+    --color-primary-deep: 0 190 100;
+    --color-primary-light: 140 255 200;
+    --color-highlight: 60 200 130;
+
+    --color-error: 255 90 90;
+    --color-success: 70 200 120;
+}
+
+/* vintage */
+
+.theme-vintage {
+    --color-background: 250 245 235;
+    --color-background-second: 240 230 215;
+    --color-backgroundDark: 230 220 200;
+
+    --color-main: 50 40 30;
+    --color-foreground: 80 60 40;
+    --color-muted: 130 100 80;
+
+    --color-border: 180 150 100;
+    --color-borderSemiDark: 150 120 90;
+    --color-borderDark: 120 100 80;
+
+    --color-primary: 200 150 80;
+    --color-primary-deep: 170 120 60;
+    --color-primary-light: 240 200 130;
+    --color-highlight: 220 160 100;
+
+    --color-error: 180 60 60;
+    --color-success: 100 150 90;
+}
+
+.theme-vintage.dark {
+    --color-background: 24 20 16;
+    --color-background-second: 32 28 24;
+    --color-backgroundDark: 18 15 12;
+
+    --color-main: 230 210 180;
+    --color-foreground: 190 170 140;
+    --color-muted: 140 120 100;
+
+    --color-border: 160 140 110;
+    --color-borderSemiDark: 120 100 80;
+    --color-borderDark: 90 70 60;
+
+    --color-primary: 200 150 80;
+    --color-primary-deep: 160 110 60;
+    --color-primary-light: 240 200 130;
+    --color-highlight: 220 160 100;
+
+    --color-error: 180 60 60;
+    --color-success: 120 160 100;
+}
+
+/* lo-fi */
+.theme-lofi {
+    --color-background: 250 245 235;
+    --color-background-second: 240 235 225;
+    --color-main: 40 35 30;
+    --color-foreground: 70 60 55;
+    --color-muted: 110 100 95;
+
+    --color-border: 190 180 170;
+    --color-borderSemiDark: 160 150 140;
+    --color-borderDark: 130 120 110;
+
+    --color-primary: 170 110 80;
+    --color-primary-deep: 140 90 60;
+    --color-primary-light: 210 160 130;
+
+    --color-highlight: 220 160 120;
+    --color-error: 180 40 40;
+    --color-success: 60 130 90;
+}
+
+.theme-lofi.dark {
+    --color-background: 20 15 10;
+    --color-background-second: 30 25 20;
+    --color-backgroundDark: 40 35 30;
+
+    --color-main: 240 235 225;
+    --color-foreground: 210 200 190;
+    --color-muted: 170 160 150;
+
+    --color-border: 70 60 50;
+    --color-borderSemiDark: 90 80 70;
+    --color-borderDark: 110 100 90;
+
+    --color-primary: 210 140 110;
+    --color-primary-deep: 190 110 80;
+    --color-primary-light: 240 180 150;
+
+    --color-highlight: 255 180 140;
+    --color-error: 240 80 80;
+    --color-success: 120 200 160;
+}
+
+/* ghibli */
+.theme-ghibli {
+    --color-background: 235 245 255;
+    --color-background-second: 225 240 250;
+    --color-backgroundDark: 210 230 245;
+    --color-main: 40 60 75;
+    --color-foreground: 70 95 110;
+    --color-muted: 120 140 155;
+    --color-border: 190 210 225;
+    --color-borderSemiDark: 160 185 200;
+    --color-borderDark: 130 160 175;
+    --color-primary: 255 213 100;
+    --color-primary-deep: 240 180 60;
+    --color-primary-light: 255 240 190;
+    --color-highlight: 150 210 250;
+    --color-error: 220 70 70;
+    --color-success: 100 180 130;
+}
+
+.theme-ghibli.dark {
+    --color-background: 20 30 40;
+    --color-background-second: 30 45 60;
+    --color-backgroundDark: 40 55 70;
+
+    --color-main: 240 245 250;
+    --color-foreground: 200 220 230;
+    --color-muted: 145 160 170;
+
+    --color-border: 80 100 120;
+    --color-borderSemiDark: 100 120 140;
+    --color-borderDark: 120 140 160;
+
+    --color-primary: 255 200 80;
+    --color-primary-deep: 240 170 50;
+    --color-primary-light: 255 225 150;
+
+    --color-highlight: 130 210 250;
+    --color-error: 255 100 100;
+    --color-success: 160 220 180;
+}
+
+/* custom */
+.theme-custom {
+    --color-background: 245 245 245;
+    --color-background-second: 235 235 235;
+    --color-backgroundDark: 220 220 220;
+
+    --color-main: 30 30 30;
+    --color-foreground: 80 80 80;
+    --color-muted: 130 130 130;
+
+    --color-border: 200 200 200;
+    --color-borderSemiDark: 180 180 180;
+    --color-borderDark: 160 160 160;
+
+    --color-primary: 150 150 160;
+    --color-primary-deep: 120 120 130;
+    --color-primary-light: 200 200 210;
+
+    --color-highlight: 180 180 180;
+    --color-error: 190 80 80;
+    --color-success: 100 140 100;
+}
+
+.theme-custom.dark {
+    --color-background: 25 25 25;
+    --color-background-second: 35 35 35;
+    --color-backgroundDark: 50 50 50;
+
+    --color-main: 230 230 230;
+    --color-foreground: 180 180 180;
+    --color-muted: 130 130 130;
+
+    --color-border: 70 70 70;
+    --color-borderSemiDark: 90 90 90;
+    --color-borderDark: 110 110 110;
+
+    --color-primary: 160 160 170;
+    --color-primary-deep: 130 130 140;
+    --color-primary-light: 190 190 200;
+
+    --color-highlight: 150 150 150;
+    --color-error: 220 110 110;
+    --color-success: 130 180 130;
+}

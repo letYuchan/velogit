@@ -20,7 +20,7 @@ const PostPageHeader = ({ title, date, tags, category }: PostPageProps) => {
             <div className='mb-4 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center'>
                 <div className='flex items-center gap-3'>
                     {category ? (
-                        <span className='rounded-full bg-primary px-3 py-1 font-title text-lg font-bold text-white'>
+                        <span className='rounded-full bg-primary px-3 py-1 font-title text-lg font-bold text-main'>
                             {category}
                         </span>
                     ) : (
@@ -38,13 +38,15 @@ const PostPageHeader = ({ title, date, tags, category }: PostPageProps) => {
                     tags.map(tag => (
                         <span
                             key={tag}
-                            className='rounded-md bg-primary-bg px-2 py-1 text-sm font-semibold text-primary shadow-sm transition-all'
+                            className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
                         >
                             #{tag}
                         </span>
                     ))
                 ) : (
-                    <span className='text-sm text-muted'>No tags</span>
+                    <span className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'>
+                        #No #tag
+                    </span>
                 )}
             </div>
         </header>

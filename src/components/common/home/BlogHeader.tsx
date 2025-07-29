@@ -1,12 +1,43 @@
-import ShareButton from '@/components/common/post/ShareButton';
+import GrowthStatusModal from '@/components/common/home/GrowthStatusModal';
+import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
+import { headerBackgroundMap, backgroundPositionMap } from '@/data/themeImgPathData';
+import { InfoIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { FaDragon } from 'react-icons/fa';
 
 const BlogHeader = () => {
+    const [currentTheme, setCurrentTheme] = useState('default');
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        const updateTheme = (e?: Event) => {
+            const theme =
+                (e instanceof CustomEvent && typeof e.detail === 'string' && e.detail) ||
+                localStorage.getItem(SELECTED_THEME_STORAGE_KEY) ||
+                'default';
+            setCurrentTheme(theme);
+        };
+
+        updateTheme();
+
+        window.addEventListener('theme-change', updateTheme);
+
+        return () => {
+            window.removeEventListener('theme-change', updateTheme);
+        };
+    }, []);
+
+    const bgImage = headerBackgroundMap[currentTheme] || headerBackgroundMap.default;
+    const bgPosition = backgroundPositionMap[currentTheme] || 'center';
+
     return (
         <header
             style={{
-                backgroundImage: `url(${import.meta.env.BASE_URL}images/blogBgTestImg.jpeg)`,
+                backgroundImage: `url(${bgImage})`,
+                backgroundPosition: bgPosition,
+                backgroundSize: '99%',
             }}
-            className='relative flex w-full flex-col items-center justify-center bg-cover bg-center px-6 py-12 text-white'
+            className='relative flex w-full flex-col items-center justify-center bg-cover px-6 py-12 text-white'
         >
             <div className='absolute inset-0 bg-black/50 backdrop-blur-sm'></div>
 
@@ -16,12 +47,15 @@ const BlogHeader = () => {
                     alt='profile'
                     className='h-[120px] w-[120px] rounded-full border-4 border-white shadow-lg'
                 />
-                <h1 className='font-title text-4xl font-bold tracking-tight text-main'>
+                <h1 className='font-title text-4xl font-bold tracking-tight text-white'>
                     letYuchan's Velog
                 </h1>
-                <p className='text-lg font-medium text-main/80'>프론트엔드 성장 블로그</p>
-                <ShareButton />
+                <p className='text-lg font-medium text-white/80'>프론트엔드 성장 블로그</p>
+                <button onClick={() => setShowModal(true)}>
+                    <FaDragon size={16} />
+                </button>
             </div>
+            {showModal && <GrowthStatusModal showModal={showModal} setShowModal={setShowModal} />}
         </header>
     );
 };

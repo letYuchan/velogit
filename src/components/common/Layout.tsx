@@ -1,6 +1,6 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import LandingWaveIntro from '@/components/common/home/LandingWaveIntor';
+import LandingIntro from '@/components/common/LandingIntro';
 import LayoutHeaderForWritePage from '@/components/common/write/LayoutHeaderForWritePage';
 import { Outlet, useLocation } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const Layout = () => {
                 <Outlet />
             </div>
             {!isActive('/write') && <Footer />}
-            <LandingWaveIntro />
+            <LandingIntro />
         </div>
     );
 };
