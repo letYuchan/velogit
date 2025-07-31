@@ -35,7 +35,7 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
             >
                 <h2 className='text-xl font-bold text-foreground sm:text-2xl'>
                     More posts in
-                    <span className='text-main relative left-2 rounded-full bg-primary px-3 py-1 font-title font-bold'>
+                    <span className='relative left-2 rounded-full bg-primary px-3 py-1 font-title font-bold text-main'>
                         {category}
                     </span>
                 </h2>
@@ -81,25 +81,27 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
 
                     {/* Pagination */}
                     {totalPages > 1 && (
-                        <nav aria-label='related post pagination' className='mt-6'>
-                            <ul className='flex justify-center gap-2'>
-                                {Array.from({ length: totalPages }, (_, idx) => (
-                                    <li key={idx}>
-                                        <button
-                                            onClick={() => setCurrentPage(idx + 1)}
-                                            className={clsx(
-                                                'rounded-md border px-3 py-1 transition-colors',
-                                                currentPage === idx + 1
-                                                    ? 'text-main border-primary bg-primary'
-                                                    : 'hover:bg-primary-light active:bg-primary-light border-border bg-background text-foreground',
-                                            )}
-                                        >
-                                            {idx + 1}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </nav>
+                        <div className='mb-6 mt-6 flex justify-center gap-3 text-sm text-muted'>
+                            <button
+                                onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+                                disabled={currentPage === 1}
+                                className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 sm:text-xl'
+                            >
+                                ⬅ Prev
+                            </button>
+                            <span className='text-foreground'>
+                                Page {currentPage} / {totalPages}
+                            </span>
+                            <button
+                                onClick={() =>
+                                    setCurrentPage(p => (p + 1 <= totalPages ? p + 1 : p))
+                                }
+                                disabled={currentPage === totalPages}
+                                className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 sm:text-xl'
+                            >
+                                Next ➡
+                            </button>
+                        </div>
                     )}
                 </>
             )}
