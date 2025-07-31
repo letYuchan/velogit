@@ -16,7 +16,7 @@ const HomePage = () => {
 
     const viewportWidth = window.innerWidth;
 
-    const postsPerPage = viewportWidth <= 640 ? 5 : 8;
+    const postsPerPage = viewportWidth <= 640 ? 5 : 9;
 
     const filteredPosts =
         selectedCategory === 'all'
@@ -113,25 +113,25 @@ const HomePage = () => {
                 </ul>
             </section>
             {/* pagenation */}
-            <nav aria-label='post pagination' className='mb-4'>
-                <ul className='mt-6 flex justify-center gap-2 pb-4'>
-                    {Array.from({ length: totalPages }, (_, idx) => (
-                        <li key={idx}>
-                            <button
-                                onClick={() => setCurrentPage(idx + 1)}
-                                className={clsx(
-                                    'rounded-md border px-3 py-1 transition-colors',
-                                    currentPage === idx + 1
-                                        ? 'border-primary bg-primary text-main'
-                                        : 'border-border bg-background text-foreground hover:bg-primary-light',
-                                )}
-                            >
-                                {idx + 1}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
+            <div className='mb-6 mt-6 flex justify-center gap-3 text-sm text-muted'>
+                <button
+                    onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+                    disabled={currentPage === 1}
+                    className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 sm:text-xl'
+                >
+                    ⬅ Prev
+                </button>
+                <span className='text-foreground'>
+                    Page {currentPage} / {totalPages}
+                </span>
+                <button
+                    onClick={() => setCurrentPage(p => (p + 1 <= totalPages ? p + 1 : p))}
+                    disabled={currentPage === totalPages}
+                    className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 sm:text-xl'
+                >
+                    Next ➡
+                </button>
+            </div>
         </main>
     );
 };

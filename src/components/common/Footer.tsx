@@ -29,6 +29,7 @@ const Footer = () => {
             {/* links */}
             <div className='col: flex flex-col justify-start gap-4 sm:flex-row sm:justify-around'>
                 <a
+                    target='_blank'
                     href='https://github.com/letYuchan/velogit'
                     className='flex flex-col flex-nowrap items-center justify-start'
                 >
@@ -36,6 +37,7 @@ const Footer = () => {
                     <p className='text-md font-title text-muted sm:text-xl'>velogit</p>
                 </a>
                 <a
+                    target='_blank'
                     href='mailto:yuchancho174@gmail.com'
                     className='flex flex-col flex-nowrap items-center justify-start'
                 >

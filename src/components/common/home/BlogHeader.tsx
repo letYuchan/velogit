@@ -1,9 +1,8 @@
 import GrowthStatusModal from '@/components/common/home/GrowthStatusModal';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { headerBackgroundMap, backgroundPositionMap } from '@/data/themeImgPathData';
-import { InfoIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { FaDragon } from 'react-icons/fa';
+import { FiTrendingUp } from 'react-icons/fi';
 
 const BlogHeader = () => {
     const [currentTheme, setCurrentTheme] = useState('default');
@@ -52,7 +51,7 @@ const BlogHeader = () => {
                 </h1>
                 <p className='text-lg font-medium text-white/80'>프론트엔드 성장 블로그</p>
                 <button onClick={() => setShowModal(true)}>
-                    <FaDragon size={16} />
+                    <FiTrendingUp size={32} />
                 </button>
             </div>
             {showModal && <GrowthStatusModal showModal={showModal} setShowModal={setShowModal} />}
