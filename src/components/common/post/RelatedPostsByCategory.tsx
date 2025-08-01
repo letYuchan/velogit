@@ -84,7 +84,7 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
                             <button
                                 onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
                                 disabled={currentPage === 1}
-                                className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 sm:text-xl'
+                                className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 disabled:hover:bg-primary sm:text-xl'
                             >
                                 ⬅ Prev
                             </button>
@@ -96,7 +96,7 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
                                     setCurrentPage(p => (p + 1 <= totalPages ? p + 1 : p))
                                 }
                                 disabled={currentPage === totalPages}
-                                className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 sm:text-xl'
+                                className='flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-lg font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 disabled:hover:bg-primary sm:text-xl'
                             >
                                 Next ➡
                             </button>

@@ -118,31 +118,35 @@ const GrowthStatusModal = ({ showModal, setShowModal }: GrowthStatusModalProps) 
                     </div>
 
                     {/* Pagination Controls */}
-                    <div className='mt-3 flex justify-center gap-3 text-xs text-muted'>
-                        <button
-                            onClick={() => setCurrentPage(p => Math.max(p - 1, 0))}
-                            disabled={currentPage === 0}
-                            className='rounded-md border border-border px-3 py-1 hover:bg-backgroundDark disabled:opacity-50'
-                        >
-                            ⬅ Prev
-                        </button>
-                        <span>
-                            Page {currentPage + 1} / {totalPages}
-                        </span>
-                        <button
-                            onClick={() => setCurrentPage(p => (p + 1 < totalPages ? p + 1 : p))}
-                            disabled={currentPage + 1 >= totalPages}
-                            className='rounded-md border border-border px-3 py-1 hover:bg-backgroundDark disabled:opacity-50'
-                        >
-                            Next ➡
-                        </button>
-                    </div>
+                    {totalPages > 1 && (
+                        <div className='mb-6 mt-6 flex justify-center gap-3 text-sm text-muted'>
+                            <button
+                                onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+                                disabled={currentPage === 1}
+                                className='sm:text-md flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-sm font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 disabled:hover:bg-primary'
+                            >
+                                ⬅ Prev
+                            </button>
+                            <span className='text-foreground'>
+                                Page {currentPage} / {totalPages}
+                            </span>
+                            <button
+                                onClick={() =>
+                                    setCurrentPage(p => (p + 1 <= totalPages ? p + 1 : p))
+                                }
+                                disabled={currentPage === totalPages}
+                                className='sm:text-md flex h-full flex-nowrap items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-sm font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50 disabled:hover:bg-primary'
+                            >
+                                Next ➡
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 {/* Footer Close Button */}
                 <div className='mt-5 flex justify-center'>
                     <button
-                        className='rounded-md border border-primary bg-primary px-4 py-1.5 text-sm text-main shadow transition-all hover:bg-primary-deep hover:shadow-md'
+                        className='sm:text-md rounded-md border border-primary bg-primary px-4 py-1.5 text-sm text-main shadow transition-all hover:bg-primary-deep hover:shadow-md'
                         onClick={handleCloseModal}
                     >
                         Close
