@@ -19,7 +19,8 @@ const dragonEvolutionGifPathMap = {
     egg: 'images/egg.gif',
     baby: 'images/babyDragon.gif',
     teen: 'images/youngDragon.gif',
-    final: 'images/devFlare.gif',
+    adult: 'images/devFlare.gif',
+    final: 'images/devnity.gif',
 };
 
 export const getDragonEvolutionGifByLevel = (level: number) => {
@@ -29,7 +30,9 @@ export const getDragonEvolutionGifByLevel = (level: number) => {
 
     if (level >= 20 && level < 40) return dragonEvolutionGifPathMap.teen;
 
-    if (level >= 40) return dragonEvolutionGifPathMap.final;
+    if (level >= 40 && level < 100) return dragonEvolutionGifPathMap.adult;
+
+    if (level >= 100) return dragonEvolutionGifPathMap.final;
 
     return dragonEvolutionGifPathMap.egg;
 };

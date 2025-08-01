@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { posts } from '@/utils/postList';
 import { Link } from 'react-router-dom';
 import { MdExpandMore, MdExpandLess } from 'react-icons/md';
-import clsx from 'clsx';
 
 interface RelatedPostsByCategoryProps {
     currentSlug: string;

@@ -8,7 +8,7 @@ const LayoutHeaderForWritePage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
     const [showModal, setShowModal] = useState(false);
     const [savedTempDrafts, setSavedTempDrafts] = useState<TempPost[]>([]);
-    const { reset, saveDraftToLocal, restoreFastDraftsFromLocal } = usePostWriteStore();
+    const { reset, saveDraftToLocal, restoreFastDraftsFromLocal, setField } = usePostWriteStore();
 
     const navigation = useNavigate();
 
@@ -116,7 +116,13 @@ const LayoutHeaderForWritePage = () => {
                                             <div className='flex flex-nowrap gap-1'>
                                                 <button
                                                     onClick={() => {
-                                                        restoreFastDraftsFromLocal();
+                                                        setField('title', draft.data.title);
+                                                        setField('date', draft.data.date);
+                                                        setField('tags', draft.data.tags);
+                                                        setField('summary', draft.data.summary);
+                                                        setField('thumbnail', draft.data.thumbnail);
+                                                        setField('category', draft.data.category);
+                                                        setField('content', draft.data.content);
                                                         setShowModal(false);
                                                     }}
                                                     className='rounded-md border border-primary bg-primary px-3 py-1 text-sm text-main hover:bg-primary-deep active:bg-primary-deep'
@@ -125,7 +131,12 @@ const LayoutHeaderForWritePage = () => {
                                                 </button>
                                                 <button
                                                     onClick={() => {
-                                                        removeDraft(idx);
+                                                        if (
+                                                            confirm(
+                                                                'Do you want to remove Temp-Draft?',
+                                                            )
+                                                        )
+                                                            removeDraft(idx);
                                                     }}
                                                     className='rounded-md border border-error bg-error px-3 py-1 text-sm text-main hover:bg-error/70 active:bg-error/70'
                                                 >
