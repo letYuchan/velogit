@@ -8,9 +8,11 @@ import 'highlight.js/styles/github-dark.css';
 import PostPageHeader from '@/components/common/post/PostPageHeader';
 import { useEffect, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
-import { extractTextFromReactChildren } from '@/utils/extractStringInCodeBlock';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
+import { useParams } from 'react-router-dom';
+
+import { extractTextFromReactChildren, generateHeadingId } from '@/utils/post';
 
 interface MarkdownRendererProps {
     parsedFrontMatter: ParsedFrontMatterType;
@@ -19,6 +21,8 @@ interface MarkdownRendererProps {
 
 const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps) => {
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+    const { slug } = useParams();
+
     const customSchema = {
         ...defaultSchema,
         tagNames: [
@@ -66,12 +70,14 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                 components={{
                     h1: ({ node, ...props }) => (
                         <h1
+                            id={generateHeadingId(props.children)}
                             className='relative mb-8 mt-12 whitespace-pre-wrap break-words text-4xl font-extrabold tracking-tight text-foreground transition-all duration-200 ease-in-out after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-16 after:bg-gradient-to-r after:from-primary after:to-highlight hover:tracking-wider'
                             {...props}
                         />
                     ),
                     h2: ({ node, ...props }) => (
                         <h2
+                            id={generateHeadingId(props.children)}
                             className='mb-6 mt-10 whitespace-pre-wrap break-words border-l-4 border-primary pl-4 text-3xl font-bold text-foreground'
                             {...props}
                         />
@@ -244,6 +250,17 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                     ),
                 }}
                 children={content}
+            />
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+                setTimeout(() => {
+                    const id = decodeURIComponent(location.hash.slice(1));
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            `,
+                }}
             />
         </article>
     );

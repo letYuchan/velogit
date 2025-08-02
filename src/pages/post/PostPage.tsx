@@ -1,14 +1,15 @@
 import MarkdownRenderer from '@/components/common/MarkdownRenderer';
 import ArrowUpButton from '@/components/common/post/ArrowUpButton';
 import EditButton from '@/components/common/post/EditButton';
-import GiscusCommentContainer from '@/components/common/post/GiscusCommentsContainer';
 import RelatedPostsByCategory from '@/components/common/post/RelatedPostsByCategory';
 import ShareButton from '@/components/common/post/ShareButton';
 import TableOfContentsBar from '@/components/common/post/TableOfContentsBar';
-import { posts } from '@/utils/postList';
-import { buildTocTree } from '@/utils/tocTree';
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import UtterancesComments from '@/components/common/post/UtterancesComments';
+import { buildTocTree } from '@/utils/post';
+import { posts } from '@/utils';
 
 const PostPage = () => {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1150);
@@ -62,6 +63,7 @@ const PostPage = () => {
     return (
         <main className='flex w-full flex-col items-center justify-start'>
             <MarkdownRenderer parsedFrontMatter={parsedFrontMatter} content={mainContent} />
+
             {isDesktop ? (
                 <aside className='fixed left-8 top-1/2 z-50 flex translate-y-1/2 transform flex-col gap-2 rounded-full bg-backgroundDark shadow-md'>
                     <div className='group flex size-14 items-center justify-center rounded-full border border-border bg-background-second backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-background hover:shadow-lg'>
@@ -85,13 +87,11 @@ const PostPage = () => {
                     )}
                 </aside>
             )}
-            {/* Giscus: comment feature */}
-            <GiscusCommentContainer />
-            {/* ArrowUP button */}
+
+            <UtterancesComments />
+
             <ArrowUpButton />
-            {/* sideBar */}
             <TableOfContentsBar tableOfContentsTree={tableOfContentsTree} />
-            {/* RelatedPostList */}
             <RelatedPostsByCategory currentSlug={slug ?? ''} category={post!.category} />
         </main>
     );

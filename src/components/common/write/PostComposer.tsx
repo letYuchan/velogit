@@ -1,6 +1,6 @@
 import PostContentEditor from '@/components/common/write/PostContentEditor';
 import PostMetaBuilder from '@/components/common/write/PostMetaBuilder';
-import { posts } from '@/utils/postList';
+import { posts } from '@/utils';
 import { useEffect, useState } from 'react';
 
 interface PostComposerProps {

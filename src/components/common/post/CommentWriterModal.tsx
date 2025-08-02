@@ -1,9 +1,10 @@
 import { POST_COMMENT_KEY } from '@/constants/comment.constants';
 import { saveAs } from 'file-saver';
-import { getTodayDate } from '@/utils/date';
+
 import clsx from 'clsx';
 import { useState, type ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getTodayDate } from '@/utils/write';
 
 interface CommentWriterModalProps {
     slug: string;

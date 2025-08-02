@@ -2,7 +2,7 @@ import GrowthStatusModal from '@/components/common/home/GrowthStatusModal';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { headerBackgroundMap, backgroundPositionMap } from '@/data/themeImgPathData';
 import { useEffect, useState } from 'react';
-import { FiTrendingUp } from 'react-icons/fi';
+import { HiChartBar } from 'react-icons/hi';
 
 const BlogHeader = () => {
     const [currentTheme, setCurrentTheme] = useState('default');
@@ -51,7 +51,7 @@ const BlogHeader = () => {
                 </h1>
                 <p className='text-lg font-medium text-white/80'>프론트엔드 성장 블로그</p>
                 <button onClick={() => setShowModal(true)}>
-                    <FiTrendingUp size={32} />
+                    <HiChartBar size={32} />
                 </button>
             </div>
             {showModal && <GrowthStatusModal showModal={showModal} setShowModal={setShowModal} />}

@@ -16,7 +16,6 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
 
     useEffect(() => {
         const flatList = tableOfContentsTree.flatMap(h1 => [h1, ...(h1.children || [])]);
-
         if (flatList.length === 0) return;
 
         const observer = new IntersectionObserver(
@@ -25,14 +24,13 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
                     .filter(entry => entry.isIntersecting)
                     .map(entry => ({
                         id: entry.target.id,
+                        ratio: entry.intersectionRatio,
                         top: entry.boundingClientRect.top,
                     }));
 
                 if (visible.length > 0) {
-                    const nearest = visible.reduce((a, b) =>
-                        Math.abs(a.top) < Math.abs(b.top) ? a : b,
-                    );
-                    setActiveId(nearest.id);
+                    const mostVisible = visible.reduce((a, b) => (a.ratio > b.ratio ? a : b));
+                    setActiveId(mostVisible.id);
                 } else {
                     const above = entries.filter(entry => entry.boundingClientRect.top < 0);
                     if (above.length > 0) {
@@ -46,8 +44,8 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
                 }
             },
             {
-                rootMargin: '0px 0px -35% 0px',
-                threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+                rootMargin: '-80px 0px -60% 0px',
+                threshold: Array.from({ length: 21 }, (_, i) => i * 0.05),
             },
         );
 
@@ -60,9 +58,28 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
     }, [tableOfContentsTree]);
 
     useEffect(() => {
+        const handleFallbackScroll = () => {
+            const flat = tableOfContentsTree.flatMap(h1 => [h1, ...(h1.children || [])]);
+            const scrollPos = window.scrollY + 90;
+            let currentId = '';
+
+            for (let i = 0; i < flat.length; i++) {
+                const el = document.getElementById(flat[i].id);
+                if (el && el.offsetTop <= scrollPos) {
+                    currentId = flat[i].id;
+                }
+            }
+
+            if (currentId) setActiveId(currentId);
+        };
+
+        window.addEventListener('scroll', handleFallbackScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleFallbackScroll);
+    }, [tableOfContentsTree]);
+
+    useEffect(() => {
         const handleScrollToBottom = () => {
             const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 10;
-
             if (atBottom && tableOfContentsTree.length > 0) {
                 const flat = tableOfContentsTree.flatMap(h1 => [h1, ...(h1.children || [])]);
                 const lastItem = flat[flat.length - 1];
@@ -89,6 +106,15 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
         return () => window.removeEventListener('hashchange', handleHashChange);
     }, []);
 
+    const moveToTargetHeading = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+            history.replaceState(null, '', `#${id}`);
+            setActiveId(id);
+        }
+    };
+
     if (!hasValidItems) return null;
 
     return (
@@ -100,7 +126,11 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
                 {tableOfContentsTree.map(h1 => (
                     <li key={h1.id} className='w-full'>
                         <a
-                            href={`#${h1.id}`}
+                            href='#'
+                            onClick={e => {
+                                e.preventDefault();
+                                moveToTargetHeading(h1.id);
+                            }}
                             className={clsx(
                                 'inline-block w-full transform text-left text-sm transition-all duration-300 hover:scale-110 hover:text-primary active:scale-110 active:text-primary',
                                 activeId === h1.id && 'text-md scale-110 font-bold text-primary',
@@ -113,7 +143,11 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
                                 {h1.children.map(h2 => (
                                     <li key={h2.id} className='w-full'>
                                         <a
-                                            href={`#${h2.id}`}
+                                            href='#'
+                                            onClick={e => {
+                                                e.preventDefault();
+                                                moveToTargetHeading(h2.id);
+                                            }}
                                             className={clsx(
                                                 'relative left-2 inline-block w-full transform text-left text-xs transition-all duration-300 hover:scale-110 hover:text-primary active:scale-110 active:text-primary',
                                                 activeId === h2.id &&

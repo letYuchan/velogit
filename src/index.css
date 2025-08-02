@@ -23,7 +23,7 @@ body {
 }
 
 textarea {
-    line-height: 24px; /* leading-[24px] */
+    line-height: 24px;
     font-size: 1.05rem;
     font-family: 'Pretendard', sans-serif;
 }

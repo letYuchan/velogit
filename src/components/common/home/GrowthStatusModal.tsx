@@ -1,12 +1,12 @@
+import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import {
     getDragonEvolutionGifByLevel,
     getTopThreeCategories,
     getUserBlogLevel,
-} from '@/utils/growthUtils';
-import { posts } from '@/utils/postList';
-import { createPortal } from 'react-dom';
-import { X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+} from '@/utils/home';
+import { posts } from '@/utils';
 
 interface GrowthStatusModalProps {
     showModal: boolean;
@@ -60,6 +60,7 @@ const GrowthStatusModal = ({ showModal, setShowModal }: GrowthStatusModalProps) 
                     <div className='text-2xl font-bold text-primary drop-shadow-md'>
                         LV. {getUserBlogLevel(posts.length)}
                     </div>
+                    <div></div>
                     <p className='text-sm text-foreground'>
                         Total Posts: <span className='font-semibold'>{posts.length}</span>
                     </p>

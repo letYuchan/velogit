@@ -1,9 +1,9 @@
 // src/components/post/RelatedPostsByCategory.tsx
 
 import { useState } from 'react';
-import { posts } from '@/utils/postList';
 import { Link } from 'react-router-dom';
 import { MdExpandMore, MdExpandLess } from 'react-icons/md';
+import { posts } from '@/utils';
 
 interface RelatedPostsByCategoryProps {
     currentSlug: string;
@@ -26,7 +26,7 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
     const currentPosts = sortedRelatedPosts.slice(indexOfFirst, indexOfLast);
 
     return (
-        <section className='my-20 w-full max-w-3xl p-4'>
+        <section className='my-5 w-full max-w-3xl p-4'>
             {/* header */}
             <div
                 className='mb-4 flex cursor-pointer items-center justify-between border-t border-t-primary py-4'

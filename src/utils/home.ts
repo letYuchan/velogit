@@ -1,3 +1,19 @@
+import { posts } from '@/utils';
+
+export const categories = Array.from(new Set(posts.map(post => post.category)));
+
+export const categoryCountMap: Record<string, number> = posts.reduce(
+    (acc, post) => {
+        if (acc[post.category]) {
+            acc[post.category]++;
+        } else {
+            acc[post.category] = 1;
+        }
+        return acc;
+    },
+    {} as Record<string, number>,
+);
+
 export const getUserBlogLevel = (postCount: number) => {
     return Math.floor(postCount / 5) + 1;
 };
