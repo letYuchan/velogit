@@ -1,4 +1,4 @@
-import BackgroundMusicController from '@/components/common/backgroundMusicController';
+import BackgroundMusicController from '@/components/common/BackgroundMusicController';
 import DarkmodeToggleButton from '@/components/common/DarkmodeToggleButton';
 import ThemeSelectorModal from '@/components/common/ThemeSelectorModal';
 import { Palette } from 'lucide-react';
@@ -36,7 +36,7 @@ const Footer = () => {
                     <DarkmodeToggleButton />
                     <button
                         onClick={() => setShowModal(true)}
-                        className='flex flex-nowrap items-center justify-center gap-2 rounded-md border border-primary bg-primary px-3 py-1 text-sm font-semibold text-foreground text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep'
+                        className='flex flex-nowrap items-center justify-center gap-2 rounded-md border border-primary bg-primary px-3 py-1 text-sm font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep'
                     >
                         <Palette size={18} />
                         <span className='hidden sm:inline'>Theme</span>

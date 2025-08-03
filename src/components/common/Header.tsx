@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { Home, Info, Pencil } from 'lucide-react';
 
 const Header = () => {
@@ -14,22 +14,49 @@ const Header = () => {
     const isLocalhost = window.location.hostname === 'localhost';
 
     const [showHeader, setShowHeader] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const lastScrollY = useRef(0);
+
+    useLayoutEffect(() => {
+        lastScrollY.current =
+            window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
-            const currentY = window.scrollY;
-            if (currentY > lastScrollY) {
+            const currentY =
+                window.scrollY ||
+                document.documentElement.scrollTop ||
+                document.body.scrollTop ||
+                0;
+
+            const threshold = 30;
+
+            if (currentY <= 0) {
+                setShowHeader(true);
+                lastScrollY.current = 0;
+                return;
+            }
+
+            if (Math.abs(currentY - lastScrollY.current) < threshold) return;
+
+            if (currentY > lastScrollY.current) {
                 setShowHeader(false);
             } else {
                 setShowHeader(true);
             }
-            setLastScrollY(currentY);
+
+            lastScrollY.current = currentY;
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, []);
+
+    useEffect(() => {
+        requestAnimationFrame(() => {
+            lastScrollY.current = window.scrollY;
+        });
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -48,7 +75,7 @@ const Header = () => {
             )}
         >
             <h1
-                className='cursor-pointer font-title text-xl font-bold text-foreground sm:text-2xl'
+                className='relative bottom-[1px] cursor-pointer font-title text-xl font-bold text-foreground sm:inset-0 sm:text-2xl'
                 onClick={goToHomePage}
             >
                 velo<span className='text-primary'>git</span>
