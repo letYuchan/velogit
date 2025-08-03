@@ -142,13 +142,13 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
             <div className='flex w-full flex-nowrap justify-between gap-1'>
                 <button
                     onClick={() => setShowModal(true)}
-                    className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
+                    className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
                 >
                     User Preview
                 </button>
                 <button
                     onClick={exportPostAsJson}
-                    className='text-main hover:bg-primary-deep active:bg-primary-deep flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold'
+                    className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
                 >
                     {mode === 'edit' ? 'Edit' : 'Publish'}
                 </button>

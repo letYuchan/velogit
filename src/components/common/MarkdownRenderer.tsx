@@ -35,6 +35,7 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
             'code',
             'pre',
             'img',
+            'div',
         ],
         attributes: {
             ...defaultSchema.attributes,
@@ -46,7 +47,8 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
             pre: ['className'],
             code: ['className'],
             img: ['src', 'alt', 'width', 'height'],
-            '*': ['className', 'data-language'],
+            div: ['className', 'style'],
+            '*': ['className', 'data-language', 'style'],
         },
     };
 
@@ -245,6 +247,34 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                     mark: ({ node, ...props }) => (
                         <mark
                             className='rounded bg-highlight px-1.5 py-0.5 font-semibold text-[#333333] shadow-inner'
+                            {...props}
+                        />
+                    ),
+                    table: ({ node, ...props }) => (
+                        <table
+                            className='my-6 w-full table-auto border-collapse overflow-hidden rounded-md border border-border text-sm shadow-sm'
+                            {...props}
+                        />
+                    ),
+                    thead: ({ node, ...props }) => (
+                        <thead className='bg-primary-deep font-bold text-main' {...props} />
+                    ),
+                    tbody: ({ node, ...props }) => <tbody className='bg-background' {...props} />,
+                    tr: ({ node, ...props }) => (
+                        <tr
+                            className='transition-colors duration-150 even:bg-muted/20 hover:bg-muted/30'
+                            {...props}
+                        />
+                    ),
+                    td: ({ node, ...props }) => (
+                        <td
+                            className='whitespace-pre-wrap break-words break-all border border-border px-4 py-2 text-foreground'
+                            {...props}
+                        />
+                    ),
+                    th: ({ node, ...props }) => (
+                        <th
+                            className='whitespace-pre-wrap break-words break-all border border-border px-4 py-2 text-center font-semibold text-main'
                             {...props}
                         />
                     ),

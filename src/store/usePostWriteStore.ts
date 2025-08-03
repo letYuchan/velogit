@@ -9,7 +9,6 @@ export interface PostWriteState {
     thumbnail: string;
     category: string;
     content: string;
-
     setField: <
         K extends keyof Omit<
             PostWriteState,
@@ -34,7 +33,6 @@ export const usePostWriteStore = create<PostWriteState>((set, get) => ({
     thumbnail: '',
     category: '',
     content: '',
-
     setField: (key, value) => set(state => ({ ...state, [key]: value })),
 
     reset: () =>

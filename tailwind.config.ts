@@ -4,6 +4,11 @@ import typography from '@tailwindcss/typography';
 const config: Config = {
     darkMode: 'class',
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
+    variants: {
+        extend: {
+            backgroundColor: ['data-cross'],
+        },
+    },
     theme: {
         extend: {
             colors: {

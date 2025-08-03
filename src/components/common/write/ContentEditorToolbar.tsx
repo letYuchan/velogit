@@ -1,25 +1,6 @@
+import FloatingToolbar from '@/components/common/write/FloatingToolBar';
+import { TOOL_ITEMS } from '@/data/toolItems';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
-import {
-    Bold,
-    Italic,
-    Quote,
-    Code,
-    List,
-    Heading1,
-    Heading2,
-    Heading3,
-    Heading4,
-    Minus,
-    Strikethrough,
-    Link2,
-    ImagePlus,
-    FileImage,
-    Video,
-    Keyboard,
-    Highlighter,
-    PanelTopClose,
-    FileText,
-} from 'lucide-react';
 import { useState } from 'react';
 
 interface ContentEditorToolbarProps {
@@ -28,73 +9,10 @@ interface ContentEditorToolbarProps {
 
 const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
     const [activeItem, setActiveItem] = useState<string | null>(null);
+    const [isFloatingToolBarOn, setIsFloatingToolBarOn] = useState(false);
     const { setField } = usePostWriteStore();
 
-    const TOOL_ITEMS = [
-        { name: 'h1', icon: Heading1, label: 'H1', insert: '# ', marker: '# ' },
-        { name: 'h2', icon: Heading2, label: 'H2', insert: '## ', marker: '## ' },
-        { name: 'h3', icon: Heading3, label: 'H3', insert: '### ', marker: '### ' },
-        { name: 'h4', icon: Heading4, label: 'H4', insert: '#### ', marker: '#### ' },
-        { name: 'bold', icon: Bold, label: 'Bold', insert: '**bold**', marker: '**' },
-        { name: 'italic', icon: Italic, label: 'Italic', insert: '_italic_', marker: '_' },
-        {
-            name: 'strike',
-            icon: Strikethrough,
-            label: 'Strikethrough',
-            insert: '~~strikethrough~~',
-            marker: '~~',
-        },
-        { name: 'quote', icon: Quote, label: 'Quote', insert: '> ', marker: '> ' },
-        { name: 'list', icon: List, label: 'List', insert: '- ', marker: '- ' },
-        { name: 'dash', icon: Minus, label: '-', insert: '---\n', marker: '' },
-        {
-            name: 'code',
-            icon: Code,
-            label: 'Code Block',
-            insert: '```js\ncode goes here\n```',
-            marker: '```',
-        },
-        { name: 'link', icon: Link2, label: 'Link', insert: '', marker: 'link' },
-        {
-            name: 'image-md',
-            icon: ImagePlus,
-            label: 'Image (Markdown)',
-            insert: '',
-            marker: 'image-md',
-        },
-        {
-            name: 'image-html',
-            icon: FileImage,
-            label: 'Image (HTML)',
-            insert: '',
-            marker: 'image-html',
-        },
-        { name: 'video', icon: Video, label: 'Video', insert: '', marker: 'video' },
-        {
-            name: 'kbd',
-            icon: Keyboard,
-            label: 'Keyboard',
-            insert: '<kbd>text</kbd>',
-            marker: '<kbd>',
-        },
-        {
-            name: 'mark',
-            icon: Highlighter,
-            label: 'Highlighter',
-            insert: '<mark>text</mark>',
-            marker: '<mark>',
-        },
-        {
-            name: 'details',
-            icon: PanelTopClose,
-            label: 'Details',
-            insert: '<details>\n  <summary>Summary</summary>\n  Content\n</details>',
-            marker: 'details',
-        },
-        { name: 'file', icon: FileText, label: 'File', insert: '', marker: 'file' },
-    ];
-
-    const handleClick = (name: string, insert: string, marker: string) => {
+    const insertMarkdownSyntax = (name: string, insert: string, marker: string) => {
         const textarea = textareaRef.current;
         if (!textarea) return;
 
@@ -156,10 +74,37 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             newSelectionStart = before.length + 2;
             newSelectionEnd = newSelectionStart + 8;
         } else if (marker === 'image-html') {
-            const url = prompt('Enter image URL:', '/velogit/images/');
-            if (url === null) return;
-            newValue = before + `<img src="${url}" width="600" height="400" alt="image" />` + after;
-            newSelectionStart = before.length + newValue.indexOf('alt="image"') + 5;
+            const maxImages = 4;
+            const urls: string[] = [];
+
+            for (let i = 0; i < maxImages; i++) {
+                const url = prompt(
+                    `Enter image URL ${i + 1} (Cancel to stop):`,
+                    '/velogit/images/',
+                );
+                if (!url) break;
+                urls.push(url);
+            }
+
+            if (urls.length === 0) return;
+
+            const imgTags = urls
+                .map(
+                    url =>
+                        `<img src="${url}" width="300" height="200" alt="image" style="object-fit: cover;" />`,
+                )
+                .join('');
+
+            const layout =
+                urls.length === 1
+                    ? imgTags
+                    : `<div style="display: grid; grid-template-columns: repeat(${Math.min(
+                          urls.length,
+                          2,
+                      )}, 1fr); gap: 8px;">${imgTags}</div>`;
+
+            newValue = before + layout + after;
+            newSelectionStart = before.length + layout.indexOf('alt="image"') + 5;
             newSelectionEnd = newSelectionStart + 5;
         } else if (marker === 'video') {
             const url = prompt('Enter video URL:', '/velogit/videos/');
@@ -226,6 +171,32 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
 
             input.click();
             return;
+        } else if (marker === 'table') {
+            const colInput = prompt('Enter number of columns:', '3');
+            const rowInput = prompt('Enter number of rows:', '3');
+
+            const cols = Math.max(parseInt(colInput || '0'), 1);
+            const rows = Math.max(parseInt(rowInput || '0'), 1);
+
+            if (isNaN(cols) || isNaN(rows)) return;
+
+            const headerRow = Array(cols)
+                .fill('')
+                .map((_, i) => `Header ${i + 1}`)
+                .join(' | ');
+            const separator = Array(cols).fill('---').join(' | ');
+
+            const dataRows = Array(rows)
+                .fill('')
+                .map(() => Array(cols).fill('Cell').join(' | '));
+
+            const tableMarkdown = `| ${headerRow} |\n| ${separator} |\n${dataRows
+                .map(row => `| ${row} |`)
+                .join('\n')}`;
+
+            newValue = before + tableMarkdown + '\n' + after;
+            newSelectionStart = before.length;
+            newSelectionEnd = before.length + tableMarkdown.length;
         } else {
             const lines = value.split('\n');
             const cursorLineIndex = value.substring(0, selectionStart).split('\n').length - 1;
@@ -263,13 +234,14 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
 
     return (
         <div className='flex flex-wrap items-center justify-between gap-2 border-b border-border pb-2'>
+            {isFloatingToolBarOn && <FloatingToolbar textareaRef={textareaRef} />}
             <div className='flex flex-wrap gap-2'>
                 {TOOL_ITEMS.map(({ name, icon: Icon, label, insert, marker }) => (
                     <button
                         key={name}
                         type='button'
                         title={label}
-                        onClick={() => handleClick(name, insert, marker)}
+                        onClick={() => insertMarkdownSyntax(name, insert, marker)}
                         className={`flex items-center gap-1 rounded-md border px-2 py-1 text-sm transition-colors duration-200 hover:bg-primary-light active:bg-primary-light ${
                             activeItem === name
                                 ? 'border-primary bg-primary text-main hover:border-border hover:text-muted active:border-border active:text-muted'
@@ -282,9 +254,15 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             </div>
             <button
                 onClick={handleClear}
-                className='grow rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold text-main hover:bg-error/70 active:bg-error/70'
+                className='flex-1 rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold text-main hover:bg-error/70 active:bg-error/70'
             >
                 Init
+            </button>
+            <button
+                onClick={() => setIsFloatingToolBarOn(prev => !prev)}
+                className='flex flex-1 justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
+            >
+                {isFloatingToolBarOn ? 'Floating Bar: on' : 'Floating Bar: off'}
             </button>
         </div>
     );
