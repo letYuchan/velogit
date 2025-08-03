@@ -1,3 +1,4 @@
+import BackgroundMusicController from '@/components/common/backgroundMusicController';
 import DarkmodeToggleButton from '@/components/common/DarkmodeToggleButton';
 import ThemeSelectorModal from '@/components/common/ThemeSelectorModal';
 import { Palette } from 'lucide-react';
@@ -12,7 +13,7 @@ const Footer = () => {
         <footer className='flex w-full justify-between gap-4 bg-background p-5'>
             {/* copyright, license */}
             <div className='text-md flex flex-col gap-1'>
-                <p className='font-bold text-muted'>
+                <p className='text-sm font-bold text-muted'>
                     © 2025 Velogit — Created
                     <a
                         href='https://github.com/letYuchan/'
@@ -22,8 +23,14 @@ const Footer = () => {
                     </a>
                     . Licensed under CC BY-NC 4.0 &#40;Personal and non-commercial use only&#41;.
                 </p>
-                <p className='font-bold text-muted'>
+                <p className='text-sm font-bold text-muted'>
                     Fonts: SUIT and Pretendard are used under the SIL Open Font License.
+                </p>
+                <p className='text-sm font-bold text-muted'>
+                    Only royalty-free or Creative Commons licensed music is allowed. <br /> Do not
+                    use copyrighted songs &#40;e.g. pop music, OSTs&#41; without permission — even
+                    if found on YouTube. <br />
+                    Violations may result in copyright claims or takedowns.
                 </p>
                 <div className='flex flex-wrap justify-start gap-5'>
                     <DarkmodeToggleButton />
@@ -35,6 +42,7 @@ const Footer = () => {
                         <span className='hidden sm:inline'>Theme</span>
                     </button>
                 </div>
+                <BackgroundMusicController />
             </div>
             {/* links */}
             <div className='col: flex flex-col justify-start gap-4 sm:flex-row sm:justify-around'>

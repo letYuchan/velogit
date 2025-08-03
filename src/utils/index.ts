@@ -39,3 +39,9 @@ export const applyThemeClass = (theme: string) => {
     if (remainedClass) html.classList.remove(remainedClass);
     html.classList.add(`theme-${theme}`);
 };
+
+export const getAudioFileNames = (): string[] => {
+    return Object.keys(import.meta.glob('../../audio/*.mp3', { as: 'url', eager: true })).map(
+        path => path.split('/').pop() || '',
+    );
+};
