@@ -27,7 +27,7 @@ const Header = () => {
             setLastScrollY(currentY);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, [lastScrollY]);
 
@@ -48,7 +48,7 @@ const Header = () => {
             )}
         >
             <h1
-                className='cursor-pointer font-title text-3xl font-bold text-foreground sm:text-2xl'
+                className='cursor-pointer font-title text-xl font-bold text-foreground sm:text-2xl'
                 onClick={goToHomePage}
             >
                 velo<span className='text-primary'>git</span>
