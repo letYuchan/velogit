@@ -1,7 +1,7 @@
 import FloatingToolbar from '@/components/common/write/FloatingToolBar';
 import { TOOL_ITEMS } from '@/data/toolItems';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ContentEditorToolbarProps {
     textareaRef: React.RefObject<HTMLTextAreaElement | null>;
@@ -10,7 +10,15 @@ interface ContentEditorToolbarProps {
 const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
     const [activeItem, setActiveItem] = useState<string | null>(null);
     const [isFloatingToolBarOn, setIsFloatingToolBarOn] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
     const { setField } = usePostWriteStore();
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 640);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const insertMarkdownSyntax = (name: string, insert: string, marker: string) => {
         const textarea = textareaRef.current;
@@ -234,7 +242,7 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
 
     return (
         <div className='flex flex-wrap items-center justify-between gap-2 border-b border-border pb-2'>
-            {isFloatingToolBarOn && <FloatingToolbar textareaRef={textareaRef} />}
+            {isFloatingToolBarOn && !isMobile && <FloatingToolbar textareaRef={textareaRef} />}
             <div className='flex flex-wrap gap-2'>
                 {TOOL_ITEMS.map(({ name, icon: Icon, label, insert, marker }) => (
                     <button
@@ -258,12 +266,14 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             >
                 Init
             </button>
-            <button
-                onClick={() => setIsFloatingToolBarOn(prev => !prev)}
-                className='flex flex-1 justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
-            >
-                {isFloatingToolBarOn ? 'Floating Bar: on' : 'Floating Bar: off'}
-            </button>
+            {!isMobile && (
+                <button
+                    onClick={() => setIsFloatingToolBarOn(prev => !prev)}
+                    className='flex flex-1 justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
+                >
+                    {isFloatingToolBarOn ? 'Floating Bar: on' : 'Floating Bar: off'}
+                </button>
+            )}
         </div>
     );
 };

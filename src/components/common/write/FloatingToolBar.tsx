@@ -68,7 +68,7 @@ const FloatingToolbar = ({ textareaRef }: FloatingToolbarProps) => {
     return (
         <div
             ref={wrapperRef}
-            className='absolute z-50 grid grid-cols-10 gap-2 rounded-xl border border-border bg-background/70 p-2 shadow-md backdrop-blur-sm'
+            className='absolute z-50 grid-cols-10 gap-2 rounded-xl border border-border bg-background/70 p-2 shadow-md backdrop-blur-sm sm:grid'
             style={{
                 top: position.top,
                 left: position.left,
