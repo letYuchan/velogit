@@ -32,3 +32,10 @@ export const posts: PostData[] = Object.entries(
         content,
     };
 });
+
+export const applyThemeClass = (theme: string) => {
+    const html = document.documentElement;
+    const remainedClass = Array.from(html.classList).find(c => c.startsWith('theme-'));
+    if (remainedClass) html.classList.remove(remainedClass);
+    html.classList.add(`theme-${theme}`);
+};

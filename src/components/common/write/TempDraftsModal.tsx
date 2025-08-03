@@ -1,6 +1,5 @@
 import { DRAFT_STORAGE_KEY } from '@/constants/draft.constants';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
-import { useState } from 'react';
 
 interface TempDraftsModalProps {
     savedTempDrafts: TempPost[];
@@ -14,16 +13,6 @@ const TempDraftsModal = ({
     setShowModal,
 }: TempDraftsModalProps) => {
     const { restoreFastDraftsFromLocal, setField } = usePostWriteStore();
-    const [activeId, setActiveId] = useState('');
-
-    const handleClick = (id: string) => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-            history.replaceState(null, '', `#${id}`);
-            setActiveId(id);
-        }
-    };
 
     const removeDraft = (idx: number) => {
         const existingDraftsJson = localStorage.getItem(DRAFT_STORAGE_KEY);
@@ -40,7 +29,7 @@ const TempDraftsModal = ({
     };
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-            <div className='w-full max-w-md rounded-sm bg-background p-6 shadow-xl'>
+            <div className='w-full max-w-md rounded-2xl bg-background p-6 shadow-xl'>
                 <h2 className='mb-4 font-title text-xl font-semibold text-foreground'>
                     Saved Drafts
                 </h2>

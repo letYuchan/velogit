@@ -1,15 +1,19 @@
 import DarkmodeToggleButton from '@/components/common/DarkmodeToggleButton';
-import ThemeSelector from '@/components/common/ThemeSelector';
+import ThemeSelectorModal from '@/components/common/ThemeSelectorModal';
+import { Palette } from 'lucide-react';
+import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
 const Footer = () => {
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <footer className='flex w-full justify-between gap-4 bg-background p-5'>
             {/* copyright, license */}
             <div className='text-md flex flex-col gap-1'>
                 <p className='font-bold text-muted'>
-                    © 2025 Velogit — Created{' '}
+                    © 2025 Velogit — Created
                     <a
                         href='https://github.com/letYuchan/'
                         className='text-primary underline decoration-dotted hover:decoration-solid active:decoration-solid'
@@ -23,7 +27,13 @@ const Footer = () => {
                 </p>
                 <div className='flex flex-wrap justify-start gap-5'>
                     <DarkmodeToggleButton />
-                    <ThemeSelector />
+                    <button
+                        onClick={() => setShowModal(true)}
+                        className='flex flex-nowrap items-center justify-center gap-2 rounded-md border border-primary bg-primary px-3 py-1 text-sm font-semibold text-foreground text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep'
+                    >
+                        <Palette size={18} />
+                        <span className='hidden sm:inline'>Theme</span>
+                    </button>
                 </div>
             </div>
             {/* links */}
@@ -45,6 +55,7 @@ const Footer = () => {
                     <p className='text-md font-title text-muted sm:text-xl'>contact</p>
                 </a>
             </div>
+            {showModal && <ThemeSelectorModal setShowModal={setShowModal} />}
         </footer>
     );
 };

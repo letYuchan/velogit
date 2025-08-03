@@ -19,6 +19,7 @@ import {
     Paintbrush,
 } from 'lucide-react';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
+import { applyThemeClass } from '@/utils';
 
 const THEMES = [
     {
@@ -118,55 +119,62 @@ const THEMES = [
         color: 'bg-[#d8d5cf]',
     },
 ];
-const ThemeSelector = () => {
+
+interface ThemeSelectorModal {
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const ThemeSelectorModal = ({ setShowModal }: ThemeSelectorModal) => {
     const [currentTheme, setCurrentTheme] = useState<string>('default');
 
     useEffect(() => {
         const saved = localStorage.getItem(SELECTED_THEME_STORAGE_KEY);
         if (saved) {
             setCurrentTheme(saved);
-            applyThemeClass(saved);
         }
     }, []);
-
-    const applyThemeClass = (theme: string) => {
-        const html = document.documentElement;
-
-        const prev = Array.from(html.classList).find(c => c.startsWith('theme-'));
-        if (prev) html.classList.remove(prev);
-
-        html.classList.add(`theme-${theme}`);
-    };
 
     const handleThemeChange = (theme: string) => {
         setCurrentTheme(theme);
         localStorage.setItem('theme', theme);
         applyThemeClass(theme);
-
         window.dispatchEvent(new CustomEvent('theme-change', { detail: theme }));
     };
 
     return (
-        <div className='flex flex-wrap gap-2 sm:gap-3'>
-            {THEMES.map(({ id, name, icon, color }) => (
-                <button
-                    key={id}
-                    onClick={() => handleThemeChange(id)}
-                    title={name}
-                    className={clsx(
-                        'group flex flex-col items-center justify-center rounded-md border border-border px-3 py-2 text-xs sm:flex-row sm:gap-2 sm:px-4 sm:py-2 sm:text-sm',
-                        currentTheme === id
-                            ? 'ring-2 ring-primary ring-offset-2'
-                            : 'opacity-80 hover:opacity-100',
-                        color,
-                    )}
-                >
-                    <span className='text-white sm:inline'>{icon}</span>
-                    <span className='hidden font-semibold text-white sm:inline'>{name}</span>
-                </button>
-            ))}
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
+            <div className='w-full max-w-lg rounded-2xl bg-background p-6 shadow-xl'>
+                <div className='grid grid-cols-2 gap-2 xl:grid-cols-3'>
+                    {THEMES.map(({ id, name, icon, color }) => (
+                        <button
+                            key={id}
+                            onClick={() => handleThemeChange(id)}
+                            title={name}
+                            className={clsx(
+                                'group flex flex-col items-center justify-center rounded-md border border-border px-3 py-2 text-xs sm:flex-row sm:gap-2 sm:px-4 sm:py-2 sm:text-sm',
+                                currentTheme === id
+                                    ? 'ring-2 ring-primary ring-offset-2'
+                                    : 'opacity-80 hover:opacity-100',
+                                color,
+                            )}
+                        >
+                            <span className='text-white sm:inline'>{icon}</span>
+                            <span className='hidden truncate font-semibold text-white sm:inline'>
+                                {name}
+                            </span>
+                        </button>
+                    ))}
+                </div>
+                <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
+                    <button
+                        className='h-8 w-full rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
+                        onClick={() => setShowModal(false)}
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default ThemeSelector;
+export default ThemeSelectorModal;
