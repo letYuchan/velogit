@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
-import { getAudioFileNames } from '@/utils';
+import { getAudioFileUrls } from '@/utils';
 
-const musicList = getAudioFileNames().map(name => `${import.meta.env.BASE_URL}audio/${name}`);
+const musicList = getAudioFileUrls();
 const getRandomTrack = () => {
     const index = Math.floor(Math.random() * musicList.length);
     return musicList[index];

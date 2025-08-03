@@ -12,14 +12,9 @@ const LandingIntro = () => {
     const [currentTheme, setCurrentTheme] = useState('default');
 
     useEffect(() => {
-        const htmlClass = document.documentElement.className;
-        const theme =
-            htmlClass
-                .split(' ')
-                .find(c => c.startsWith('theme-'))
-                ?.replace('theme-', '') || 'default';
+        const saved = localStorage.getItem('theme');
+        const theme = saved || 'default';
         setCurrentTheme(theme);
-
         window.scrollTo({ top: 20, behavior: 'smooth' });
     }, []);
 

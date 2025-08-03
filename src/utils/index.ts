@@ -40,8 +40,11 @@ export const applyThemeClass = (theme: string) => {
     html.classList.add(`theme-${theme}`);
 };
 
-export const getAudioFileNames = (): string[] => {
-    return Object.keys(import.meta.glob('../../audio/*.mp3', { as: 'url', eager: true })).map(
-        path => path.split('/').pop() || '',
-    );
+export const getAudioFileUrls = (): string[] => {
+    const audioModules = import.meta.glob('@/assets/audio/*.mp3', {
+        eager: true,
+        as: 'url',
+    });
+
+    return Object.values(audioModules);
 };
