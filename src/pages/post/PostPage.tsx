@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import UtterancesComments from '@/components/common/post/UtterancesComments';
 import { buildTocTree } from '@/utils/post';
 import { posts } from '@/utils';
+import CategoryListSideBar from '@/components/common/post/CategoryListSideBar';
 
 const PostPage = () => {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1150);
@@ -89,7 +90,7 @@ const PostPage = () => {
             )}
 
             <UtterancesComments />
-
+            <CategoryListSideBar />
             <ArrowUpButton />
             <TableOfContentsBar tableOfContentsTree={tableOfContentsTree} />
             <RelatedPostsByCategory currentSlug={slug ?? ''} category={post!.category} />
