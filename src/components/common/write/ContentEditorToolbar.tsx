@@ -1,4 +1,5 @@
 import FloatingToolbar from '@/components/common/write/FloatingToolBar';
+import SpellCheckModal from '@/components/common/write/SpellCheckContainer';
 import { TOOL_ITEMS } from '@/data/toolItems';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { useEffect, useState } from 'react';
@@ -10,6 +11,7 @@ interface ContentEditorToolbarProps {
 const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
     const [activeItem, setActiveItem] = useState<string | null>(null);
     const [isFloatingToolBarOn, setIsFloatingToolBarOn] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
     const { setField } = usePostWriteStore();
@@ -263,20 +265,29 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
                     </button>
                 ))}
             </div>
-            <button
-                onClick={handleClear}
-                className='flex-1 rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold text-main hover:bg-error/70 active:bg-error/70'
-            >
-                Init
-            </button>
-            {!isMobile && (
+            <div className='flex w-full gap-2'>
                 <button
-                    onClick={() => setIsFloatingToolBarOn(prev => !prev)}
-                    className='flex flex-1 justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
+                    onClick={handleClear}
+                    className='flex-1 rounded-md border border-error bg-error px-3 py-1 text-xl font-semibold text-main hover:bg-error/70 active:bg-error/70'
                 >
-                    {isFloatingToolBarOn ? 'Floating Bar: on' : 'Floating Bar: off'}
+                    Init
                 </button>
-            )}
+                {!isMobile && (
+                    <button
+                        onClick={() => setIsFloatingToolBarOn(prev => !prev)}
+                        className='flex flex-1 justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
+                    >
+                        {isFloatingToolBarOn ? 'Floating Bar: on' : 'Floating Bar: off'}
+                    </button>
+                )}
+            </div>
+            <button
+                onClick={() => setShowModal(true)}
+                className='flex flex-1 justify-center rounded-md border border-primary bg-gradient-to-r from-primary to-primary-light px-3 py-1 text-xl font-semibold text-main hover:from-primary-deep hover:to-primary active:from-primary-deep active:to-primary'
+            >
+                Spell Check
+            </button>
+            {showModal && <SpellCheckModal setShowModal={setShowModal} />}
         </div>
     );
 };
