@@ -47,12 +47,22 @@ export const insertMarkdownSyntax = (
             newSelectionEnd = newSelectionStart + defaultText.length;
         }
     } else if (isBlock) {
-        newValue = before + insert + after;
-        const offset = insert.indexOf('code goes here');
-        newSelectionStart = before.length + offset;
-        newSelectionEnd = newSelectionStart + 'code goes here'.length;
+        const selectedIsCodeBlock = /^```[a-z]*\n[\s\S]*?\n```$/.test(selectedText);
+        if (selectedIsCodeBlock) {
+            const unwrapped = selectedText.replace(/^```[a-z]*\n/, '').replace(/\n```$/, '');
+            newValue = before + unwrapped + after;
+            newSelectionEnd = newSelectionStart + unwrapped.length;
+        } else {
+            newValue = before + insert + after;
+            const offset = insert.indexOf('code goes here');
+            newSelectionStart = before.length + offset;
+            newSelectionEnd = newSelectionStart + 'code goes here'.length;
+        }
+    } else if (name === 'dash') {
+        newValue = before + '---\n' + after;
+        newSelectionStart = newSelectionEnd = before.length + 4;
     } else if (marker === 'link') {
-        const url = prompt('Enter the URL:', 'https://');
+        const url = prompt('Enter the URL:', '');
         if (url === null) return;
         newValue = before + `[text](${url})` + after;
         newSelectionStart = before.length + 1;
@@ -64,10 +74,37 @@ export const insertMarkdownSyntax = (
         newSelectionStart = before.length + 2;
         newSelectionEnd = newSelectionStart + 8;
     } else if (marker === 'image-html') {
-        const url = prompt('Enter image URL:', '/velogit/images/');
-        if (url === null) return;
-        newValue = before + `<img src="${url}" width="600" height="400" alt="image" />` + after;
-        newSelectionStart = before.length + newValue.indexOf('alt="image"') + 5;
+        const maxImages = 4;
+        const urls: string[] = [];
+
+        for (let i = 0; i < maxImages; i++) {
+            const url = prompt(`Enter image URL ${i + 1} (Cancel to stop):`, '/velogit/images/');
+            if (!url) break;
+            urls.push(url);
+        }
+
+        if (urls.length === 0) return;
+
+        const imgTags = urls
+            .map(
+                url =>
+                    `<img src="${url}" width="300" height="200" alt="image" style="object-fit: cover;" />`,
+            )
+            .join('');
+
+        const layout =
+            urls.length === 1
+                ? imgTags
+                : urls.length === 3
+                  ? `<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;">
+                <img src="${urls[0]}" style="width: 100%; object-fit: cover;" />
+                <img src="${urls[1]}" style="width: 100%; object-fit: cover;" />
+                <img src="${urls[2]}" style="width: 100%; height: 300px object-fit: cover; grid-column: span 2;" /></div>`
+                  : `<div style="display: grid; grid-template-columns: repeat(${Math.min(urls.length, 2)}, 1fr); gap: 2px;">
+                ${imgTags}</div>`;
+
+        newValue = before + layout + after;
+        newSelectionStart = before.length + layout.indexOf('alt="image"') + 5;
         newSelectionEnd = newSelectionStart + 5;
     } else if (marker === 'video') {
         const url = prompt('Enter video URL:', '/velogit/videos/');
@@ -126,6 +163,7 @@ export const insertMarkdownSyntax = (
 
             const result = before + markdown + after;
             textarea.value = result;
+
             textarea.selectionStart = textarea.selectionEnd = before.length + markdown.length;
             textarea.focus();
             textarea.dispatchEvent(new Event('input', { bubbles: true }));

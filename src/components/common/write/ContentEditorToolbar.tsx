@@ -106,10 +106,13 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
             const layout =
                 urls.length === 1
                     ? imgTags
-                    : `<div style="display: grid; grid-template-columns: repeat(${Math.min(
-                          urls.length,
-                          2,
-                      )}, 1fr); gap: 8px;">${imgTags}</div>`;
+                    : urls.length === 3
+                      ? `<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;">
+                <img src="${urls[0]}" style="width: 100%; object-fit: cover;" />
+                <img src="${urls[1]}" style="width: 100%; object-fit: cover;" />
+                <img src="${urls[2]}" style="width: 100%; height: 300px object-fit: cover; grid-column: span 2;" /></div>`
+                      : `<div style="display: grid; grid-template-columns: repeat(${Math.min(urls.length, 2)}, 1fr); gap: 2px;">
+                ${imgTags}</div>`;
 
             newValue = before + layout + after;
             newSelectionStart = before.length + layout.indexOf('alt="image"') + 5;
