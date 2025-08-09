@@ -1,8 +1,11 @@
 import FloatingToolbar from '@/components/common/write/FloatingToolBar';
-import SpellCheckModal from '@/components/common/write/SpellCheckContainer';
+import KoreanSpellCheckModal from '@/components/common/write/KoreanSpellCheckModal';
+import MultilingualSpellCheckModal from '@/components/common/write/MultilingualSpellCheckContainer';
 import { TOOL_ITEMS } from '@/data/toolItems';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { useEffect, useState } from 'react';
+import { GiSouthKorea } from 'react-icons/gi';
+import { MdSpellcheck } from 'react-icons/md';
 
 interface ContentEditorToolbarProps {
     textareaRef: React.RefObject<HTMLTextAreaElement | null>;
@@ -11,7 +14,8 @@ interface ContentEditorToolbarProps {
 const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
     const [activeItem, setActiveItem] = useState<string | null>(null);
     const [isFloatingToolBarOn, setIsFloatingToolBarOn] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [isMultilingualModalOpen, setIsMultilingualModalOpen] = useState(false);
+    const [isKoreanModalOpen, setIsKoreanModalOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
     const { setField } = usePostWriteStore();
@@ -281,13 +285,28 @@ const ContentEditorToolbar = ({ textareaRef }: ContentEditorToolbarProps) => {
                     </button>
                 )}
             </div>
-            <button
-                onClick={() => setShowModal(true)}
-                className='flex flex-1 justify-center rounded-md border border-primary bg-gradient-to-r from-primary to-primary-light px-3 py-1 text-xl font-semibold text-main hover:from-primary-deep hover:to-primary active:from-primary-deep active:to-primary'
-            >
-                Spell Check
-            </button>
-            {showModal && <SpellCheckModal setShowModal={setShowModal} />}
+            <div className='flex w-full gap-2'>
+                <button
+                    onClick={() => setIsMultilingualModalOpen(true)}
+                    className='flex flex-1 justify-center rounded-md border border-primary bg-gradient-to-r from-primary-deep via-primary to-primary-light px-3 py-1 text-xl font-semibold text-main hover:from-primary hover:to-primary-light active:from-primary-deep active:to-primary'
+                >
+                    {isMobile ? <MdSpellcheck className='text-main' /> : 'Spell Check'}
+                </button>
+                <button
+                    onClick={() => setIsKoreanModalOpen(true)}
+                    className='flex flex-1 justify-center rounded-md border border-primary bg-gradient-to-r from-primary-deep via-primary to-primary-light px-3 py-1 text-xl font-semibold text-main hover:from-primary hover:to-primary-light active:from-primary-deep active:to-primary'
+                >
+                    {isMobile ? '한국어' : '한국어 교정'}
+                </button>
+            </div>
+            {isMultilingualModalOpen && (
+                <MultilingualSpellCheckModal
+                    setIsMultilingualModalOpen={setIsMultilingualModalOpen}
+                />
+            )}
+            {isKoreanModalOpen && (
+                <KoreanSpellCheckModal setIsKoreanModalOpen={setIsKoreanModalOpen} />
+            )}
         </div>
     );
 };

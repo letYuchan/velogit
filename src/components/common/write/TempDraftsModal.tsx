@@ -1,16 +1,17 @@
 import { DRAFT_STORAGE_KEY } from '@/constants/draft.constants';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
+import { X } from 'lucide-react';
 
 interface TempDraftsModalProps {
     savedTempDrafts: TempPost[];
     setSavedTempDrafts: React.Dispatch<React.SetStateAction<TempPost[]>>;
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsTempDraftsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TempDraftsModal = ({
     savedTempDrafts,
     setSavedTempDrafts,
-    setShowModal,
+    setIsTempDraftsModalOpen,
 }: TempDraftsModalProps) => {
     const { restoreFastDraftsFromLocal, setField } = usePostWriteStore();
 
@@ -29,6 +30,12 @@ const TempDraftsModal = ({
     };
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
+            <button
+                onClick={() => setIsTempDraftsModalOpen(false)}
+                className='absolute left-4 top-4'
+            >
+                <X size={32} className='text-main hover:text-primary' />
+            </button>
             <div className='w-full max-w-md rounded-2xl bg-background p-6 shadow-xl'>
                 <h2 className='mb-4 font-title text-xl font-semibold text-foreground'>
                     Saved Drafts
@@ -54,7 +61,7 @@ const TempDraftsModal = ({
                                                 setField('thumbnail', draft.data.thumbnail);
                                                 setField('category', draft.data.category);
                                                 setField('content', draft.data.content);
-                                                setShowModal(false);
+                                                setIsTempDraftsModalOpen(false);
                                             }}
                                             className='rounded-md border border-primary bg-primary px-3 py-1 text-sm text-main hover:bg-primary-deep active:bg-primary-deep'
                                         >
@@ -83,7 +90,7 @@ const TempDraftsModal = ({
                 <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                     <button
                         className='h-8 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
-                        onClick={() => setShowModal(false)}
+                        onClick={() => setIsTempDraftsModalOpen(false)}
                     >
                         Close
                     </button>

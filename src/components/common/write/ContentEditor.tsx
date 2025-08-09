@@ -134,7 +134,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
                     onChange={handleContentChange}
                     onKeyDown={handleTextareaTabKey}
                     className={clsx(
-                        'min-h-[400px] w-full resize-y rounded-md border-l-8 bg-background p-4 text-base leading-relaxed text-foreground transition-colors duration-200 ease-in-out focus:outline-none',
+                        'min-h-[400px] w-full resize-y rounded-md border-l-8 bg-background-second p-4 text-base leading-relaxed text-foreground transition-colors duration-200 ease-in-out focus:outline-none',
                         isContentInvalid ? 'border-error placeholder:text-error' : 'border-primary',
                     )}
                 />

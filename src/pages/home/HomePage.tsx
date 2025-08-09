@@ -117,6 +117,7 @@ const HomePage = () => {
                         </div>
                     </section>
                 </div>
+
                 {/* sort section */}
                 <section aria-label='sort section' className='flexjustify-start'>
                     <button

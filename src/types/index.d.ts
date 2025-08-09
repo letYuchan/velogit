@@ -9,7 +9,7 @@ interface PostData {
     category: string;
 }
 
-interface SpellCheckPayloadType {
+interface MultilingualSpellCheckPayloadType {
     text: string;
     language: LanguageToolCode;
 }
@@ -78,7 +78,7 @@ type LanguageToolCode =
     | 'uk-UA'
     | 'zh-CN'
     | 'crh-UA';
-interface SpellCheckResponseType {
+interface MultilingualSpellCheckResponseType {
     software: {
         name: string;
         version: string;
@@ -156,4 +156,35 @@ interface LanguageToolLanguage {
     name: string;
     code: string;
     longCode: string;
+}
+
+interface KoreanSpellCheckPayloadType {
+    content: string;
+}
+interface KoChange {
+    from: string;
+    to: string;
+    offset: number;
+    length: number;
+}
+
+interface KoSentence {
+    origin: string;
+    revised: string;
+}
+
+interface KoModel {
+    name?: string;
+    revision?: string;
+    device?: string;
+}
+
+interface KoreanSpellCheckResponse {
+    original: string;
+    corrected: string;
+    time: number;
+    model?: KoModel;
+    changes?: KoChange[];
+    sentences?: KoSentence[];
+    error?: string;
 }

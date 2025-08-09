@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LayoutHeaderForWritePage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
-    const [showModal, setShowModal] = useState(false);
+    const [isTempDraftsModalOpen, setIsTempDraftsModalOpen] = useState(false);
     const [savedTempDrafts, setSavedTempDrafts] = useState<TempPost[]>([]);
     const { reset, saveDraftToLocal, restoreFastDraftsFromLocal } = usePostWriteStore();
 
@@ -30,8 +30,8 @@ const LayoutHeaderForWritePage = () => {
             if (e.key !== 'Escape') return;
             console.log('event occur');
             e.preventDefault();
-            if (showModal === true && e.key === 'Escape') {
-                setShowModal(false);
+            if (isTempDraftsModalOpen === true && e.key === 'Escape') {
+                setIsTempDraftsModalOpen(false);
             }
         };
 
@@ -39,7 +39,7 @@ const LayoutHeaderForWritePage = () => {
         return () => {
             window.removeEventListener('keydown', handleEscKeyForClosingModal);
         };
-    }, [showModal]);
+    }, [isTempDraftsModalOpen]);
 
     const goToBack = () => {
         if (confirm('Are you sure you want to go back to home?')) {
@@ -61,7 +61,7 @@ const LayoutHeaderForWritePage = () => {
                 </button>
                 <div className='flex flex-nowrap items-stretch justify-around gap-2'>
                     <button
-                        onClick={() => setShowModal(true)}
+                        onClick={() => setIsTempDraftsModalOpen(true)}
                         className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark bg-background-second px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-background-second/70 active:bg-background-second/70 sm:h-8 sm:text-xl'
                     >
                         <MdRestore className='size-6' />
@@ -82,11 +82,11 @@ const LayoutHeaderForWritePage = () => {
                 </div>
             </header>
             {/* TempDrafts modal */}
-            {showModal && (
+            {isTempDraftsModalOpen && (
                 <TempDraftsModal
                     savedTempDrafts={savedTempDrafts}
                     setSavedTempDrafts={setSavedTempDrafts}
-                    setShowModal={setShowModal}
+                    setIsTempDraftsModalOpen={setIsTempDraftsModalOpen}
                 />
             )}
         </>

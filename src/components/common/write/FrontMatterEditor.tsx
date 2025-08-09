@@ -85,7 +85,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     onChange={handleOnChange}
                     placeholder='Enter title'
                     className={clsx(
-                        'w-full border-l-8 bg-background px-3 py-2 text-3xl text-foreground focus:outline-none',
+                        'w-full border-l-8 bg-background-second px-3 py-2 text-3xl text-foreground focus:outline-none',
                         isTitleInvalid
                             ? 'border-error transition-colors duration-200 ease-in-out placeholder:text-error'
                             : 'border-primary',
@@ -98,7 +98,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     value={date}
                     onChange={handleOnChange}
                     className={clsx(
-                        'w-full rounded-md border bg-background px-3 py-2 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
+                        'w-full rounded-md border bg-background-second px-3 py-2 text-base text-foreground shadow-sm transition duration-200 focus:outline-none focus:ring-2',
                         isDateInvalid
                             ? 'border-error transition-colors duration-200 ease-in-out focus:ring-error'
                             : 'border-border focus:border-primary focus:ring-primary',
@@ -113,7 +113,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                         onChange={e => setTagsInput(e.target.value)}
                         onKeyDown={handleOnKeyDown}
                         placeholder='Enter tags, separated by commas or Enter'
-                        className='w-[70%] rounded-md border border-border bg-background px-3 py-2 text-base text-foreground shadow-sm transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+                        className='w-[70%] rounded-md border border-border bg-background-second px-3 py-2 text-base text-foreground shadow-sm transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
                     />
                     <button
                         onClick={initTags}
@@ -140,7 +140,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     onChange={handleOnChange}
                     placeholder='Enter a brief summary'
                     rows={3}
-                    className='w-full rounded-md border border-border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+                    className='w-full rounded-md border border-border bg-background-second px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
                 ></textarea>
                 <input
                     type='text'
@@ -148,7 +148,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     value={thumbnail}
                     onChange={handleOnChange}
                     placeholder='Thumbnail image path (e.g., images/thumbnail.jpg)'
-                    className='w-full rounded-md border border-border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
+                    className='w-full rounded-md border border-border bg-background-second px-3 py-2 text-base text-foreground transition duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary'
                 />
 
                 <input
@@ -158,7 +158,7 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
                     onChange={handleOnChange}
                     placeholder='Enter category'
                     className={clsx(
-                        'w-full rounded-md border bg-background px-3 py-2 text-base text-foreground transition duration-200 focus:outline-none focus:ring-2',
+                        'w-full rounded-md border bg-background-second px-3 py-2 text-base text-foreground transition duration-200 focus:outline-none focus:ring-2',
                         isCategoryInvalid
                             ? 'border-error transition-colors duration-200 ease-in-out placeholder:text-error focus:ring-error'
                             : 'border-border focus:border-primary focus:ring-primary',
