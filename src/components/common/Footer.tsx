@@ -5,6 +5,7 @@ import { Palette } from 'lucide-react';
 import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { MdHelp } from 'react-icons/md';
 
 const Footer = () => {
     const [showModal, setShowModal] = useState(false);
@@ -13,7 +14,7 @@ const Footer = () => {
         <footer className='flex w-full justify-between gap-4 bg-background p-5'>
             {/* copyright, license */}
             <div className='text-md flex flex-col gap-1'>
-                <p className='text-sm font-bold text-muted'>
+                <p className='text-sm font-bold text-foreground'>
                     © 2025 Velogit — Created
                     <a
                         href='https://github.com/letYuchan/'
@@ -23,14 +24,24 @@ const Footer = () => {
                     </a>
                     . Licensed under CC BY-NC 4.0 &#40;Personal and non-commercial use only&#41;.
                 </p>
-                <p className='text-sm font-bold text-muted'>
+                <p className='text-xs font-semibold text-muted'>
                     Fonts: SUIT and Pretendard are used under the SIL Open Font License.
                 </p>
-                <p className='text-sm font-bold text-muted'>
+                <p className='text-xs font-semibold text-muted'>
                     Only royalty-free or Creative Commons licensed music is allowed. <br /> Do not
                     use copyrighted songs &#40;e.g. pop music, OSTs&#41; without permission — even
                     if found on YouTube. <br />
                     Violations may result in copyright claims or takedowns.
+                </p>
+                <p className='text-xs font-semibold text-muted'>
+                    This application uses the "gec_kr" model by Soyoung97, available on Hugging
+                    Face, licensed under the MIT License. <br /> Source:
+                    https://huggingface.co/Soyoung97/gec_kr
+                </p>
+                <p className='text-xs font-semibold text-muted'>
+                    This application uses LanguageTool, an open-source proofreading software,
+                    licensed under the GNU Lesser General Public License v2.1. <br />
+                    Source: https://languagetool.org/
                 </p>
                 <div className='flex flex-wrap justify-start gap-5'>
                     <DarkmodeToggleButton />
@@ -62,6 +73,10 @@ const Footer = () => {
                     <HiOutlineMail className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-100 sm:text-3xl' />
                     <p className='text-md font-title text-muted sm:text-xl'>contact</p>
                 </a>
+                <button className='flex flex-col flex-nowrap items-center justify-start'>
+                    <MdHelp className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-100 sm:text-3xl' />
+                    <p className='text-md font-title text-muted sm:text-xl'>Help</p>
+                </button>
             </div>
             {showModal && <ThemeSelectorModal setShowModal={setShowModal} />}
         </footer>
