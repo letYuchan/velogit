@@ -16,7 +16,7 @@ interface ContentEditorProps {
 
 const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
     const [isContentInvalid, setIsContentInvalid] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [isUserViewPreviewModalOpen, setIsUserViewPreviewModalOpen] = useState(false);
     const { content, setField, buildMarkdown, title, date, category, reset } = usePostWriteStore();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -141,7 +141,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
             </div>
             <div className='flex w-full flex-nowrap justify-between gap-1'>
                 <button
-                    onClick={() => setShowModal(true)}
+                    onClick={() => setIsUserViewPreviewModalOpen(true)}
                     className='flex justify-center rounded-md border border-primary bg-primary px-3 py-1 text-xl font-semibold text-main hover:bg-primary-deep active:bg-primary-deep'
                 >
                     User Preview
@@ -153,7 +153,12 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
                     {mode === 'edit' ? 'Edit' : 'Publish'}
                 </button>
             </div>
-            {showModal && <UserViewPreview showModal={showModal} setShowModal={setShowModal} />}
+            {isUserViewPreviewModalOpen && (
+                <UserViewPreview
+                    isUserViewPreviewModalOpen={isUserViewPreviewModalOpen}
+                    setIsUserViewPreviewModalOpen={setIsUserViewPreviewModalOpen}
+                />
+            )}
         </section>
     );
 };

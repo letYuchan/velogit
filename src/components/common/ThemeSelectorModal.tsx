@@ -17,6 +17,7 @@ import {
     Headphones,
     Leaf,
     Paintbrush,
+    X,
 } from 'lucide-react';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { applyThemeClass } from '@/utils';
@@ -121,9 +122,9 @@ const THEMES = [
 ];
 
 interface ThemeSelectorModal {
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsThemeSelectorModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const ThemeSelectorModal = ({ setShowModal }: ThemeSelectorModal) => {
+const ThemeSelectorModal = ({ setIsThemeSelectorModalOpen }: ThemeSelectorModal) => {
     const [currentTheme, setCurrentTheme] = useState<string>('default');
 
     useEffect(() => {
@@ -131,6 +132,14 @@ const ThemeSelectorModal = ({ setShowModal }: ThemeSelectorModal) => {
         if (saved) {
             setCurrentTheme(saved);
         }
+    }, []);
+
+    useEffect(() => {
+        const closeModal = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsThemeSelectorModalOpen(false);
+        };
+        window.addEventListener('keydown', closeModal);
+        return () => window.removeEventListener('keydown', closeModal);
     }, []);
 
     const handleThemeChange = (theme: string) => {
@@ -142,7 +151,17 @@ const ThemeSelectorModal = ({ setShowModal }: ThemeSelectorModal) => {
 
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
+            <button
+                onClick={() => setIsThemeSelectorModalOpen(false)}
+                className='absolute left-4 top-4'
+            >
+                <X size={32} className='text-main hover:text-primary' />
+            </button>
             <div className='w-full max-w-lg rounded-2xl bg-background p-6 shadow-xl'>
+                <h2 className='mb-4 font-title text-xl font-semibold text-foreground'>
+                    Theme Selector
+                </h2>
+                <p className='text-right text-xs text-muted'>ESC to close</p>
                 <div className='grid grid-cols-2 gap-2 xl:grid-cols-3'>
                     {THEMES.map(({ id, name, icon, color }) => (
                         <button
@@ -167,7 +186,7 @@ const ThemeSelectorModal = ({ setShowModal }: ThemeSelectorModal) => {
                 <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                     <button
                         className='h-8 w-full rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
-                        onClick={() => setShowModal(false)}
+                        onClick={() => setIsThemeSelectorModalOpen(false)}
                     >
                         Close
                     </button>

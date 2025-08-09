@@ -34,6 +34,14 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
     }, [currentIndex, total]);
 
     useEffect(() => {
+        const closeModal = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsKoreanModalOpen(false);
+        };
+        window.addEventListener('keydown', closeModal);
+        return () => window.removeEventListener('keydown', closeModal);
+    }, []);
+
+    useEffect(() => {
         if (currentIndex > 0 && currentIndex >= total) {
             setCurrentIndex(Math.max(0, total - 1));
         }
@@ -119,6 +127,7 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
                         Model - Soyoung97 &#40;gec_kr&#41;
                     </a>
                 </div>
+                <p className='text-right text-xs text-muted'>ESC to close</p>
 
                 {/* 버튼 영역 */}
                 <div className='mb-4 flex flex-wrap items-center gap-4'>

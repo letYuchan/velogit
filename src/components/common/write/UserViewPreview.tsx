@@ -4,15 +4,18 @@ import { X } from 'lucide-react';
 import { useEffect } from 'react';
 
 interface UserViewPreviewProps {
-    showModal: boolean;
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    isUserViewPreviewModalOpen: boolean;
+    setIsUserViewPreviewModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UserViewPreview = ({ showModal, setShowModal }: UserViewPreviewProps) => {
+const UserViewPreview = ({
+    isUserViewPreviewModalOpen,
+    setIsUserViewPreviewModalOpen,
+}: UserViewPreviewProps) => {
     const { category, content, date, tags, title } = usePostWriteStore();
 
     useEffect(() => {
-        if (showModal) {
+        if (isUserViewPreviewModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
@@ -21,7 +24,7 @@ const UserViewPreview = ({ showModal, setShowModal }: UserViewPreviewProps) => {
         return () => {
             document.body.style.overflow = '';
         };
-    }, [showModal]);
+    }, [isUserViewPreviewModalOpen]);
 
     const parsedFrontMatter: ParsedFrontMatterType = {
         title: title,
@@ -29,14 +32,26 @@ const UserViewPreview = ({ showModal, setShowModal }: UserViewPreviewProps) => {
         tags: tags,
         category: category,
     };
+
+    useEffect(() => {
+        const closeModal = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsUserViewPreviewModalOpen(false);
+        };
+        window.addEventListener('keydown', closeModal);
+        return () => window.removeEventListener('keydown', closeModal);
+    }, []);
+
     return (
         <div className='fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-black/50 p-4'>
-            <button onClick={() => setShowModal(false)} className='absolute left-4 top-4'>
+            <button
+                onClick={() => setIsUserViewPreviewModalOpen(false)}
+                className='absolute left-4 top-4'
+            >
                 <X size={32} className='text-main hover:text-primary' />
             </button>
 
             {/* 스크롤 가능한 컨테이너 */}
-            <div className='bg-background-second h-[90vh] w-full max-w-4xl overflow-y-auto shadow-xl'>
+            <div className='h-[90vh] w-full max-w-4xl overflow-y-auto bg-background-second shadow-xl'>
                 <MarkdownRenderer parsedFrontMatter={parsedFrontMatter} content={content} />
             </div>
         </div>

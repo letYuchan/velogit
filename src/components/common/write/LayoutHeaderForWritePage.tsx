@@ -25,22 +25,6 @@ const LayoutHeaderForWritePage = () => {
         }
     }, []);
 
-    useEffect(() => {
-        const handleEscKeyForClosingModal = (e: KeyboardEvent) => {
-            if (e.key !== 'Escape') return;
-            console.log('event occur');
-            e.preventDefault();
-            if (isTempDraftsModalOpen === true && e.key === 'Escape') {
-                setIsTempDraftsModalOpen(false);
-            }
-        };
-
-        window.addEventListener('keydown', handleEscKeyForClosingModal);
-        return () => {
-            window.removeEventListener('keydown', handleEscKeyForClosingModal);
-        };
-    }, [isTempDraftsModalOpen]);
-
     const goToBack = () => {
         if (confirm('Are you sure you want to go back to home?')) {
             reset();

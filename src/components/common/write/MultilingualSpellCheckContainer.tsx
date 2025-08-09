@@ -47,6 +47,14 @@ const MultilingualSpellCheckModal = ({
         }
     }, [total, currentIndex]);
 
+    useEffect(() => {
+        const closeModal = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsMultilingualModalOpen(false);
+        };
+        window.addEventListener('keydown', closeModal);
+        return () => window.removeEventListener('keydown', closeModal);
+    }, []);
+
     const correctedText = useMemo(() => {
         if (!spellMatches.length || !snapshotText) return snapshotText;
         const sorted = [...spellMatches].sort((a, b) => a.offset - b.offset);
@@ -142,6 +150,7 @@ const MultilingualSpellCheckModal = ({
                         LanguageTool
                     </a>
                 </div>
+                <p className='text-right text-xs text-muted'>ESC to close</p>
 
                 {/* Language & Check */}
                 <div className='mb-4 flex flex-wrap items-center gap-4'>

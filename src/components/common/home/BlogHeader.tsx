@@ -6,7 +6,7 @@ import { HiChartBar } from 'react-icons/hi';
 
 const BlogHeader = () => {
     const [currentTheme, setCurrentTheme] = useState('default');
-    const [showModal, setShowModal] = useState(false);
+    const [isGrowthStatusModalOpen, setIsGrowthStatusModalOpen] = useState(false);
 
     useEffect(() => {
         const updateTheme = (e?: Event) => {
@@ -34,7 +34,7 @@ const BlogHeader = () => {
             style={{
                 backgroundImage: `url(${bgImage})`,
                 backgroundPosition: bgPosition,
-                backgroundSize: '99%',
+                backgroundSize: '100%',
             }}
             className='relative flex w-full flex-col items-center justify-center bg-cover px-6 py-12 text-white'
         >
@@ -50,11 +50,13 @@ const BlogHeader = () => {
                     letYuchan's Velog
                 </h1>
                 <p className='text-lg font-medium text-white/80'>프론트엔드 성장 블로그</p>
-                <button onClick={() => setShowModal(true)}>
+                <button onClick={() => setIsGrowthStatusModalOpen(true)}>
                     <HiChartBar size={32} />
                 </button>
             </div>
-            {showModal && <GrowthStatusModal showModal={showModal} setShowModal={setShowModal} />}
+            {isGrowthStatusModalOpen && (
+                <GrowthStatusModal setIsGrowthStatusModalOepn={setIsGrowthStatusModalOpen} />
+            )}
         </header>
     );
 };

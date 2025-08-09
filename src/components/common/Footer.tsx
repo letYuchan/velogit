@@ -1,5 +1,6 @@
 import BackgroundMusicController from '@/components/common/BackgroundMusicController';
 import DarkmodeToggleButton from '@/components/common/DarkmodeToggleButton';
+import HelpModal from '@/components/common/HelpModal';
 import ThemeSelectorModal from '@/components/common/ThemeSelectorModal';
 import { Palette } from 'lucide-react';
 import { useState } from 'react';
@@ -8,7 +9,8 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { MdHelp } from 'react-icons/md';
 
 const Footer = () => {
-    const [showModal, setShowModal] = useState(false);
+    const [isThemeSelectorModalOpen, setIsThemeSelectorModalOpen] = useState(false);
+    const [isHelpModalOpen, setIsHelpMdoalOpen] = useState(false);
 
     return (
         <footer className='flex w-full justify-between gap-4 bg-background p-5'>
@@ -46,7 +48,7 @@ const Footer = () => {
                 <div className='flex flex-wrap justify-start gap-5'>
                     <DarkmodeToggleButton />
                     <button
-                        onClick={() => setShowModal(true)}
+                        onClick={() => setIsThemeSelectorModalOpen(true)}
                         className='flex flex-nowrap items-center justify-center gap-2 rounded-md border border-primary bg-primary px-3 py-1 text-sm font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep'
                     >
                         <Palette size={18} />
@@ -73,12 +75,18 @@ const Footer = () => {
                     <HiOutlineMail className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-100 sm:text-3xl' />
                     <p className='text-md font-title text-muted sm:text-xl'>contact</p>
                 </a>
-                <button className='flex flex-col flex-nowrap items-center justify-start'>
+                <button
+                    className='flex flex-col flex-nowrap items-center justify-start'
+                    onClick={() => setIsHelpMdoalOpen(true)}
+                >
                     <MdHelp className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-100 sm:text-3xl' />
                     <p className='text-md font-title text-muted sm:text-xl'>Help</p>
                 </button>
             </div>
-            {showModal && <ThemeSelectorModal setShowModal={setShowModal} />}
+            {isThemeSelectorModalOpen && (
+                <ThemeSelectorModal setIsThemeSelectorModalOpen={setIsThemeSelectorModalOpen} />
+            )}
+            {isHelpModalOpen && <HelpModal setIsHelpModalOpen={setIsHelpMdoalOpen} />}
         </footer>
     );
 };

@@ -1,6 +1,7 @@
 import { DRAFT_STORAGE_KEY } from '@/constants/draft.constants';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { X } from 'lucide-react';
+import { useEffect } from 'react';
 
 interface TempDraftsModalProps {
     savedTempDrafts: TempPost[];
@@ -15,6 +16,14 @@ const TempDraftsModal = ({
 }: TempDraftsModalProps) => {
     const { restoreFastDraftsFromLocal, setField } = usePostWriteStore();
 
+    useEffect(() => {
+        const closeModal = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsTempDraftsModalOpen(false);
+        };
+        window.addEventListener('keydown', closeModal);
+        return () => window.removeEventListener('keydown', closeModal);
+    }, []);
+
     const removeDraft = (idx: number) => {
         const existingDraftsJson = localStorage.getItem(DRAFT_STORAGE_KEY);
         if (existingDraftsJson === null) {
@@ -28,6 +37,7 @@ const TempDraftsModal = ({
         const updatedArray = restoreFastDraftsFromLocal();
         setSavedTempDrafts(updatedArray);
     };
+
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
             <button
@@ -40,6 +50,8 @@ const TempDraftsModal = ({
                 <h2 className='mb-4 font-title text-xl font-semibold text-foreground'>
                     Saved Drafts
                 </h2>
+                <p className='text-right text-xs text-muted'>ESC to close</p>
+
                 <ul className='space-y-3'>
                     {savedTempDrafts.length > 0 ? (
                         savedTempDrafts.map((draft, idx) => (

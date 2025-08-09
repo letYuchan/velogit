@@ -9,11 +9,10 @@ import {
 import { posts } from '@/utils';
 
 interface GrowthStatusModalProps {
-    showModal: boolean;
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsGrowthStatusModalOepn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const GrowthStatusModal = ({ showModal, setShowModal }: GrowthStatusModalProps) => {
+const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProps) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [currentEvolutionGifPath, setCurrentEvolutionGifPath] = useState('images/egg.gif');
 
@@ -23,9 +22,15 @@ const GrowthStatusModal = ({ showModal, setShowModal }: GrowthStatusModalProps) 
         setCurrentEvolutionGifPath(gifPath);
     }, [posts.length]);
 
-    if (!showModal) return null;
+    useEffect(() => {
+        const closeModal = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsGrowthStatusModalOepn(false);
+        };
+        window.addEventListener('keydown', closeModal);
+        return () => window.removeEventListener('keydown', closeModal);
+    }, []);
 
-    const handleCloseModal = () => setShowModal(false);
+    const handleCloseModal = () => setIsGrowthStatusModalOepn(false);
 
     const postsPerPage = 30;
     const sortedPosts = [...posts].sort(
@@ -39,20 +44,18 @@ const GrowthStatusModal = ({ showModal, setShowModal }: GrowthStatusModalProps) 
 
     return createPortal(
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
+            <button
+                onClick={() => setIsGrowthStatusModalOepn(false)}
+                className='absolute left-4 top-4'
+            >
+                <X size={32} className='text-main hover:text-primary' />
+            </button>
             <div className='relative w-full max-w-lg rounded-2xl bg-gradient-to-br from-background via-background-second to-backgroundDark p-4 shadow-2xl ring-1 ring-border/30 backdrop-blur-md'>
-                {/* Close Button */}
-                <button
-                    className='absolute right-3 top-3 text-muted transition-colors hover:text-foreground'
-                    onClick={handleCloseModal}
-                    aria-label='Close'
-                >
-                    <X size={18} />
-                </button>
-
                 {/* Title */}
                 <h2 className='mb-4 text-center font-title text-xl font-bold tracking-wide text-primary'>
                     🚀 My Growth Status
                 </h2>
+                <p className='text-right text-xs text-muted'>ESC to close</p>
 
                 {/* Level Info */}
                 <div className='flex flex-col items-center space-y-2 rounded-xl border border-border bg-backgroundDark/50 p-3'>
@@ -147,7 +150,7 @@ const GrowthStatusModal = ({ showModal, setShowModal }: GrowthStatusModalProps) 
                 {/* Footer Close Button */}
                 <div className='mt-5 flex justify-center'>
                     <button
-                        className='sm:text-md rounded-md border border-primary bg-primary px-4 py-1.5 text-sm text-main shadow transition-all hover:bg-primary-deep hover:shadow-md'
+                        className='h-8 w-full rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
                         onClick={handleCloseModal}
                     >
                         Close
