@@ -163,7 +163,8 @@ thumbnail: 'images/test2.png'
 `,vM=`---
 title: 'test'
 date: '2025-07-17'
-category: 'test'
+category: 'testForEdit'
+tags: ['']
 ---
 
 \`\`\`js
@@ -187,8 +188,7 @@ const main = () => {
 <img src="/velogit/images/test.jpg" width="5" height="100" alt="image" />
 ![asdf](/velogit/images/test2.png)
 
-[🖼️ logo.png (1.0MB)](/velogit/uploads/logo.png)
-`,AM=`---
+[🖼️ logo.png (1.0MB)](/velogit/uploads/logo.png)`,AM=`---
 title: 'TOC 기능 테스트 글'
 date: '2025-08-02'
 category: 'Dev'
