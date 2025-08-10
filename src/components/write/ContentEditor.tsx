@@ -44,7 +44,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
         textarea.dispatchEvent(event);
     };
 
-    const exportPostAsJson = () => {
+    const exportPostAsJson = async () => {
         if (!confirm('Do you want to export the post for publishing?')) return;
 
         if (!title || !date || !category) {
@@ -98,19 +98,19 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
             ? `npx tsx scripts/${scriptToRun} ${sanitizedName} ${editablePost?.slug}`
             : `npx tsx scripts/${scriptToRun} ${sanitizedName}`;
 
-        navigator.clipboard
-            .writeText(cmd)
-            .then(() => {
-                alert(
-                    `Post JSON exported as "${fileName}"\nTerminal command copied!\n\nNow open your terminal and run:\n${cmd}`,
-                );
-                navigate('/');
-            })
-            .catch(() => {
-                alert(
-                    `Post JSON exported as "${fileName}"\nCould not copy command. Please run manually:\n${cmd}`,
-                );
-            });
+        try {
+            await navigator.clipboard.writeText(cmd);
+
+            alert(
+                `Post JSON exported as "${fileName}"\nTerminal command copied!\n\nNow open your terminal and run:\n${cmd}`,
+            );
+            navigate('/');
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (err) {
+            alert(
+                `Post JSON exported as "${fileName}"\nCould not copy command. Please run manually:\n${cmd}`,
+            );
+        }
     };
 
     useEffect(() => {
