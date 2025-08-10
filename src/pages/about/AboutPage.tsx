@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FaGithub, FaEnvelope, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { FiTrendingUp } from 'react-icons/fi';
 
 const AboutPage = () => {
     return (

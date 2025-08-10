@@ -1,21 +1,22 @@
-import MarkdownRenderer from '@/components/common/MarkdownRenderer';
-import ArrowUpButton from '@/components/common/post/ArrowUpButton';
-import EditButton from '@/components/common/post/EditButton';
-import RelatedPostsByCategory from '@/components/common/post/RelatedPostsByCategory';
-import ShareButton from '@/components/common/post/ShareButton';
-import TableOfContentsBar from '@/components/common/post/TableOfContentsBar';
-
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import UtterancesComments from '@/components/common/post/UtterancesComments';
 import { buildTocTree } from '@/utils/post';
 import { posts } from '@/utils';
-import CategoryListSideBar from '@/components/common/post/CategoryListSideBar';
+import ArrowUpButton from '@/components/post/ArrowUpButton';
+import CategoryListSideBar from '@/components/post/CategoryListSideBar';
+import EditButton from '@/components/post/EditButton';
+import RelatedPostsByCategory from '@/components/post/RelatedPostsByCategory';
+import ShareButton from '@/components/post/ShareButton';
+import TableOfContentsBar from '@/components/post/TableOfContentsBar';
+import UtterancesComments from '@/components/post/UtterancesComments';
+import MarkdownRenderer from '@/components/common/MarkdownRenderer';
+import { useIsDesktop } from '@/hooks/useIsDesktop';
 
 const PostPage = () => {
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1150);
     const [tableOfContentsTree, setTableOfContentsTree] = useState<TableOfContentsItemType[]>([]);
     const { slug } = useParams();
+
+    const isDesktop = useIsDesktop();
 
     const isLocalhost = window.location.hostname === 'localhost';
 
@@ -29,15 +30,6 @@ const PostPage = () => {
     };
 
     const mainContent = post!.content.replace(/^---\n[\s\S]*?\n---/, '').trim();
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsDesktop(window.innerWidth > 1150);
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     useEffect(() => {
         const timeout = setTimeout(() => {

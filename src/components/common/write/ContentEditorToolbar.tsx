@@ -4,7 +4,6 @@ import MultilingualSpellCheckModal from '@/components/common/write/MultilingualS
 import { TOOL_ITEMS } from '@/data/toolItems';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { useEffect, useState } from 'react';
-import { GiSouthKorea } from 'react-icons/gi';
 import { MdSpellcheck } from 'react-icons/md';
 
 interface ContentEditorToolbarProps {

@@ -1,4 +1,4 @@
-import PostComposer from '@/components/common/write/PostComposer';
+import PostComposer from '@/components/write/PostComposer';
 
 const WritePage = () => {
     return <PostComposer mode={'write'} />;

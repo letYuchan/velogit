@@ -1,11 +1,11 @@
-import BlogHeader from '@/components/common/home/BlogHeader';
-import PostCard from '@/components/common/home/PostCard';
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { HiChevronDown, HiSortAscending, HiSortDescending } from 'react-icons/hi';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { posts } from '@/utils';
 import { categories, categoryCountMap } from '@/utils/home';
+import BlogHeader from '@/components/home/BlogHeader';
+import PostCard from '@/components/home/PostCard';
 
 const HomePage = () => {
     const { reset } = usePostWriteStore();

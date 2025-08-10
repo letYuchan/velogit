@@ -1,6 +1,5 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import Layout from '@/components/common/Layout';
 import PostPage from '@/pages/post/PostPage';
 import AboutPage from '@/pages/about/AboutPage';
 import HomePage from '@/pages/home/HomePage';
@@ -10,6 +9,7 @@ import { useEffect } from 'react';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { applyThemeClass } from '@/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Layout from '@/components/common/layout/Layout';
 
 const App = () => {
     useEffect(() => {

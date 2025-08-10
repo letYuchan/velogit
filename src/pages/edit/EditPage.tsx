@@ -1,4 +1,4 @@
-import PostComposer from '@/components/common/write/PostComposer';
+import PostComposer from '@/components/write/PostComposer';
 import { useParams } from 'react-router-dom';
 
 const EditPage = () => {

@@ -6,7 +6,7 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 // available language, /languages, method: GET
-export const useGetAllAvailableLanguages = () => {
+export const useGetAllAvailableLanguagesQuery = () => {
     return useQuery({
         queryKey: ['languages'],
         queryFn: () => getAllAvailableLanguages(),

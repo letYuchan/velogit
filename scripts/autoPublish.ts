@@ -53,8 +53,7 @@ fs.mkdirSync(postsDir, { recursive: true });
 fs.writeFileSync(fullMarkdownPath, markdown, 'utf-8');
 console.log(`✅ Saved Markdown: posts/${markdownFileName}`);
 
-// Step 7: Git 커밋 & 푸시
-// 📌 Step 7: Git commit & push
+// Step 7-1: Git commit & push
 try {
     const relativePath = path.relative(process.cwd(), fullMarkdownPath);
     execSync(`git add ${relativePath}`, { cwd: process.cwd() });
@@ -73,6 +72,20 @@ try {
     }
 } catch (err) {
     console.error('❌ Git error:', err);
+    process.exit(1);
+}
+
+// Step 7-2: build, publish to githubPages
+try {
+    console.log('🏗️ Building project...');
+    execSync(`pnpm run build`, { cwd: process.cwd(), stdio: 'inherit' });
+
+    console.log('🚀 Deploying to GitHub Pages...');
+    execSync(`pnpm run deploy`, { cwd: process.cwd(), stdio: 'inherit' });
+
+    console.log('✅ Build and deploy complete.');
+} catch (err) {
+    console.error('❌ Build/Deploy error:', err);
     process.exit(1);
 }
 

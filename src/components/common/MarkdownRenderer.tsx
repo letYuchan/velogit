@@ -5,14 +5,14 @@ import remarkBreaks from 'remark-breaks';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import 'highlight.js/styles/github-dark.css';
-import PostPageHeader from '@/components/common/post/PostPageHeader';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import { useParams } from 'react-router-dom';
 
 import { extractTextFromReactChildren, generateHeadingId } from '@/utils/post';
+import PostPageHeader from '@/components/post/PostPageHeader';
 
 interface MarkdownRendererProps {
     parsedFrontMatter: ParsedFrontMatterType;
@@ -21,6 +21,7 @@ interface MarkdownRendererProps {
 
 const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps) => {
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
     const { slug } = useParams();
 
     const customSchema = {

@@ -39,3 +39,6 @@ export const generateHeadingId = (children: ReactNode): string => {
     const rawText = extractTextFromReactChildren(children);
     return encodeURIComponent(rawText.trim().replace(/\s+/g, '-'));
 };
+
+export const flattenToc = (tree: TableOfContentsItemType[]) =>
+    tree.flatMap(h1 => [h1, ...(h1.children ?? [])]);

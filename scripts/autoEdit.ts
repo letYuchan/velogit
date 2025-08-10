@@ -78,7 +78,7 @@ if (newMarkdownName === oldMarkdownName) {
     console.log(`✅ Created new markdown file: posts/${newMarkdownName}`);
 }
 
-// Step 6: Git add, commit, push
+// Step 6-1: Git add, commit, push
 try {
     execSync(`git add posts/${newMarkdownName}`, { cwd: process.cwd() });
 
@@ -96,6 +96,20 @@ try {
     }
 } catch (err) {
     console.error('❌ Git error:', err);
+    process.exit(1);
+}
+
+// Step 6-2: build, publish to githubPages
+try {
+    console.log('🏗️ Building project...');
+    execSync(`pnpm run build`, { cwd: process.cwd(), stdio: 'inherit' });
+
+    console.log('🚀 Deploying to GitHub Pages...');
+    execSync(`pnpm run deploy`, { cwd: process.cwd(), stdio: 'inherit' });
+
+    console.log('✅ Build and deploy complete.');
+} catch (err) {
+    console.error('❌ Build/Deploy error:', err);
     process.exit(1);
 }
 

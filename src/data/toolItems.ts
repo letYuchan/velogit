@@ -21,7 +21,7 @@ import {
     LayoutGrid,
 } from 'lucide-react';
 
-export const TOOL_ITEMS = [
+export const TOOL_ITEMS: ToolItem[] = [
     { name: 'h1', icon: Heading1, label: 'H1', insert: '# ', marker: '# ' },
     { name: 'h2', icon: Heading2, label: 'H2', insert: '## ', marker: '## ' },
     { name: 'h3', icon: Heading3, label: 'H3', insert: '### ', marker: '### ' },
