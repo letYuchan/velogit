@@ -55,7 +55,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
     return createPortal(
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
             <button
-                onClick={() => setIsGrowthStatusModalOepn(false)}
+                onClick={handleCloseModal}
                 className='absolute left-4 top-4'
                 aria-label='Close growth status'
             >
@@ -72,7 +72,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                 </div>
 
                 {/* Level Info */}
-                <section className='rounded-xl border border-border bg-backgroundDark/40 p-4'>
+                <section className='flex flex-col items-center justify-evenly rounded-xl border border-border bg-backgroundDark/40 p-4'>
                     <p className='text-sm text-muted'>Current Level</p>
                     <div className='mt-1 text-2xl font-bold text-primary'>
                         LV. {getUserBlogLevel(posts.length)}
@@ -165,7 +165,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                 <div className='mt-5 flex justify-center'>
                     <button
                         className='h-9 w-full rounded-md border border-border bg-backgroundDark px-3 text-sm text-foreground hover:bg-backgroundDark/70'
-                        onClick={() => setIsGrowthStatusModalOepn(false)}
+                        onClick={handleCloseModal}
                     >
                         Close
                     </button>
