@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 export const getTodayDate = (): string => {
     const today = new Date();
@@ -216,35 +217,33 @@ export const insertMarkdownSyntax = (
 export const copyCorrectedTextToClipboard = async (correctedText: string, lang: 'Ko' | 'Eng') => {
     try {
         await navigator.clipboard.writeText(correctedText);
-        if (lang === 'Ko') alert('교정된 텍스트가 복사되었습니다.');
-        alert('Success to copy text.');
+        if (lang === 'Ko') {
+            toast.success('교정된 텍스트가 복사되었습니다!');
+        }
+
+        if (lang === 'Eng') {
+            toast.success('Success to copy text!');
+        }
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
-        if (lang === 'Ko')
-            alert('교정된 텍스트를 복사하는데 실패했습니다. 잠시 후 다시 시도해주세요.');
-        alert('Failed to copy text. Please try again later.');
+        if (lang === 'Ko') {
+            toast.error('교정된 텍스트를 복사하는데 실패했습니다. 잠시 후 다시 시도해주세요.');
+        }
+
+        if (lang === 'Eng') {
+            toast.error('Failed to copy text. Please try again later.');
+        }
     }
 };
 
-export type SpanLike = { offset: number; length: number };
-
-export type HighlightMapped = SpanLike & { tooltip?: string };
-
-export type MapToHighlight<T> = (item: T, index: number) => HighlightMapped;
-
-type Classes = {
-    base?: string;
-    focus?: string;
-};
-
-export function getHighlightedFragments<T>(
+export const getHighlightedFragments = <T,>(
     text: string,
     items: T[] | undefined,
     focusIndex: number,
     map: MapToHighlight<T>,
     classes: Classes = {},
-): React.ReactNode[] {
+): React.ReactNode[] => {
     if (!text || !items?.length) return [text];
 
     const baseCls =
@@ -288,7 +287,7 @@ export function getHighlightedFragments<T>(
 
     if (last < text.length) out.push(text.slice(last));
     return out;
-}
+};
 
 export const mapLanguageToolMatch: MapToHighlight<Match> = m => ({
     offset: m.offset,

@@ -3,9 +3,11 @@ import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
 import { useKoreanSpellCheckMutation } from '@/services/spellCheck.queries';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { copyCorrectedTextToClipboard, getHighlightedFragments, mapKoChange } from '@/utils/write';
+import { CircularProgress } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Copy, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface KoreanSpellCheckModalProps {
     setIsKoreanModalOpen: (open: boolean) => void;
@@ -52,7 +54,7 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
     };
 
     const handleKoreanSpellCheck = async () => {
-        if (!liveInput) return alert('내용을 입력해주세요.');
+        if (!liveInput) return toast.info('내용을 입력해주세요.');
         const res = await koreanSpellCheck({ content: liveInput });
         setSnapshotText(liveInput);
         setResult(res);
@@ -85,9 +87,16 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
                     <button
                         onClick={handleKoreanSpellCheck}
                         disabled={isPending}
-                        className='rounded-md bg-primary px-4 py-2 text-main hover:bg-primary-deep disabled:opacity-50'
+                        className='flex items-center justify-center rounded-md bg-primary px-4 py-2 text-main hover:bg-primary-deep disabled:opacity-50'
                     >
-                        {isPending ? '검사중…' : '검사하기'}
+                        {isPending ? (
+                            <CircularProgress
+                                size={16}
+                                sx={theme => ({ color: theme.palette.primary.contrastText })}
+                            />
+                        ) : (
+                            '검사하기'
+                        )}
                     </button>
 
                     {correctedText && (
@@ -115,12 +124,12 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
                     placeholder='교정할 텍스트를 입력하세요. (미입력 시 에디터 내용 사용)'
                     value={customText}
                     onChange={e => setCustomText(e.target.value)}
-                    className='mb-6 h-32 w-full resize-none rounded-md border border-border bg-backgroundDark p-4 text-sm text-foreground focus:outline-none'
+                    className='mb-6 h-32 w-full resize-none rounded-md border border-border bg-background-second p-4 text-sm text-foreground focus:outline-none'
                 />
 
                 {/* 원문(하이라이트) vs 교정문 — 스냅샷 기준 표시 */}
                 <div className='mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2'>
-                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-backgroundDark p-4 text-foreground'>
+                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-background-second p-4 text-foreground'>
                         {result
                             ? getHighlightedFragments(
                                   snapshotText || result.original,
@@ -130,7 +139,7 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
                               )
                             : liveInput || '입력 대기…'}
                     </div>
-                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-backgroundDark p-4 text-foreground'>
+                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-background-second p-4 text-foreground'>
                         {correctedText || '교정 결과가 여기에 표시됩니다.'}
                     </div>
                 </div>

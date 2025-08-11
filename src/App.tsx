@@ -10,6 +10,8 @@ import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { applyThemeClass } from '@/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Layout from '@/components/common/layout/Layout';
+import { ThemeProvider } from '@mui/material';
+import { muiTheme } from '@/data/muiThemePalette';
 
 const App = () => {
     useEffect(() => {
@@ -23,17 +25,19 @@ const App = () => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <HashRouter>
-                <Routes>
-                    <Route path='/' element={<Layout />}>
-                        <Route index element={<HomePage />} />
-                        <Route path='about' element={<AboutPage />} />
-                        <Route path='write' element={<WritePage />} />
-                        <Route path='edit/:slug' element={<EditPage />} />
-                        <Route path='post/:slug' element={<PostPage />} />
-                    </Route>
-                </Routes>
-            </HashRouter>
+            <ThemeProvider theme={muiTheme}>
+                <HashRouter>
+                    <Routes>
+                        <Route path='/' element={<Layout />}>
+                            <Route index element={<HomePage />} />
+                            <Route path='about' element={<AboutPage />} />
+                            <Route path='write' element={<WritePage />} />
+                            <Route path='edit/:slug' element={<EditPage />} />
+                            <Route path='post/:slug' element={<PostPage />} />
+                        </Route>
+                    </Routes>
+                </HashRouter>
+            </ThemeProvider>
         </QueryClientProvider>
     );
 };

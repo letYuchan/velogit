@@ -14,6 +14,8 @@ import {
     getHighlightedFragments,
     mapLanguageToolMatch,
 } from '@/utils/write';
+import { toast } from 'react-toastify';
+import { CircularProgress } from '@mui/material';
 
 interface MultilingualSpellCheckModalProps {
     setIsMultilingualModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -67,7 +69,7 @@ const MultilingualSpellCheckModal = ({
 
     const handleMultilingualSpellCheck = async () => {
         const base = liveInput.trim();
-        if (!base) return alert('Write content first');
+        if (!base) return toast.info('Write content first');
 
         if (!validLanguageToolCodes.includes(selectedLanguage as LanguageToolCode)) {
             alert('Invalid language. Please select a valid one');
@@ -125,10 +127,17 @@ const MultilingualSpellCheckModal = ({
 
                     <button
                         onClick={handleMultilingualSpellCheck}
-                        className='rounded-md bg-primary px-4 py-2 text-main hover:bg-primary/80 disabled:opacity-50'
+                        className='flex items-center justify-center rounded-md bg-primary px-4 py-2 text-main hover:bg-primary/80 disabled:opacity-50'
                         disabled={isPending}
                     >
-                        {isPending ? 'checking…' : 'check'}
+                        {isPending ? (
+                            <CircularProgress
+                                size={16}
+                                sx={theme => ({ color: theme.palette.primary.contrastText })}
+                            />
+                        ) : (
+                            'check'
+                        )}
                     </button>
 
                     {spellMatches.length > 0 && (
@@ -151,12 +160,12 @@ const MultilingualSpellCheckModal = ({
                     placeholder='You can write or paste text here for spell check...'
                     value={customText}
                     onChange={e => setCustomText(e.target.value)}
-                    className='mb-6 h-32 w-full resize-none rounded-md border border-border bg-backgroundDark p-4 text-sm text-foreground focus:outline-none'
+                    className='mb-6 h-32 w-full resize-none rounded-md border border-border bg-background-second p-4 text-sm text-foreground focus:outline-none'
                 />
 
                 {/* Highlighted (snapshot) & Corrected (snapshot) */}
                 <div className='mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2'>
-                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-backgroundDark p-4 text-foreground'>
+                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-background-second p-4 text-foreground'>
                         {snapshotText
                             ? getHighlightedFragments(
                                   snapshotText,
@@ -166,7 +175,7 @@ const MultilingualSpellCheckModal = ({
                               )
                             : liveInput || 'Waiting for input…'}
                     </div>
-                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-backgroundDark p-4 text-foreground'>
+                    <div className='max-h-[260px] overflow-y-auto whitespace-pre-wrap break-words rounded-md border border-border bg-background-second p-4 text-foreground'>
                         {snapshotText ? correctedText : 'The corrected result will appear here.'}
                     </div>
                 </div>

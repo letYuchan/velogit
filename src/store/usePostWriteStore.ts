@@ -1,4 +1,5 @@
 import { DRAFT_STORAGE_KEY, MAX_SAVED } from '@/constants/draft.constants';
+import { toast } from 'react-toastify';
 import { create } from 'zustand';
 
 export interface PostWriteState {
@@ -84,9 +85,9 @@ export const usePostWriteStore = create<PostWriteState>((set, get) => ({
 
             const updatedDrafts = [draft, ...filteredDrafts].slice(0, MAX_SAVED);
             localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(updatedDrafts));
-            alert('saved successfully!');
+            toast.success('saved successfully!');
         } catch (e) {
-            alert(`Failed to save so try again. Error: ${e}`);
+            toast.error(`Failed to save so try again. Error: ${e}`);
         }
     },
 
@@ -97,7 +98,7 @@ export const usePostWriteStore = create<PostWriteState>((set, get) => ({
         try {
             return JSON.parse(rawDraftsInLocalStorage) as TempPost[];
         } catch (e) {
-            alert(`Failed to parse temp-draft from localStorage. Error: ${e}`);
+            toast.error(`Failed to parse temp-draft from localStorage. Error: ${e}`);
             return [];
         }
     },

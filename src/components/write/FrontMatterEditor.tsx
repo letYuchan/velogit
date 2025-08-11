@@ -1,6 +1,7 @@
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import clsx from 'clsx';
 import { useEffect, useState, type ChangeEvent, type KeyboardEvent } from 'react';
+import { toast } from 'react-toastify';
 
 interface FrontMatterEditorProps {
     setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;
@@ -54,7 +55,9 @@ const FrontMatterEditor = ({ setStep, mode, editablePost }: FrontMatterEditorPro
         setIsCategoryInvalid(categoryInvalid);
 
         if (titleInvalid || dateInvalid || categoryInvalid) {
-            alert('Title, date, and category are required fields, so please fill them all out.');
+            toast.info(
+                'Title, date, and category are required fields, so please fill them all out.',
+            );
             return;
         }
 

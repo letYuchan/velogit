@@ -3,6 +3,7 @@ import Footer from '@/components/common/layout/Footer';
 import Header from '@/components/common/layout/Header';
 import LayoutHeaderForWritePage from '@/components/write/LayoutHeaderForWritePage';
 import { Outlet, useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const Layout = () => {
     const location = useLocation();
@@ -17,6 +18,7 @@ const Layout = () => {
             </div>
             {!isActive('/write') && <Footer />}
             <LandingIntro />
+            <ToastContainer autoClose={2000} position='top-center' />
         </div>
     );
 };

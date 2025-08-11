@@ -4,6 +4,7 @@ import {
     postMultilingualSpellCheck,
 } from '@/services/spellCheck.apis';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 // available language, /languages, method: GET
 export const useGetAllAvailableLanguagesQuery = () => {
@@ -23,11 +24,11 @@ export const useMultilingualSpellCheckMutation = () => {
         mutationFn: (payload: MultilingualSpellCheckPayloadType) =>
             postMultilingualSpellCheck(payload),
         onSuccess: () => {
-            alert('Spell check completed successfully.');
+            toast.success('Spell check completed successfully!');
         },
         onError: error => {
             console.error('Spell check failed:', error);
-            alert('Spell check failed. Please try again later.');
+            toast.error('Spell check failed. Please try again later.');
         },
     });
 
@@ -39,11 +40,11 @@ export const useKoreanSpellCheckMutation = () => {
     const mutation = useMutation({
         mutationFn: (payload: KoreanSpellCheckPayloadType) => postKoreanSpellCheck(payload),
         onSuccess: () => {
-            alert('한국어 맞춤법 교정이 성공적으로 완료됐습니다.');
+            toast.success('한국어 맞춤법 교정 성공!');
         },
         onError: error => {
             console.error('맞춤법 교정 실패:', error);
-            alert('한국어 맞춤법 교정 실패. 잠시 후 다시 시도해주세요.');
+            toast.error('한국어 맞춤법 교정 실패. 잠시 후 다시 시도해주세요.');
         },
     });
 

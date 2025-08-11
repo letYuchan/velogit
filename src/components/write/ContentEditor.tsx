@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import ContentEditorToolbar from '@/components/write/ContentEditorToolbar';
 import UserViewPreview from '@/components/write/UserViewPreview';
+import { toast } from 'react-toastify';
 
 interface ContentEditorProps {
     setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;
@@ -48,7 +49,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
         if (!confirm('Do you want to export the post for publishing?')) return;
 
         if (!title || !date || !category) {
-            alert('Invalid frontmatter (title/date/category)');
+            toast.error('Invalid frontmatter (title/date/category)');
             reset();
             setStep('meta');
             if (mode === 'write') {
@@ -64,7 +65,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
         const contentInvalid = content.trim() === '';
         setIsContentInvalid(contentInvalid);
         if (contentInvalid) {
-            alert('Content is required.');
+            toast.info('Content is required.');
             return;
         }
 
@@ -74,7 +75,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
 
         const inputFileName = prompt('Enter filename to export (without .json):', defaultFileName);
         if (!inputFileName || !inputFileName.trim()) {
-            alert('Invalid file name. Export cancelled.');
+            toast.error('Invalid file name. Export cancelled.');
             return;
         }
 
@@ -107,7 +108,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
             navigate('/');
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
-            alert(
+            toast.error(
                 `Post JSON exported as "${fileName}"\nCould not copy command. Please run manually:\n${cmd}`,
             );
         }

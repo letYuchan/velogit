@@ -1,6 +1,7 @@
 import { useIsDesktop } from '@/hooks/useIsDesktop';
 import clsx from 'clsx';
 import { FiShare2 } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 const ShareButton = () => {
     const isDesktop = useIsDesktop();
@@ -10,10 +11,10 @@ const ShareButton = () => {
 
         try {
             await navigator.clipboard.writeText(url);
-            alert('Success to copy link.');
+            toast.success('Success to copy link!');
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
-            alert('Failed to copy link. Please try again later.');
+            toast.error('Failed to copy link. Please try again later.');
         }
     };
 

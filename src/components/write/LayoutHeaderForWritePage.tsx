@@ -4,6 +4,7 @@ import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { useEffect, useState } from 'react';
 import { MdArrowBack, MdSave, MdRestore } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const LayoutHeaderForWritePage = () => {
     const { reset, saveDraftToLocal, restoreFastDraftsFromLocal } = usePostWriteStore();
@@ -69,6 +70,7 @@ const LayoutHeaderForWritePage = () => {
                     setIsTempDraftsModalOpen={setIsTempDraftsModalOpen}
                 />
             )}
+            <ToastContainer autoClose={2000} position='top-center' />
         </>
     );
 };

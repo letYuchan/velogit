@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { MdHelp } from 'react-icons/md';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Footer = () => {
     const [isThemeSelectorModalOpen, setIsThemeSelectorModalOpen] = useState(false);
