@@ -6,10 +6,12 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 
 const Header = () => {
     const [showHeader, setShowHeader] = useState(true);
+
     const lastScrollY = useRef(0);
 
     const navigate = useNavigate();
     const location = useLocation();
+
     const goToHomePage = () => navigate('/');
 
     const isMobile = useIsMobile();

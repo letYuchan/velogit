@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import ContentEditorToolbar from '@/components/write/ContentEditorToolbar';
 import UserViewPreview from '@/components/write/UserViewPreview';
 import { toast } from 'react-toastify';
+import CommonLoading from '@/components/common/CommonLoading';
 
 interface ContentEditorProps {
     setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;
@@ -20,6 +21,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
 
     const [isContentInvalid, setIsContentInvalid] = useState(false);
     const [isUserViewPreviewModalOpen, setIsUserViewPreviewModalOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const navigate = useNavigate();
@@ -105,7 +107,12 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
             alert(
                 `Post JSON exported as "${fileName}"\nTerminal command copied!\n\nNow open your terminal and run:\n${cmd}`,
             );
-            navigate('/');
+            setIsLoading(true);
+            setTimeout(() => {
+                setIsLoading(false);
+                navigate('/');
+            }, 3000);
+
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
             toast.error(
@@ -120,6 +127,8 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
             setField('content', parsedContent);
         }
     }, [mode, editablePost]);
+
+    if (isLoading) return <CommonLoading />;
 
     return (
         <section className='flex w-full flex-1 flex-col justify-start gap-4 bg-background p-4 sm:w-1/2'>
