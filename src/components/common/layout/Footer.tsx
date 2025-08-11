@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { MdHelp } from 'react-icons/md';
-import { toast, ToastContainer } from 'react-toastify';
 
 const Footer = () => {
     const [isThemeSelectorModalOpen, setIsThemeSelectorModalOpen] = useState(false);
@@ -41,13 +40,24 @@ const Footer = () => {
                 </p>
                 <p className='text-xs font-semibold text-muted'>
                     This application uses the "gec_kr" model by Soyoung97, available on Hugging
-                    Face, licensed under the MIT License. <br /> Source:
-                    https://huggingface.co/Soyoung97/gec_kr
+                    Face, licensed under the MIT License. <br /> Source:&nbsp;
+                    <a
+                        href='https://huggingface.co/Soyoung97/gec_kr'
+                        className='text-primary underline decoration-dotted hover:decoration-solid active:decoration-solid'
+                    >
+                        Soyoung97
+                    </a>
                 </p>
                 <p className='text-xs font-semibold text-muted'>
                     This application uses LanguageTool, an open-source proofreading software,
                     licensed under the GNU Lesser General Public License v2.1. <br />
-                    Source: https://languagetool.org/
+                    Source:&nbsp;
+                    <a
+                        href='https://languagetool.org/'
+                        className='text-primary underline decoration-dotted hover:decoration-solid active:decoration-solid'
+                    >
+                        languagetool
+                    </a>
                 </p>
                 <div className='flex flex-wrap justify-start gap-5'>
                     <DarkmodeToggleButton />
@@ -76,14 +86,14 @@ const Footer = () => {
                     href='mailto:yuchancho174@gmail.com'
                     className='flex flex-col flex-nowrap items-center justify-start'
                 >
-                    <HiOutlineMail className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-100 sm:text-3xl' />
+                    <HiOutlineMail className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-110 sm:text-3xl' />
                     <p className='text-md font-title text-muted sm:text-xl'>contact</p>
                 </a>
                 <button
                     className='flex flex-col flex-nowrap items-center justify-start'
                     onClick={() => setIsHelpMdoalOpen(true)}
                 >
-                    <MdHelp className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-100 sm:text-3xl' />
+                    <MdHelp className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-110 sm:text-3xl' />
                     <p className='text-md font-title text-muted sm:text-xl'>Help</p>
                 </button>
             </div>

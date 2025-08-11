@@ -30,7 +30,7 @@ const DarkmodeToggleButton = () => {
         <button
             onClick={toggleDarkmode}
             title='Toggle Darkmode'
-            className='active:background-second flex w-full max-w-20 flex-nowrap items-center justify-center gap-2 rounded-md border border-border bg-background px-3 py-1 text-sm text-foreground hover:bg-background-second sm:max-w-36'
+            className='active:background-second flex w-full max-w-20 flex-nowrap items-center justify-center gap-2 rounded-md border border-border bg-background px-3 py-1 text-sm text-foreground hover:bg-background-second active:bg-background-second sm:max-w-36'
         >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
             <span className='hidden sm:inline'>{isDark ? 'Light' : 'Dark'} Mode</span>

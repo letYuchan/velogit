@@ -11,7 +11,7 @@ const CategoryListSideBar = () => {
                     {categories.map(category => (
                         <li
                             key={category}
-                            className='text-center text-sm transition-colors hover:text-primary'
+                            className='text-center text-sm transition-colors hover:text-primary active:text-primary'
                         >
                             {category}
                         </li>

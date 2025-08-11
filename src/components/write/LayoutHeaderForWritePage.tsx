@@ -4,7 +4,6 @@ import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { useEffect, useState } from 'react';
 import { MdArrowBack, MdSave, MdRestore } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 
 const LayoutHeaderForWritePage = () => {
     const { reset, saveDraftToLocal, restoreFastDraftsFromLocal } = usePostWriteStore();
@@ -35,7 +34,7 @@ const LayoutHeaderForWritePage = () => {
                 {/* controller */}
                 <button
                     onClick={goToBack}
-                    className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark bg-background-second px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-background-second/70 active:bg-background-second/70 sm:h-8 sm:text-xl'
+                    className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark bg-background-second px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-background-second/50 active:bg-background-second/50 sm:h-8 sm:text-xl'
                 >
                     <MdArrowBack className='size-6' />
                     {!isMobile && <span className='relative top-0.5'>BACK</span>}
@@ -43,7 +42,7 @@ const LayoutHeaderForWritePage = () => {
                 <div className='flex flex-nowrap items-stretch justify-around gap-2'>
                     <button
                         onClick={() => setIsTempDraftsModalOpen(true)}
-                        className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark bg-background-second px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-background-second/70 active:bg-background-second/70 sm:h-8 sm:text-xl'
+                        className='flex h-6 flex-nowrap items-center gap-1 rounded-full border border-borderDark bg-background-second px-3 py-1 text-lg font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-background-second/50 active:bg-background-second/50 sm:h-8 sm:text-xl'
                     >
                         <MdRestore className='size-6' />
                         {!isMobile && <span className='relative top-0.5'>RESTORE</span>}
@@ -70,7 +69,6 @@ const LayoutHeaderForWritePage = () => {
                     setIsTempDraftsModalOpen={setIsTempDraftsModalOpen}
                 />
             )}
-            <ToastContainer autoClose={2000} position='top-center' />
         </>
     );
 };

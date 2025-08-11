@@ -51,7 +51,7 @@ const BlogHeader = () => {
                 </h1>
                 <p className='text-lg font-medium text-white/80'>프론트엔드 성장 블로그</p>
                 <button onClick={() => setIsGrowthStatusModalOpen(true)}>
-                    <HiChartBar size={32} />
+                    <HiChartBar size={32} className='hover:text-primary active:text-primary' />
                 </button>
             </div>
             {isGrowthStatusModalOpen && (

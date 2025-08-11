@@ -74,7 +74,7 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                     h1: ({ node, ...props }) => (
                         <h1
                             id={generateHeadingId(props.children)}
-                            className='relative mb-8 mt-12 whitespace-pre-wrap break-words text-4xl font-extrabold tracking-tight text-foreground transition-all duration-200 ease-in-out after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-16 after:bg-gradient-to-r after:from-primary after:to-highlight hover:tracking-wider'
+                            className='relative mb-8 mt-12 whitespace-pre-wrap break-words text-4xl font-extrabold tracking-tight text-foreground transition-all duration-200 ease-in-out after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-16 after:bg-gradient-to-r after:from-primary after:to-highlight hover:tracking-wider active:tracking-wider'
                             {...props}
                         />
                     ),

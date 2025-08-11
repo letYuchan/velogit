@@ -72,7 +72,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                 </div>
 
                 {/* Level Info */}
-                <section className='flex flex-col items-center justify-evenly rounded-xl border border-border bg-backgroundDark/40 p-4'>
+                <section className='flex flex-col items-center justify-evenly rounded-xl border border-border bg-background p-4'>
                     <p className='text-sm text-muted'>Current Level</p>
                     <div className='mt-1 text-2xl font-bold text-primary'>
                         LV. {getUserBlogLevel(posts.length)}
@@ -89,7 +89,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                 </section>
 
                 {/* Top 3 Categories */}
-                <section className='mt-4 rounded-xl border border-border bg-background p-4'>
+                <section className='mt-4 rounded-xl border border-border bg-background-second p-4'>
                     <p className='mb-2 text-center text-base font-semibold text-foreground'>
                         🏷 Top 3 Categories
                     </p>
@@ -144,7 +144,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                             <button
                                 onClick={goPrev}
                                 disabled={currentIndex === 0}
-                                className='inline-flex items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-main transition hover:bg-primary-deep disabled:opacity-50'
+                                className='inline-flex items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-main transition hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50'
                             >
                                 <ChevronLeft size={16} />
                                 Prev
@@ -152,7 +152,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                             <button
                                 onClick={goNext}
                                 disabled={currentIndex >= total - 1}
-                                className='inline-flex items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-main transition hover:bg-primary-deep disabled:opacity-50'
+                                className='inline-flex items-center gap-1 rounded-full border border-primary bg-primary px-3 py-1 text-main transition hover:bg-primary-deep active:bg-primary-deep disabled:opacity-50'
                             >
                                 Next
                                 <ChevronRight size={16} />
@@ -164,7 +164,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                 {/* Footer */}
                 <div className='mt-5 flex justify-center'>
                     <button
-                        className='h-9 w-full rounded-md border border-border bg-backgroundDark px-3 text-sm text-foreground hover:bg-backgroundDark/70'
+                        className='h-9 w-full rounded-md border border-border bg-backgroundDark px-3 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
                         onClick={handleCloseModal}
                     >
                         Close

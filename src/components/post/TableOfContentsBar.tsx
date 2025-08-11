@@ -19,7 +19,7 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
     if (!tableOfContentsTree.length) return null;
 
     return (
-        <aside className='fixed right-8 top-20 hidden w-60 translate-y-1/2 transform flex-col items-start justify-between overflow-hidden rounded-xl bg-background px-2 py-4 shadow-md xl:flex'>
+        <aside className='fixed right-8 top-8 hidden w-60 translate-y-1/2 transform flex-col items-start justify-between overflow-hidden rounded-xl bg-background px-2 py-4 shadow-md xl:flex'>
             <h1 className='mb-4 self-center font-title text-xl font-bold text-foreground'>
                 On this page
             </h1>
