@@ -6,11 +6,11 @@ interface BackgroundMusicControllerProps {
 }
 
 const BackgroundMusicController = ({ musicList }: BackgroundMusicControllerProps) => {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [volume, setVolume] = useState(0.5);
     const [currentTrackName, setCurrentTrackName] = useState('');
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const getRandomTrack = () => {
         const index = Math.floor(Math.random() * musicList.length);

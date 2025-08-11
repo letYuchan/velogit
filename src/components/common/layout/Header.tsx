@@ -12,12 +12,12 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const goToHomePage = () => navigate('/');
-
     const isMobile = useIsMobile();
 
     const isActive = (path: string) => location.pathname === path;
     const isLocalhost = window.location.hostname === 'localhost';
+
+    const goToHomePage = () => navigate('/');
 
     useLayoutEffect(() => {
         lastScrollY.current =

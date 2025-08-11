@@ -1,4 +1,3 @@
-// src/components/common/CommonLoading.tsx
 import { useEffect, useRef, useState } from 'react';
 import { LinearProgress, Typography, Box } from '@mui/material';
 

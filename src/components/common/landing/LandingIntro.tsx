@@ -77,7 +77,7 @@ const LandingIntro = () => {
 
                     <motion.button
                         onClick={handleStartApp}
-                        className='mt-10 rounded-full bg-background px-6 py-3 text-lg font-bold text-foreground shadow-lg transition-transform hover:scale-105 hover:bg-primary active:scale-95'
+                        className='mt-10 rounded-full border border-primary bg-primary-deep px-6 py-3 text-lg font-bold text-main shadow-lg transition-transform hover:scale-105 hover:bg-primary active:scale-95'
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.2, duration: 0.8 }}
