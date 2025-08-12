@@ -1,6 +1,17 @@
 import { flattenToc } from '@/utils/post';
 import { useEffect, useState } from 'react';
 
+/**
+ * Hook: Tracks which Table of Contents (TOC) heading is currently "active" based on scroll position.
+ *
+ * @param tree - The TOC tree (nested list of heading items)
+ * @param options - Configuration for detection and syncing
+ *   - rootMargin: Margin around the viewport for IntersectionObserver (string)
+ *   - thresholds: Array of intersection ratios at which the callback is triggered
+ *   - enableScrollFallback: Use scroll-based detection if IntersectionObserver fails
+ *   - activateLastOnBottom: Force last heading active when at the bottom of the page
+ *   - syncHash: Keep active heading in sync with the URL hash
+ */
 export const useActiveTocId = (
     tree: TableOfContentsItemType[],
     {

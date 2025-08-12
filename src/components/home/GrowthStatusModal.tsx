@@ -111,7 +111,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                     </ul>
                 </section>
 
-                {/* Activity Grid (페이지네이션: currentIndex) */}
+                {/* Activity Grid */}
                 <section className='mt-4 rounded-xl border border-border bg-background p-4'>
                     <div className='mb-2 flex items-center justify-between'>
                         <p className='text-base font-semibold text-foreground'>📊 Activity Grid</p>
@@ -177,3 +177,56 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
 };
 
 export default GrowthStatusModal;
+
+/**
+ * GrowthStatusModal
+ * -----------------
+ * 기능:
+ * - 블로그 성장 상태를 모달로 표시
+ * - 전체 포스트 수 기반 레벨 및 진화 GIF 노출
+ * - 카테고리 Top 3와 활동 그리드(페이지네이션) 제공
+ * - ESC/방향키로 닫기·페이지 이동 지원 (접근성/키보드 내비게이션)
+ *
+ * props:
+ * - setIsGrowthStatusModalOepn: React.Dispatch<React.SetStateAction<boolean>>
+ *   → 모달 열림/닫힘 상태를 외부에서 제어하기 위한 setter
+ *
+ * 상태(state):
+ * - currentIndex: number → 활동 그리드의 현재 페이지 인덱스(0-base)
+ * - currentEvolutionGifPath: string → 현재 레벨에 대응하는 진화 GIF 경로
+ *
+ * 상수/유틸:
+ * - posts: 전체 포스트 목록(import)
+ * - POSTS_PER_PAGE: 페이지당 포스트 개수(import)
+ * - getUserBlogLevel(totalPosts): 포스트 수로 레벨 계산
+ * - getDragonEvolutionGifByLevel(level): 레벨→진화 GIF 경로 매핑
+ * - getTopThreeCategories(posts): 카테고리별 상위 3개 [카테고리, 횟수] 반환
+ *
+ * 파생 값(useMemo):
+ * - sortedPosts: 최신순으로 정렬된 포스트 배열
+ * - total: 활동 그리드의 전체 페이지 수
+ * - currentPagePosts: 현재 페이지에 표시할 포스트 목록
+ *
+ * 커스텀 훅:
+ * - useEscapeToCloseModal: ESC 키로 모달 닫기
+ * - useArrowIndexNavigation: 좌/우 방향키로 페이지 이동
+ *
+ * useEffect 동작:
+ * 1) posts.length 변화 시 getUserBlogLevel 호출 → 현재 레벨 계산
+ * 2) 레벨 기반 getDragonEvolutionGifByLevel 호출 → GIF 경로 설정
+ *
+ * UI 구성:
+ * - 배경 오버레이 및 중앙 정렬된 모달 컨테이너
+ * - 닫기 버튼(X 아이콘)
+ * - Header: "🚀 My Growth Status" + ESC 안내 문구
+ * - Level Info: 현재 레벨, 총 포스트 수, 진화 캐릭터 이미지
+ * - Top 3 Categories: 카테고리명과 횟수, 1위는 강조 스타일
+ * - Activity Grid: 6열 고정 그리드, 페이지네이션 지원
+ * - Pager: Prev/Next 버튼 (Chevron 아이콘 포함)
+ * - Footer: Close 버튼
+ *
+ * 동작 흐름:
+ * 1) 모달이 열리면 posts 데이터 기반으로 레벨과 GIF 설정
+ * 2) ESC 키나 닫기 버튼 클릭 시 모달 종료
+ * 3) 방향키 또는 Prev/Next 버튼으로 활동 그리드 페이지 이동
+ */

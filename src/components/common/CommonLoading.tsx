@@ -62,3 +62,21 @@ const CommonLoading = () => {
 };
 
 export default CommonLoading;
+
+/**
+ * CommonLoading
+ *
+ * 기능:
+ * - 전체 화면을 가리는 로딩 오버레이와 진행률 표시
+ * - 3초(기본) 동안 0 → 100%로 선형(progress) 애니메이션
+ *
+ * 동작 방식:
+ * 1) 마운트 시 requestAnimationFrame으로 경과 시간 측정
+ * 2) 경과 시간(elapsed)을 3000ms로 나눠 퍼센트 계산 후 setProgress
+ * 3) 100% 도달 전까지 매 프레임 갱신, 언마운트 시 rAF 취소/상태 초기화
+ *
+ * UI 특징:
+ * - 반투명 블러 배경(모달 느낌)
+ * - MUI LinearProgress(rounded bar) + 퍼센트 텍스트 중앙 정렬
+ * - 반응형: 최대 520px, 그 외 90vw
+ */

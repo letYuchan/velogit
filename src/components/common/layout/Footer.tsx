@@ -63,6 +63,7 @@ const Footer = () => {
                         languagetool
                     </a>
                 </p>
+                {/* features/setting */}
                 <div className='flex flex-wrap justify-start gap-5'>
                     <DarkmodeToggleButton />
                     <button
@@ -108,6 +109,7 @@ const Footer = () => {
                     <p className='text-md font-title text-muted sm:text-xl'>Help</p>
                 </button>
             </div>
+            {/* Modals */}
             {isThemeSelectorModalOpen && (
                 <ThemeSelectorModal setIsThemeSelectorModalOpen={setIsThemeSelectorModalOpen} />
             )}
@@ -124,3 +126,28 @@ const Footer = () => {
 };
 
 export default Footer;
+
+/**
+ * Footer
+ *
+ * 기능:
+ * - 사이트 하단 영역(UI 푸터)
+ * - 저작권/라이선스 안내, 외부 링크, 유틸리티 컨트롤(다크모드, 테마 선택, 스트레칭 리마인더, BGM) 제공
+ *
+ * 동작 방식:
+ * 1. 모달 관리
+ *    - ThemeSelectorModal: 테마 선택 모달
+ *    - StretchingReminderSettingModal: 스트레칭 알림 설정 모달
+ *    - 각 모달은 상태로 열림/닫힘 제어
+ * 2. 배경 음악
+ *    - getAudioFileUrls()로 로컬/퍼블릭 경로의 BGM 목록을 가져와 BackgroundMusicController에 전달
+ *    - 목록이 비어있으면 컨트롤러는 렌더링하지 않음
+ * 3. 링크/버튼
+ *    - GitHub 레포, 메일 링크, Help 버튼(추후 HelpModal 연동)
+ *    - 다크모드 토글 버튼, 테마 선택 버튼, 스트레칭 설정 버튼 제공
+ *
+ * UI 특징:
+ * - 좌측: 저작권/라이선스 문구, 폰트/모델/툴 출처 고지, 유틸리티 버튼들
+ * - 우측: 외부 링크(깃허브/메일/헬프)
+ * - 반응형 클래스와 시각적 피드백(hover/active) 적용
+ */

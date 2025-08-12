@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
-
 interface BackgroundMusicControllerProps {
     musicList: string[];
 }
@@ -92,12 +91,15 @@ const BackgroundMusicController = ({ musicList }: BackgroundMusicControllerProps
 
     return (
         <div className='flex flex-wrap items-center justify-start gap-3 text-foreground'>
+            {/* Background music player */}
             <button onClick={togglePlay} title='Play/Pause'>
                 {isPlaying ? <Pause size={20} /> : <Play size={20} />}
             </button>
+            {/* For mute */}
             <button onClick={toggleMute} title='Mute/Unmute'>
                 {isMuted || volume === 0 ? <VolumeX size={20} /> : <Volume2 size={20} />}
             </button>
+            {/* Volume Control */}
             <input
                 type='range'
                 min='0'
@@ -108,6 +110,7 @@ const BackgroundMusicController = ({ musicList }: BackgroundMusicControllerProps
                 className='w-24 accent-primary'
                 title='Volume'
             />
+            {/* Track Name */}
             {currentTrackName && (
                 <span className='text-muted-foreground font-mono text-sm'>{currentTrackName}</span>
             )}
@@ -116,3 +119,36 @@ const BackgroundMusicController = ({ musicList }: BackgroundMusicControllerProps
 };
 
 export default BackgroundMusicController;
+
+/**
+ * BackgroundMusicController
+ * --------------------------
+ * 기능:
+ * - 배경 음악을 재생, 일시정지, 음소거, 볼륨 조절 가능
+ * - 음악 목록 중 랜덤으로 트랙 선택 후 재생
+ * - 현재 재생 중인 트랙이 끝나면 다음 랜덤 트랙 자동 재생
+ *
+ * Props:
+ * - musicList: string[]
+ *   → 재생 가능한 음악 파일 경로 배열
+ *
+ * 주요 상태(state):
+ * - isPlaying: boolean → 현재 재생 중인지 여부
+ * - isMuted: boolean → 음소거 상태 여부
+ * - volume: number (0 ~ 1) → 현재 볼륨
+ * - currentTrackName: string → 현재 재생 중인 트랙 이름
+ *
+ * 주요 로직:
+ * - getRandomTrack(): 음악 목록에서 랜덤으로 파일 경로 반환
+ * - togglePlay(): 재생/일시정지 전환
+ * - toggleMute(): 음소거/해제 전환 (볼륨이 0이면 자동 0.5로 복원)
+ * - handleVolumeChange(): 볼륨 조절 슬라이더 이벤트 처리
+ * - useEffect #1: 컴포넌트 마운트 시 랜덤 트랙 초기 설정 및 자동 재생 종료 후 다음 곡 재생 이벤트 등록
+ * - useEffect #2: 볼륨 변경 시 오디오 객체에 반영 및 음소거 상태 업데이트
+ *
+ * UI 요소:
+ * - Play/Pause 버튼
+ * - Mute/Unmute 버튼
+ * - 볼륨 슬라이더(range input)
+ * - 현재 재생 중인 곡명 표시
+ */

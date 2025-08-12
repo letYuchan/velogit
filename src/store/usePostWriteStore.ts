@@ -2,30 +2,6 @@ import { DRAFT_STORAGE_KEY, MAX_SAVED } from '@/constants/draft.constants';
 import { toast } from 'react-toastify';
 import { create } from 'zustand';
 
-export interface PostWriteState {
-    title: string;
-    date: string;
-    tags: string[];
-    summary: string;
-    thumbnail: string;
-    category: string;
-    content: string;
-    setField: <
-        K extends keyof Omit<
-            PostWriteState,
-            'setField' | 'reset' | 'buildMarkdown' | 'savedDraftToLocal' | 'restoreDraftsFromLocal'
-        >,
-    >(
-        key: K,
-        value: PostWriteState[K],
-    ) => void;
-
-    reset: () => void;
-    buildMarkdown: () => string;
-    saveDraftToLocal: () => void;
-    restoreFastDraftsFromLocal: () => TempPost[];
-}
-
 export const usePostWriteStore = create<PostWriteState>((set, get) => ({
     title: '',
     date: '',
@@ -103,3 +79,34 @@ export const usePostWriteStore = create<PostWriteState>((set, get) => ({
         }
     },
 }));
+
+/**
+ * 블로그 글 작성 상태를 관리하는 Zustand 스토어.
+ *
+ * 기능:
+ * 1. **상태 관리**:
+ *    - 글 작성에 필요한 모든 메타데이터와 본문 상태를 저장 (title, date, tags, summary, thumbnail, category, content).
+ *    - `setField`: 특정 키를 지정해 해당 필드 값 업데이트.
+ *    - `reset`: 모든 필드를 초기 빈 값으로 리셋.
+ *
+ * 2. **마크다운 빌더**:
+ *    - `buildMarkdown`: 현재 상태를 YAML Front Matter와 함께 마크다운 문자열로 변환.
+ *    - 값이 있는 필드만 자동 포함 (예: tags, summary, thumbnail).
+ *
+ * 3. **로컬 임시 저장소 관리**:
+ *    - `saveDraftToLocal`:
+ *       - 현재 상태를 `localStorage`에 `DRAFT_STORAGE_KEY`라는 키로 저장.
+ *       - 최대 `MAX_SAVED` 개의 임시 저장만 유지.
+ *       - 저장 성공/실패 여부를 toast로 사용자에게 알림.
+ *    - `restoreFastDraftsFromLocal`:
+ *       - `localStorage`에서 저장된 임시 저장 목록을 가져와 파싱.
+ *       - 저장된 값이 없거나 파싱에 실패하면 빈 배열 반환.
+ *
+ * 4. **사용되는 상수**:
+ *    - `DRAFT_STORAGE_KEY`: localStorage에서 임시 저장 데이터를 관리하는 키.
+ *    - `MAX_SAVED`: 저장 가능한 최대 임시 글 개수.
+ *
+ * 의존성:
+ * - `zustand`: 스토어 생성 및 상태 관리.
+ * - `react-toastify`: toast 알림으로 사용자 피드백 제공.
+ */

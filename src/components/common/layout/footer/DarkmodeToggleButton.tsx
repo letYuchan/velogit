@@ -39,3 +39,21 @@ const DarkmodeToggleButton = () => {
 };
 
 export default DarkmodeToggleButton;
+
+/**
+ * DarkmodeToggleButton
+ *
+ * 기능:
+ * - 다크 모드/라이트 모드 전환 버튼
+ * - 선택한 모드를 localStorage에 저장
+ * - OS 시스템 기본 다크 모드 설정 감지하여 초기 모드 결정
+ *
+ * 동작 방식:
+ * 1. 마운트 시 localStorage('dark-mode') 또는 시스템 설정(prefers-color-scheme) 확인
+ * 2. HTML <html> 태그에 'dark' 클래스 추가/제거
+ * 3. 버튼 클릭 시 모드 토글 및 상태/저장소 동기화
+ *
+ * UI 특징:
+ * - 다크 모드 시 Sun 아이콘 + 'Light Mode' 텍스트
+ * - 라이트 모드 시 Moon 아이콘 + 'Dark Mode' 텍스트
+ */

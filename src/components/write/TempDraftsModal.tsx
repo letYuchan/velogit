@@ -42,11 +42,12 @@ const TempDraftsModal = ({
                 <X size={32} className='text-main hover:text-primary' />
             </button>
             <div className='w-full max-w-md rounded-2xl bg-background p-6 shadow-xl'>
+                {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>Saved Drafts</h2>
                     <span className='text-xs text-muted'>ESC to close</span>
                 </div>
-
+                {/* Temp Posts */}
                 <ul className='space-y-3'>
                     {savedTempDrafts.length > 0 ? (
                         savedTempDrafts.map((draft, idx) => (
@@ -94,6 +95,7 @@ const TempDraftsModal = ({
                         <li className='text-sm text-muted'>No drafts available.</li>
                     )}
                 </ul>
+                {/* Modal-footer */}
                 <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                     <button
                         className='h-8 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
@@ -119,3 +121,48 @@ const TempDraftsModal = ({
 };
 
 export default TempDraftsModal;
+
+/**
+ * TempDraftsModal
+ * -----------------
+ * 기능:
+ * - 임시 저장된 포스트(Temp Drafts) 목록을 표시하는 모달 UI
+ * - 각 Draft 복원(Restore), 개별 삭제(Init), 전체 삭제(ALL init) 가능
+ *
+ * props (TempDraftsModalProps):
+ * - savedTempDrafts: 현재 상태에 저장된 임시 Draft 배열
+ * - setSavedTempDrafts: Draft 배열 상태 업데이트 함수
+ * - setIsTempDraftsModalOpen: 모달 열림/닫힘 상태 업데이트 함수
+ *
+ * 사용 훅:
+ * - useEscapeToCloseModal: ESC 키 입력 시 모달 닫기
+ * - usePostWriteStore: 포스트 작성 전역 상태(Zustand)
+ *   - restoreFastDraftsFromLocal(): localStorage에서 Draft 목록 불러오기
+ *   - setField(): 특정 필드 값 업데이트
+ *
+ * 주요 함수:
+ * - handleCloseModal():
+ *   - 모달 닫기
+ *
+ * - removeDraft(idx):
+ *   - localStorage에서 해당 index의 Draft 제거
+ *   - 상태(savedTempDrafts) 갱신
+ *
+ * 동작 흐름:
+ * 1) 모달은 화면 중앙에 표시되며, 배경은 반투명 검은색 오버레이
+ * 2) 각 Draft 항목:
+ *    - 제목 (없으면 "No title")
+ *    - 저장 시간 표시
+ *    - Restore 버튼:
+ *      - Draft 데이터를 전역 상태(usePostWriteStore)에 복원
+ *      - 모달 닫기
+ *    - Init 버튼:
+ *      - 해당 Draft만 삭제
+ * 3) 하단 버튼:
+ *    - Close: 모달 닫기
+ *    - ALL init: 모든 Draft 삭제
+ *
+ * 스타일:
+ * - TailwindCSS 기반 레이아웃 및 색상
+ * - hover/active 시 배경색 변환
+ */

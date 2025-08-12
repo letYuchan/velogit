@@ -77,3 +77,29 @@ const ThemeSelectorModal = ({ setIsThemeSelectorModalOpen }: ThemeSelectorModal)
 };
 
 export default ThemeSelectorModal;
+
+/**
+ * ThemeSelectorModal
+ *
+ * 기능:
+ * - 블로그/웹앱의 테마를 선택할 수 있는 모달 UI
+ * - 선택한 테마를 `localStorage`에 저장하고 즉시 적용
+ * - ESC 키 또는 Close 버튼으로 모달 닫기
+ *
+ * 동작 방식:
+ * 1. 초기 렌더 시 `SELECTED_THEME_STORAGE_KEY` 값(localStorage) 확인 후 `currentTheme` 상태 초기화
+ * 2. `THEMES` 배열을 기반으로 테마 목록을 버튼 형태로 렌더링
+ * 3. 테마 버튼 클릭 시:
+ *    - `currentTheme` 상태 갱신
+ *    - `localStorage`에 선택 테마 저장
+ *    - `applyThemeClass(theme)`로 HTML 루트에 테마 클래스 적용
+ *    - `theme-change` 커스텀 이벤트 발생 (다른 컴포넌트에서 테마 변경 감지 가능)
+ * 4. `useEscapeToCloseModal` 훅을 사용하여 ESC 입력 시 모달 닫기
+ *
+ * UI 특징:
+ * - 화면 중앙에 배치된 반투명 배경의 모달
+ * - 상단 왼쪽에 닫기(X) 버튼, 오른쪽 상단에 ESC 안내 문구
+ * - 테마 목록은 색상과 아이콘으로 구분
+ * - 현재 선택된 테마 버튼에는 `ring-primary` 하이라이트 효과 적용
+ * - 반응형 레이아웃: 기본 2열, xl 이상에서 3열
+ */

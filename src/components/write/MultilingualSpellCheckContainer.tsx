@@ -93,6 +93,7 @@ const MultilingualSpellCheckModal = ({
                 <X size={32} className='text-main hover:text-primary' />
             </button>
             <div className='w-full max-w-6xl rounded-2xl bg-background p-6 shadow-xl'>
+                {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>AI Spell Check</h2>
                     <div className='flex flex-col gap-1'>
@@ -255,3 +256,82 @@ const MultilingualSpellCheckModal = ({
 };
 
 export default MultilingualSpellCheckModal;
+
+/**
+ * MultilingualSpellCheckModal
+ * ---------------------------
+ * 기능:
+ * - 여러 언어에 대한 맞춤법/문법 검사 기능 제공 (LanguageTool API 기반)
+ * - 입력 또는 에디터 내용을 검사하고, 원문과 교정문 비교 표시
+ * - 제안(Suggestion) 목록을 Prev/Next로 탐색 가능
+ *
+ * props (MultilingualSpellCheckModalProps):
+ * - setIsMultilingualModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+ *   → 모달 열림/닫힘 상태 제어
+ *
+ * 전역 상태 (usePostWriteStore):
+ * - content: string → 현재 작성 중인 에디터 내용 (customText 미입력 시 사용)
+ *
+ * 로컬 상태:
+ * - selectedLanguage: string → 검사 대상 언어 코드 (기본값 'auto')
+ * - customText: string → 검사 대상 사용자 입력 텍스트
+ * - spellMatches: Match[] → LanguageTool API에서 반환한 문법/맞춤법 오류 목록
+ * - currentIndex: number → 현재 선택된 오류 항목 인덱스
+ * - snapshotText: string → 검사 시점의 원문 저장
+ *
+ * 훅:
+ * - useGetAllAvailableLanguagesQuery(): 지원 가능한 언어 목록 조회
+ * - useMultilingualSpellCheckMutation(): 맞춤법 검사 API 호출 mutation
+ * - useEscapeToCloseModal(): ESC 키로 모달 닫기
+ * - useArrowIndexNavigation(): 방향키로 오류 항목 탐색 가능
+ *
+ * 파생 값:
+ * - liveInput: string → customText || globalContent
+ * - total: number → 오류 항목 개수
+ * - currentMatch: Match | undefined → 현재 선택된 오류 항목
+ * - correctedText: string → 오류 항목을 교정한 전체 문장
+ *   - spellMatches를 offset 기준으로 정렬 후 교정어(replacements[0])로 대체
+ *
+ * 주요 함수:
+ * - handleCloseModal(): 모달 닫기
+ * - handleMultilingualSpellCheck():
+ *   1) liveInput 유효성 검사
+ *   2) 선택한 언어 코드 유효성 검사(validLanguageToolCodes)
+ *   3) snapshotText 설정
+ *   4) API 호출 후 spellMatches와 currentIndex 상태 업데이트
+ *
+ * UI 구성:
+ * 1) 헤더:
+ *    - 타이틀 "AI Spell Check"
+ *    - 모델 정보(LanguageTool 링크)
+ *    - ESC 안내
+ *
+ * 2) 언어 선택 + 검사 버튼:
+ *    - select 박스: 'auto' + languageList의 longCode/이름 표시
+ *    - 검사 버튼: handleMultilingualSpellCheck 실행 (로딩 시 CircularProgress)
+ *    - 교정문 복사 버튼: copyCorrectedTextToClipboard(correctedText, 'Eng')
+ *    - 현재 인덱스/전체 개수 표시
+ *
+ * 3) 사용자 입력 영역:
+ *    - textarea: customText 입력
+ *    - 미입력 시 globalContent 사용
+ *
+ * 4) 원문 vs 교정문 비교:
+ *    - 좌측: snapshotText + 오류 항목 하이라이트 표시(getHighlightedFragments)
+ *    - 우측: correctedText
+ *    - 스크롤 가능
+ *
+ * 5) 오류 항목 카드:
+ *    - Prev/Next 버튼: currentIndex 변경
+ *    - AnimatePresence + motion으로 전환 애니메이션
+ *    - 현재 항목 메시지, 오류 문장, 제안(replacements) 표시
+ *
+ * 6) Close 버튼:
+ *    - handleCloseModal 실행
+ *
+ * 동작 흐름:
+ * 1) 검사 버튼 클릭 → API 요청
+ * 2) 응답으로 받은 오류 목록과 교정문 반영
+ * 3) Prev/Next 버튼 또는 방향키로 오류 탐색
+ * 4) 교정문 복사 버튼으로 전체 교정문 클립보드 복사 가능
+ */

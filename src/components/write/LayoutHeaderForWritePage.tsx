@@ -74,3 +74,62 @@ const LayoutHeaderForWritePage = () => {
 };
 
 export default LayoutHeaderForWritePage;
+
+/**
+ * LayoutHeaderForWritePage
+ * ------------------------
+ * 기능:
+ * - 글 작성 페이지 상단 고정 헤더 제공
+ * - 홈으로 돌아가기, 임시 저장, 임시 저장 불러오기(복원) 기능 포함
+ * - 모바일/데스크톱 환경에 따라 버튼 레이블 노출 여부 변경
+ *
+ * 전역 상태 (usePostWriteStore):
+ * - reset(): 작성 중인 모든 데이터 초기화
+ * - saveDraftToLocal(): 현재 작성 내용을 로컬스토리지에 임시 저장
+ * - restoreFastDraftsFromLocal(): 로컬스토리지에서 임시 저장된 데이터 즉시 불러오기
+ *
+ * 로컬 상태:
+ * - isTempDraftsModalOpen: boolean → 임시 저장 목록 모달 열림 여부
+ * - savedTempDrafts: TempPost[] → 로컬에서 불러온 임시 저장 목록
+ *
+ * 훅:
+ * - useNavigate(): 페이지 이동 제어
+ * - useIsMobile(): 현재 뷰포트가 모바일인지 여부
+ * - useEffect():
+ *   1) 컴포넌트 마운트 시 restoreFastDraftsFromLocal() 실행
+ *   2) 로컬에 저장된 임시 초안이 있으면 savedTempDrafts 상태에 반영
+ *
+ * 주요 함수:
+ * - goToBack():
+ *   → confirm 창 확인 시 reset() 실행 후 홈('/')으로 이동
+ * - SAVE DRAFT 클릭:
+ *   1) saveDraftToLocal() 실행
+ *   2) restoreFastDraftsFromLocal() 재호출하여 최신 초안을 savedTempDrafts에 즉시 반영
+ *
+ * UI 구성:
+ * 1) 헤더 영역(header):
+ *    - fixed 상단 고정, 좌측 BACK 버튼, 우측 RESTORE/SAVE DRAFT 버튼 그룹
+ *    - BACK 버튼:
+ *      - 아이콘: MdArrowBack
+ *      - 모바일: 아이콘만 표시
+ *      - 데스크톱: 아이콘 + "BACK" 텍스트
+ *    - RESTORE 버튼:
+ *      - 아이콘: MdRestore
+ *      - 클릭 시 isTempDraftsModalOpen = true
+ *    - SAVE DRAFT 버튼:
+ *      - 아이콘: MdSave
+ *      - 클릭 시 현재 작성 내용 로컬 저장 후 목록 갱신
+ *
+ * 2) 모달(TempDraftsModal):
+ *    - isTempDraftsModalOpen이 true일 때만 렌더링
+ *    - props:
+ *      - savedTempDrafts: 현재 저장된 임시 초안 목록
+ *      - setSavedTempDrafts: 목록 상태 업데이트 함수
+ *      - setIsTempDraftsModalOpen: 모달 열림/닫힘 상태 제어
+ *
+ * 동작 흐름:
+ * 1) 페이지 진입 시 로컬 임시 저장 목록 불러오기
+ * 2) BACK 클릭 시 작성 데이터 초기화 후 홈으로 이동
+ * 3) RESTORE 클릭 시 임시 저장 목록 모달 표시
+ * 4) SAVE DRAFT 클릭 시 로컬 저장 및 목록 즉시 갱신
+ */
