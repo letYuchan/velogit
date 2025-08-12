@@ -105,6 +105,9 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                             {...props}
                         />
                     ),
+                    hr: ({ node, ...props }) => (
+                        <hr className='my-8 border-t-2 border-dashed border-border' {...props} />
+                    ),
                     br: () => <br style={{ display: 'none' }} />,
                     ul: ({ node, ...props }) => (
                         <ul className='my-5 ml-6 list-disc space-y-2 text-foreground' {...props} />
