@@ -114,8 +114,10 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                 {/* Activity Grid */}
                 <section className='mt-4 rounded-xl border border-border bg-background p-4'>
                     <div className='mb-2 flex items-center justify-between'>
-                        <p className='text-base font-semibold text-foreground'>📊 Activity Grid</p>
-                        <span className='text-xs text-muted'>
+                        <p className='self-center text-base font-semibold text-foreground'>
+                            📊 Activity Grid
+                        </p>
+                        <span className='self-end text-xs text-muted'>
                             Page {currentIndex + 1} / {total}
                         </span>
                     </div>
