@@ -1,17 +1,21 @@
 import BackgroundMusicController from '@/components/common/layout/footer/BackgroundMusicController';
 import DarkmodeToggleButton from '@/components/common/layout/footer/DarkmodeToggleButton';
+import StretchingReminderSettingModal from '@/components/common/layout/footer/StretchingReminderSettingModal';
 import ThemeSelectorModal from '@/components/common/layout/footer/ThemeSelectorModal';
 import { getAudioFileUrls } from '@/utils';
 
 import { Palette } from 'lucide-react';
 import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
+import { GiMeditation } from 'react-icons/gi';
 import { HiOutlineMail } from 'react-icons/hi';
 import { MdHelp } from 'react-icons/md';
 
 const Footer = () => {
     const [isThemeSelectorModalOpen, setIsThemeSelectorModalOpen] = useState(false);
     const [isHelpModalOpen, setIsHelpMdoalOpen] = useState(false);
+    const [isStretchingReminderSettingModalopen, setIsStretchingReminderSettingModalOpen] =
+        useState(false);
 
     const musicList = getAudioFileUrls();
 
@@ -68,6 +72,13 @@ const Footer = () => {
                         <Palette size={18} />
                         <span className='hidden sm:inline'>Theme</span>
                     </button>
+                    <button
+                        onClick={() => setIsStretchingReminderSettingModalOpen(true)}
+                        className='flex flex-nowrap items-center justify-center gap-2 rounded-md border border-primary bg-primary px-3 py-1 text-sm font-semibold text-main transition-all duration-150 ease-in-out hover:bg-primary-deep active:bg-primary-deep'
+                    >
+                        <GiMeditation size={18} />
+                        <span className='hidden sm:inline'>Stretching</span>
+                    </button>
                 </div>
                 {!(musicList.length <= 0) && <BackgroundMusicController musicList={musicList} />}
             </div>
@@ -101,6 +112,13 @@ const Footer = () => {
                 <ThemeSelectorModal setIsThemeSelectorModalOpen={setIsThemeSelectorModalOpen} />
             )}
             {/* {isHelpModalOpen && <HelpModal setIsHelpModalOpen={setIsHelpMdoalOpen} />} */}
+            {isStretchingReminderSettingModalopen && (
+                <StretchingReminderSettingModal
+                    setIsStretchingReminderSettingModalOpen={
+                        setIsStretchingReminderSettingModalOpen
+                    }
+                />
+            )}
         </footer>
     );
 };

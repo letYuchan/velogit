@@ -9,6 +9,41 @@ interface PostData {
     category: string;
 }
 
+interface StretchingReminderState {
+    enabled: boolean;
+    setEnabled: (on: boolean) => void;
+    toggleEnabled: () => void;
+
+    popupInterval: number;
+    setPopupInterval: (min: number) => void;
+
+    stretchingDuration: number;
+    setStretchingDuration: (sec: number) => void;
+}
+interface PostWriteState {
+    title: string;
+    date: string;
+    tags: string[];
+    summary: string;
+    thumbnail: string;
+    category: string;
+    content: string;
+    setField: <
+        K extends keyof Omit<
+            PostWriteState,
+            'setField' | 'reset' | 'buildMarkdown' | 'savedDraftToLocal' | 'restoreDraftsFromLocal'
+        >,
+    >(
+        key: K,
+        value: PostWriteState[K],
+    ) => void;
+
+    reset: () => void;
+    buildMarkdown: () => string;
+    saveDraftToLocal: () => void;
+    restoreFastDraftsFromLocal: () => TempPost[];
+}
+
 interface MultilingualSpellCheckPayloadType {
     text: string;
     language: LanguageToolCode;

@@ -1,5 +1,6 @@
 import GrowthStatusModal from '@/components/home/GrowthStatusModal';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
+import { blogDesc, blogOwnerDesc, profileImgPath } from '@/data/blogHeaderIntroData';
 import { headerBackgroundMap, backgroundPositionMap } from '@/data/themeImgPathData';
 import { useEffect, useState } from 'react';
 import { HiChartBar } from 'react-icons/hi';
@@ -38,18 +39,18 @@ const BlogHeader = () => {
             }}
             className='relative flex w-full flex-col items-center justify-center bg-cover px-6 py-12 text-white'
         >
-            <div className='absolute inset-0 bg-black/50 backdrop-blur-sm'></div>
+            <div className='absolute inset-0 bg-black/50 backdrop-blur-sm' />
 
             <div className='relative z-10 flex flex-col items-center gap-4 text-center'>
                 <img
-                    src={`${import.meta.env.BASE_URL}images/test.jpg`}
+                    src={profileImgPath}
                     alt='profile'
                     className='h-[120px] w-[120px] rounded-full border-4 border-white shadow-lg'
                 />
                 <h1 className='font-title text-4xl font-bold tracking-tight text-white'>
-                    letYuchan's Velog
+                    {blogOwnerDesc}
                 </h1>
-                <p className='text-lg font-medium text-white/80'>프론트엔드 성장 블로그</p>
+                <p className='text-lg font-medium text-white/80'>{blogDesc}</p>
                 <button onClick={() => setIsGrowthStatusModalOpen(true)}>
                     <HiChartBar size={32} className='hover:text-primary active:text-primary' />
                 </button>

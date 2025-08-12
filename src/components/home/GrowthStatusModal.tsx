@@ -164,7 +164,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                 {/* Footer */}
                 <div className='mt-5 flex justify-center'>
                     <button
-                        className='h-9 w-full rounded-md border border-border bg-backgroundDark px-3 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
+                        className='h-9 w-full rounded-md border border-border bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
                         onClick={handleCloseModal}
                     >
                         Close

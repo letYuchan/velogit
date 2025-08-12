@@ -1,6 +1,7 @@
 import LandingIntro from '@/components/common/landing/LandingIntro';
 import Footer from '@/components/common/layout/Footer';
 import Header from '@/components/common/layout/Header';
+import StretchingReminderController from '@/components/common/StretchingReminderController';
 import LayoutHeaderForWritePage from '@/components/write/LayoutHeaderForWritePage';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -19,6 +20,7 @@ const Layout = () => {
             {!isActive('/write') && <Footer />}
             <LandingIntro />
             <ToastContainer autoClose={2000} position='top-center' />
+            <StretchingReminderController />
         </div>
     );
 };
