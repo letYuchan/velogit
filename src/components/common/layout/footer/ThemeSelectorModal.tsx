@@ -4,7 +4,7 @@ import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { applyThemeClass } from '@/utils';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
 import { X } from 'lucide-react';
-import { THEMES } from '@/data/index.constans';
+import { THEMES } from '@/data';
 
 interface ThemeSelectorModal {
     setIsThemeSelectorModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

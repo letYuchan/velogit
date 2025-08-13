@@ -1,4 +1,4 @@
-import { dragonEvolutionGifPathMap } from '@/data/home.constants';
+import { dragonEvolutionGifPathMap } from '@/data/home';
 import { posts } from '@/utils';
 
 export const categories = Array.from(new Set(posts.map(post => post.category)));

@@ -2,7 +2,7 @@ import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useStretchingReminderStore } from '@/store/useStretchingReminderStore';
 import { formatTime } from '@/utils';
-import { stretchingTips } from '@/data/index.constans';
+import { stretchingTips } from '@/data';
 
 interface StretchingReminderModalProps {
     isStretchingReminderModalOpen: boolean;

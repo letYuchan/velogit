@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import HaloGlow from '@/components/about/HaloGlow';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { ABOUT_STORAGE_KEY } from '@/data/about.constants';
+import { ABOUT_STORAGE_KEY } from '@/data/about';
 
 const AboutPage = () => {
     useEffect(() => {

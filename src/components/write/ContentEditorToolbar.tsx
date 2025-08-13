@@ -1,7 +1,7 @@
 import FloatingToolbar from '@/components/write/FloatingToolBar';
 import KoreanSpellCheckModal from '@/components/write/KoreanSpellCheckModal';
 import MultilingualSpellCheckModal from '@/components/write/MultilingualSpellCheckContainer';
-import { TOOL_ITEMS } from '@/data/write.constants';
+import { TOOL_ITEMS } from '@/data/write';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { insertMarkdownSyntax } from '@/utils/write';

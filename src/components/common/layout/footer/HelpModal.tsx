@@ -3,7 +3,7 @@ import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
 import { useArrowIndexNavigation } from '@/hooks/useArrowIndexNavigation';
 import { X } from 'lucide-react';
 import clsx from 'clsx';
-import { helpGuideMetaDataList } from '@/data/index.constans';
+import { helpGuideMetaDataList } from '@/data';
 
 interface HelpModalProps {
     setIsHelpModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,7 +31,7 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
             <button onClick={handleCloseModal} className='absolute left-4 top-4'>
                 <X size={32} className='text-main hover:text-primary' />
             </button>
-            <div className='w-full max-w-6xl rounded-2xl bg-background p-6 shadow-xl'>
+            <div className='w-full max-w-3xl rounded-2xl bg-background p-6 shadow-xl'>
                 {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>
@@ -47,7 +47,7 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                                 key={idx}
                                 src={src}
                                 alt={`${title}-img-${idx}`}
-                                className='w-64 rounded-lg border border-border shadow'
+                                className='h-60 w-60 rounded-lg border border-border bg-background-second object-contain object-center shadow transition-transform ease-in-out hover:scale-110 active:scale-110'
                             />
                         ))}
                     </div>
@@ -60,7 +60,7 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                     </div>
                 </div>
 
-                {/* Help info pagination */}
+                {/* Help sections pagination */}
                 <div className='mt-6 flex justify-center gap-2'>
                     {helpGuideMetaDataList.map((_, idx) => (
                         <button
@@ -80,10 +80,10 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                 {/* Modal-footer */}
                 <div className='mt-4 text-center'>
                     <button
+                        className='h-9 w-full rounded-md border border-border bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
                         onClick={handleCloseModal}
-                        className='text-md rounded-md border border-primary bg-primary px-4 py-1.5 text-main shadow transition-all hover:bg-primary-deep hover:shadow-md'
                     >
-                        닫기
+                        Close
                     </button>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 // BlogHeader.tsx
 export const profileImgPath = `${import.meta.env.BASE_URL}images/system/test/test.jpg`;
-export const blogOwnerDesc = `letYuchan's Velog`;
-export const blogDesc = `프론트엔드 성장 블로그`;
+export const blogOwnerDesc = `Your-name(github-name)'s Velog`;
+export const blogDesc = `Briefly summarize your blog topic and description`;
 
 // GrowthStatusModal.tsx
 export const dragonEvolutionGifPathMap = {
