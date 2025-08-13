@@ -9,7 +9,7 @@ import {
     getUserBlogLevel,
 } from '@/utils/home';
 import { posts } from '@/utils';
-import { POSTS_PER_PAGE } from '@/constants/pagination.constants';
+import { POSTS_PER_PAGE } from '@/constants/home';
 
 interface GrowthStatusModalProps {
     setIsGrowthStatusModalOepn: React.Dispatch<React.SetStateAction<boolean>>;

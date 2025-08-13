@@ -1,4 +1,3 @@
-import { POST_KEY } from '@/constants/draft.constants';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import clsx from 'clsx';
 import type { ChangeEvent } from 'react';
@@ -9,6 +8,7 @@ import ContentEditorToolbar from '@/components/write/ContentEditorToolbar';
 import UserViewPreview from '@/components/write/UserViewPreview';
 import { toast } from 'react-toastify';
 import CommonLoading from '@/components/common/CommonLoading';
+import { POST_KEY } from '@/constants/write';
 
 interface ContentEditorProps {
     setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;

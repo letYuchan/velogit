@@ -1,4 +1,4 @@
-import { DRAFT_STORAGE_KEY } from '@/constants/draft.constants';
+import { DRAFT_STORAGE_KEY } from '@/constants/write';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { X } from 'lucide-react';

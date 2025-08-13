@@ -1,4 +1,4 @@
-import { DRAFT_STORAGE_KEY, MAX_SAVED } from '@/constants/draft.constants';
+import { DRAFT_STORAGE_KEY, MAX_SAVED } from '@/constants/write';
 import { toast } from 'react-toastify';
 import { create } from 'zustand';
 

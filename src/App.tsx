@@ -6,12 +6,12 @@ import HomePage from '@/pages/home/HomePage';
 import WritePage from '@/pages/write/WritePage';
 import EditPage from '@/pages/edit/EditPage';
 import { useEffect } from 'react';
-import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { applyThemeClass } from '@/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Layout from '@/components/common/layout/Layout';
 import { ThemeProvider } from '@mui/material';
 import { muiTheme } from '@/data/muiThemePalette';
+import { SELECTED_THEME_STORAGE_KEY } from '@/constants';
 
 const App = () => {
     useEffect(() => {

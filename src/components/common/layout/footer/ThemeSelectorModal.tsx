@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { applyThemeClass } from '@/utils';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
 import { X } from 'lucide-react';
 import { THEMES } from '@/data';
+import { SELECTED_THEME_STORAGE_KEY } from '@/constants';
 
 interface ThemeSelectorModal {
     setIsThemeSelectorModalOpen: React.Dispatch<React.SetStateAction<boolean>>;

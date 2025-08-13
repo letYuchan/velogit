@@ -1,4 +1,4 @@
-import { STRETCHING_SEC_OPTIONS, POPUP_MIN_OPTIONS } from '@/constants/stretching.constants';
+import { STRETCHING_SEC_OPTIONS, POPUP_MIN_OPTIONS } from '@/constants';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
 import { useStretchingReminderStore } from '@/store/useStretchingReminderStore';
 import clsx from 'clsx';
