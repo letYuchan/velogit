@@ -1,8 +1,8 @@
 import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useStretchingReminderStore } from '@/store/useStretchingReminderStore';
-import { stretchingTips } from '@/data/stretchingData';
 import { formatTime } from '@/utils';
+import { stretchingTips } from '@/data/index.constans';
 
 interface StretchingReminderModalProps {
     isStretchingReminderModalOpen: boolean;
@@ -72,7 +72,7 @@ const StretchingReminderModal = ({
                     <span className='text-sm text-muted'>{formatTime(remaining)}</span>
                 </div>
 
-                {/*  */}
+                {/* Modal-mainFeature: description */}
                 <img
                     src={`${import.meta.env.BASE_URL}images/stretching.png`}
                     className='mx-auto aspect-[4/3] w-[80%] rounded-lg object-contain'

@@ -1,35 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FaGithub, FaEnvelope, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-
-const GlowChip = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
-    <motion.span className='relative inline-flex'>
-        {/* outside glow (keeps blinking) */}
-        <motion.span
-            aria-hidden
-            className='pointer-events-none absolute -inset-2 -z-10 rounded-full'
-            style={{
-                background:
-                    'radial-gradient(60% 60% at 50% 50%, rgba(99,102,241,0.55) 0%, rgba(99,102,241,0.18) 55%, rgba(99,102,241,0) 100%)',
-                filter: 'blur(12px)',
-            }}
-            animate={{ opacity: [0.25, 0.92, 0.25], scale: [0.98, 1.04, 0.98] }}
-            transition={{ duration: 2.1, repeat: Infinity, ease: 'easeInOut', delay }}
-        />
-        {/* chip body + border */}
-        <span className='rounded-full border border-primary bg-background px-4 py-2 text-sm font-semibold text-primary shadow-sm'>
-            {children}
-        </span>
-    </motion.span>
-);
+import HaloGlow from '@/components/about/HaloGlow';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { ABOUT_STORAGE_KEY } from '@/data/about.constants';
 
 const AboutPage = () => {
+    useEffect(() => {
+        if (!sessionStorage.getItem(ABOUT_STORAGE_KEY)) {
+            toast.info(
+                'This is just my style 😄 Use it as reference and make it your own! / 해당 페이지를 각자의 취향대로 꾸며주세요!',
+            );
+            sessionStorage.setItem(ABOUT_STORAGE_KEY, '1');
+        }
+    }, []);
     return (
         <main
             aria-label='An animated and expressive about page introducing the developer.'
             className='bg-second relative flex w-full flex-col items-center justify-start px-4 py-12 md:px-20 lg:px-40'
         >
-            {/* ===== Hero ===== */}
+            {/* Hero */}
             <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -42,6 +33,7 @@ const AboutPage = () => {
                 <p className='mt-4 max-w-xl text-lg text-muted'>
                     Briefly summarize your role, strengths, and focus areas in 1–2 sentences.
                 </p>
+
                 <div className='mt-6 flex gap-4'>
                     <a
                         href='#'
@@ -60,36 +52,38 @@ const AboutPage = () => {
                         Put your contact button text here
                     </a>
                 </div>
-
-                {/* single flash (top-right, keeps blinking) */}
-                <motion.div
-                    className='absolute -right-20 -top-16 -z-10 hidden size-64 rounded-full bg-primary/40 blur-3xl md:block'
-                    animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.06, 1] }}
-                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                    aria-hidden
-                />
+                <HaloGlow />
             </motion.section>
 
-            {/* ===== Keywords (each chip glows individually) ===== */}
-            <motion.div
+            {/* Strength Keywords */}
+            <motion.section
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className='mb-16 flex flex-wrap justify-center gap-4'
+                transition={{ delay: 0.15, duration: 0.6 }}
+                className='mb-16 w-full max-w-5xl'
             >
-                {[
-                    'Add your values/keywords',
-                    'e.g. teamwork / user-first',
-                    'e.g. craft / learning',
-                    'e.g. reliability / ownership',
-                ].map((text, i) => (
-                    <GlowChip key={text} delay={i * 0.12}>
-                        #{text}
-                    </GlowChip>
-                ))}
-            </motion.div>
+                <h2 className='mb-4 text-center font-title text-xl font-bold text-foreground'>
+                    Summarize Your Strengths (Keywords)
+                </h2>
+                <div className='flex flex-wrap justify-center gap-4'>
+                    {[
+                        'Add your values/keywords',
+                        'e.g. teamwork / user-first',
+                        'e.g. craft / learning',
+                        'e.g. reliability / ownership',
+                    ].map((text, idx) => (
+                        <span
+                            key={`${idx}-${text}`}
+                            className='rounded-full border border-primary bg-background px-4 py-2 text-sm font-semibold text-primary shadow-sm transition hover:shadow'
+                            title='Edit this keyword to describe yourself'
+                        >
+                            #{text}
+                        </span>
+                    ))}
+                </div>
+            </motion.section>
 
-            {/* ===== My Journey ===== */}
+            {/* My Journey */}
             <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +121,7 @@ const AboutPage = () => {
                 </ul>
             </motion.section>
 
-            {/* ===== Testimonials ===== */}
+            {/* Testimonials */}
             <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -154,9 +148,9 @@ const AboutPage = () => {
                             feedback:
                                 'Include praise for delivery, ownership, or how you improved team workflow.',
                         },
-                    ].map(({ name, feedback }) => (
+                    ].map(({ name, feedback }, idx) => (
                         <div
-                            key={name}
+                            key={`${idx}-${name}`}
                             className='rounded-md border border-border bg-background p-5 shadow-sm transition hover:shadow-md'
                         >
                             <p className='mb-3 text-muted'>"{feedback}"</p>
@@ -168,7 +162,7 @@ const AboutPage = () => {
                 </div>
             </motion.section>
 
-            {/* ===== Tech Stack ===== */}
+            {/* Tech Stack */}
             <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -199,7 +193,7 @@ const AboutPage = () => {
                 </div>
             </motion.section>
 
-            {/* ===== CTA ===== */}
+            {/* CTA */}
             <motion.section
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}

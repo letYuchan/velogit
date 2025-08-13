@@ -95,7 +95,7 @@ const Footer = () => {
                 </a>
                 <a
                     target='_blank'
-                    href='mailto:yuchancho174@gmail.com'
+                    href='mailto:velogit.letyuchan@gmail.com'
                     className='flex flex-col flex-nowrap items-center justify-start'
                 >
                     <HiOutlineMail className='text-2xl text-primary transition-transform ease-in-out hover:scale-110 active:scale-110 sm:text-3xl' />

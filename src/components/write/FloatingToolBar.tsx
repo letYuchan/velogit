@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { TOOL_ITEMS } from '@/data/toolItems';
 import { insertMarkdownSyntax } from '@/utils/write';
+import { TOOL_ITEMS } from '@/data/write.constants';
 
 interface FloatingToolbarProps {
     textareaRef: React.RefObject<HTMLTextAreaElement | null>;

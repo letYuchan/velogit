@@ -50,7 +50,7 @@ const HomePage = () => {
     return (
         <main
             aria-label='Velogit blog homepage with category and post list'
-            className='flex w-full flex-col items-center justify-start gap-5'
+            className='mb-10 flex w-full flex-col items-center justify-start gap-5'
         >
             <BlogHeader />
             {/* Tob bar */}
@@ -117,7 +117,6 @@ const HomePage = () => {
                         </div>
                     </section>
                 </div>
-
                 {/* sort section */}
                 <section aria-label='sort section' className='flexjustify-start'>
                     <button

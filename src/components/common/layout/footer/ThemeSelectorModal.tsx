@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
 import { applyThemeClass } from '@/utils';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
-import { THEMES } from '@/data/themeComponents';
 import { X } from 'lucide-react';
+import { THEMES } from '@/data/index.constans';
 
 interface ThemeSelectorModal {
     setIsThemeSelectorModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,10 +38,12 @@ const ThemeSelectorModal = ({ setIsThemeSelectorModalOpen }: ThemeSelectorModal)
                 <X size={32} className='text-main hover:text-primary' />
             </button>
             <div className='w-full max-w-lg rounded-2xl bg-background p-6 shadow-xl'>
+                {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>Theme Selector</h2>
                     <span className='text-xs text-muted'>ESC to close</span>
                 </div>
+                {/* theme select buttons */}
                 <div className='grid grid-cols-2 gap-2 xl:grid-cols-3'>
                     {THEMES.map(({ id, name, icon, color }) => (
                         <button
@@ -63,6 +65,7 @@ const ThemeSelectorModal = ({ setIsThemeSelectorModalOpen }: ThemeSelectorModal)
                         </button>
                     ))}
                 </div>
+                {/* Modal-footer */}
                 <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                     <button
                         className='h-8 w-full rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'

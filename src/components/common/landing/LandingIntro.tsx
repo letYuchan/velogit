@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import clsx from 'clsx';
-import { landingBackgroundMap } from '@/data/themeImgPathData';
+import { landingBackgroundMap } from '@/data/index.constans';
 
 const LandingIntro = () => {
     const [isDismissed, setIsDismissed] = useState(false);

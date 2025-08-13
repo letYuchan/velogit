@@ -1,7 +1,8 @@
 import GrowthStatusModal from '@/components/home/GrowthStatusModal';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants/theme.constants';
-import { blogDesc, blogOwnerDesc, profileImgPath } from '@/data/blogHeaderIntroData';
-import { headerBackgroundMap, backgroundPositionMap } from '@/data/themeImgPathData';
+import { profileImgPath, blogOwnerDesc, blogDesc } from '@/data/home.constants';
+import { headerBackgroundMap, backgroundPositionMap } from '@/data/index.constans';
+
 import { useEffect, useState } from 'react';
 import { HiChartBar } from 'react-icons/hi';
 

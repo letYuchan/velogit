@@ -1,4 +1,3 @@
-import { validLanguageToolCodes } from '@/data/validLanguageToolCodes';
 import {
     useGetAllAvailableLanguagesQuery,
     useMultilingualSpellCheckMutation,
@@ -16,6 +15,7 @@ import {
 } from '@/utils/write';
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
+import { validLanguageToolCodes } from '@/data/write.constants';
 
 interface MultilingualSpellCheckModalProps {
     setIsMultilingualModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
