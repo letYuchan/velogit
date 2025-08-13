@@ -252,7 +252,7 @@ export const helpGuideMetaDataList = [
         ],
         descriptions: [
             '1. When entering Write/Edit mode, you will first be taken to the FrontMatter Data entry page. The post’s title, publish date, and category are required fields. For the thumbnail path, use the placeholder format as a reference. The two buttons at the top right allow you to temporarily save the post’s information, with up to five entries stored in order of most recent.',
-            '섹션 7 설명 B',
+            '2. The next step is the Content Writing page. The toolbar contains various Markdown syntax and HTML tag insertion tools. There are two image buttons: the first inserts using Markdown syntax, and the second inserts using an HTML <img> tag. You can also insert a <details><summary></summary></details> element. For file uploads, clicking the file-icon button inserts a downloadable link for other users. The grid-style image button is for inserting tables. External image links can be pasted and applied immediately. The floating toolbar feature displays the editing tools near your current cursor position in real time. Basic spell-checking is available, though still in beta. The User Preview button lets you see the exact formatted content as other users would. Finally, click the Publish button—this will automatically copy a command to your clipboard. Navigate to the velogit/ root directory in your terminal, paste the command, press Enter, and your changes will be automatically deployed to GitHub Pages.',
         ],
     },
 ];

@@ -309,6 +309,36 @@ export const mapKoChange: MapToHighlight<KoChange> = c => {
     };
 };
 
+export const handlePasteImageUrl = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const ta = e.currentTarget;
+    const plain = e.clipboardData.getData('text/plain')?.trim();
+    if (!plain) return false;
+
+    const isImgUrl = /^https?:\/\/[^\s]+?\.(png|jpe?g|gif|webp|svg)(\?[^\s]*)?$/i.test(plain);
+    if (!isImgUrl) return false;
+
+    e.preventDefault();
+
+    const asHtml = confirm('Image URL detected.\nOK = HTML <img>, Cancel = Markdown ![]()');
+
+    const snippet = asHtml
+        ? `<img src="${plain}" alt="image" height="300px" width="200px" />`
+        : `![image](${plain})`;
+
+    insertAtCursor(ta, snippet);
+    return true;
+};
+
+const insertAtCursor = (ta: HTMLTextAreaElement, text: string) => {
+    const { selectionStart, selectionEnd, value } = ta;
+    const next = value.slice(0, selectionStart) + text + value.slice(selectionEnd);
+    ta.value = next;
+    const pos = selectionStart + text.length;
+    ta.selectionStart = ta.selectionEnd = pos;
+    ta.focus();
+    ta.dispatchEvent(new Event('input', { bubbles: true }));
+};
+
 /*
 유틸리티 모음 (Markdown/Clipboard/TOC-Highlight Helpers)
 
@@ -430,4 +460,17 @@ export const mapKoChange: MapToHighlight<KoChange> = c => {
   - !from && to → INSERT
   - from && !to → DELETE
   - 그 외 → REPLACE
+────────────────────────────────────────────────────────
+8) handlePasteImageUrl(e)
+ ────────────────────────────────────────────────────────
+- 기능: 붙여넣기 이벤트에서 이미지 URL을 감지하여 HTML <img> 태그 또는 마크다운 ![]() 문법으로 삽입.
+- 입력: e: React.ClipboardEvent<HTMLTextAreaElement> → textarea에서 발생한 paste 이벤트 객체.
+- 출력:
+  - boolean → true: 이미지 URL 감지 및 삽입 완료, false: 기본 붙여넣기 동작 진행.
+- 비고:
+  - http(s)로 시작하고 png/jpg/jpeg/gif/webp/svg 확장자로 끝나는 URL(쿼리스트링 허용)을 감지.
+  - confirm 창에서 선택:
+    - 확인(OK): HTML <img src="..."> 형태로 삽입.
+    - 취소(Cancel): 마크다운 ![image](...) 형태로 삽입.
+  - URL이 감지되면 기본 붙여넣기 동작을 막음.
 */

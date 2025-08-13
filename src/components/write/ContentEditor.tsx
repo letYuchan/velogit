@@ -9,6 +9,7 @@ import UserViewPreview from '@/components/write/UserViewPreview';
 import { toast } from 'react-toastify';
 import CommonLoading from '@/components/common/CommonLoading';
 import { POST_KEY } from '@/constants/write';
+import { handlePasteImageUrl } from '@/utils/write';
 
 interface ContentEditorProps {
     setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>>;
@@ -143,6 +144,7 @@ const ContentEditor = ({ setStep, mode, editablePost }: ContentEditorProps) => {
                     value={content}
                     onChange={handleContentChange}
                     onKeyDown={handleTextareaTabKey}
+                    onPaste={handlePasteImageUrl}
                     className={clsx(
                         'min-h-[400px] w-full resize-y rounded-md border-l-8 bg-background-second p-4 text-base leading-relaxed text-foreground transition-colors duration-200 ease-in-out focus:outline-none',
                         isContentInvalid ? 'border-error placeholder:text-error' : 'border-primary',
@@ -184,6 +186,7 @@ export default ContentEditor;
  * - 마크다운 기반 포스트 작성/수정 UI 제공
  * - 내용 입력, 사용자 미리보기, JSON 파일 내보내기(퍼블리시/수정용) 기능 지원
  * - 로컬 상태 및 전역 상태(usePostWriteStore) 연동
+ * - 붙여넣기 시 이미지 URL 자동 처리(handlePasteImageUrl)
  *
  * props (ContentEditorProps):
  * - setStep: React.Dispatch<React.SetStateAction<'meta' | 'content'>> → 작성 단계 전환 함수
@@ -211,13 +214,18 @@ export default ContentEditor;
  * - handleContentChange(e): textarea 변경 시 content 상태 업데이트
  * - handleTextareaTabKey(e): Tab 키 입력 시 공백 2칸 삽입 (기본 포커스 이동 방지)
  * - exportPostAsJson():
- *   1) 퍼블리시/수정 확인(confirm)
+ *   1) 퍼블리시/수정 여부 확인(confirm)
  *   2) frontmatter 유효성 검사 (title/date/category)
  *   3) content 유효성 검사
  *   4) buildMarkdown()으로 마크다운 생성
  *   5) JSON 파일(blob) 생성 및 다운로드
- *   6) 자동 실행 명령어(npx tsx scripts/...) 클립보드 복사
- *   7) 성공 시 로딩 화면 → 홈 이동
+ *   6) 자동 실행 명령어(npx tsx scripts/...)를 클립보드에 복사
+ *   7) 성공 시 로딩 화면 표시 후 홈으로 이동
+ * - handlePasteImageUrl(e): 클립보드에서 붙여넣기 발생 시
+ *   1) 붙여넣은 내용이 이미지 URL인지 검사
+ *   2) 사용자에게 HTML 태그(`<img>`)로 넣을지, 마크다운(`![alt](url)`)으로 넣을지 선택하게 함
+ *   3) 선택에 맞춰 textarea에 해당 이미지 삽입
+ *   4) 커서 및 selection 범위 조정
  *
  * useEffect:
  * - mode === 'edit' && editablePost 존재 시:
@@ -233,6 +241,7 @@ export default ContentEditor;
  *    - 최소 높이 400px, border-l-8
  *    - content 유효성 여부에 따라 border 색상(error 또는 primary)
  *    - Tab 입력 시 공백 삽입 가능
+ *    - onPaste 시 handlePasteImageUrl 실행
  * 3) 하단 버튼:
  *    - "User Preview": 사용자 미리보기 모달 열기
  *    - "Publish" 또는 "Edit": exportPostAsJson 실행
@@ -241,4 +250,5 @@ export default ContentEditor;
  * 1) 작성 모드(write) 또는 수정 모드(edit)에 따라 UI와 로직 분기
  * 2) 유효성 검증 후 JSON 파일 다운로드 및 자동 실행 명령어 클립보드 복사
  * 3) 성공 시 로딩 표시 후 홈으로 이동
+ * 4) 붙여넣기 시 이미지 URL 감지 → HTML/Markdown 삽입 선택
  */
