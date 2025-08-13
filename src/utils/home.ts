@@ -1,3 +1,4 @@
+import { dragonEvolutionGifPathMap } from '@/data/home.constants';
 import { posts } from '@/utils';
 
 export const categories = Array.from(new Set(posts.map(post => post.category)));
@@ -29,14 +30,6 @@ export const getTopThreeCategories = (posts: PostData[]): [string, number][] => 
     return Object.entries(categoryMap)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 3);
-};
-
-const dragonEvolutionGifPathMap = {
-    egg: 'images/egg.gif',
-    baby: 'images/babyDragon.gif',
-    teen: 'images/youngDragon.gif',
-    adult: 'images/devFlare.gif',
-    final: 'images/devnity.gif',
 };
 
 export const getDragonEvolutionGifByLevel = (level: number) => {

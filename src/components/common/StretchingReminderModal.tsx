@@ -74,7 +74,7 @@ const StretchingReminderModal = ({
 
                 {/* Modal-mainFeature: description */}
                 <img
-                    src={`${import.meta.env.BASE_URL}images/stretching.png`}
+                    src={`${import.meta.env.BASE_URL}images/system/stretching/stretching.png`}
                     className='mx-auto aspect-[4/3] w-[80%] rounded-lg object-contain'
                     alt='Stretching'
                 />

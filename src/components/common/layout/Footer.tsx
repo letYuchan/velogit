@@ -1,5 +1,6 @@
 import BackgroundMusicController from '@/components/common/layout/footer/BackgroundMusicController';
 import DarkmodeToggleButton from '@/components/common/layout/footer/DarkmodeToggleButton';
+import HelpModal from '@/components/common/layout/footer/HelpModal';
 import StretchingReminderSettingModal from '@/components/common/layout/footer/StretchingReminderSettingModal';
 import ThemeSelectorModal from '@/components/common/layout/footer/ThemeSelectorModal';
 import { getAudioFileUrls } from '@/utils';
@@ -113,7 +114,7 @@ const Footer = () => {
             {isThemeSelectorModalOpen && (
                 <ThemeSelectorModal setIsThemeSelectorModalOpen={setIsThemeSelectorModalOpen} />
             )}
-            {/* {isHelpModalOpen && <HelpModal setIsHelpModalOpen={setIsHelpMdoalOpen} />} */}
+            {isHelpModalOpen && <HelpModal setIsHelpModalOpen={setIsHelpMdoalOpen} />}
             {isStretchingReminderSettingModalopen && (
                 <StretchingReminderSettingModal
                     setIsStretchingReminderSettingModalOpen={

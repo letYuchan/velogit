@@ -126,42 +126,42 @@ export const THEMES = [
 
 // LandingIntro.tsx
 export const landingBackgroundMap: Record<string, string> = {
-    default: `${import.meta.env.BASE_URL}images/wave.png`,
-    dragon: `${import.meta.env.BASE_URL}images/dragon.png`,
-    sakura: `${import.meta.env.BASE_URL}images/sakura.png`,
-    arctic: `${import.meta.env.BASE_URL}images/arctic.png`,
-    anime: `${import.meta.env.BASE_URL}images/anime.png`,
-    space: `${import.meta.env.BASE_URL}images/space.png`,
-    mono: `${import.meta.env.BASE_URL}images/mono.png`,
-    dev: `${import.meta.env.BASE_URL}images/dev.png`,
-    cat: `${import.meta.env.BASE_URL}images/cat.png`,
-    dog: `${import.meta.env.BASE_URL}images/dog.png`,
-    neonnebula: `${import.meta.env.BASE_URL}images/neonnebula.png`,
-    hacker: `${import.meta.env.BASE_URL}images/hacker.png`,
-    vintage: `${import.meta.env.BASE_URL}images/vintage.png`,
-    lofi: `${import.meta.env.BASE_URL}images/lofi.png`,
-    ghibli: `${import.meta.env.BASE_URL}images/ghibli.png`,
-    custom: `${import.meta.env.BASE_URL}images/custom.png`, // fill your main Img path in here
+    default: `${import.meta.env.BASE_URL}images/system/themes/wave.png`,
+    dragon: `${import.meta.env.BASE_URL}images/system/themes/dragon.png`,
+    sakura: `${import.meta.env.BASE_URL}images/system/themes/sakura.png`,
+    arctic: `${import.meta.env.BASE_URL}images/system/themes/arctic.png`,
+    anime: `${import.meta.env.BASE_URL}images/system/themes/anime.png`,
+    space: `${import.meta.env.BASE_URL}images/system/themes/space.png`,
+    mono: `${import.meta.env.BASE_URL}images/system/themes/mono.png`,
+    dev: `${import.meta.env.BASE_URL}images/system/themes/dev.png`,
+    cat: `${import.meta.env.BASE_URL}images/system/themes/cat.png`,
+    dog: `${import.meta.env.BASE_URL}images/system/themes/dog.png`,
+    neonnebula: `${import.meta.env.BASE_URL}images/system/themes/neonnebula.png`,
+    hacker: `${import.meta.env.BASE_URL}images/system/themes/hacker.png`,
+    vintage: `${import.meta.env.BASE_URL}images/system/themes/vintage.png`,
+    lofi: `${import.meta.env.BASE_URL}images/system/themes/lofi.png`,
+    ghibli: `${import.meta.env.BASE_URL}images/system/themes/ghibli.png`,
+    custom: `${import.meta.env.BASE_URL}images/system/themes/custom.png`, // fill your main Img path in here
 };
 
 // BlogHeader.tsx
 export const headerBackgroundMap: Record<string, string> = {
-    default: `${import.meta.env.BASE_URL}images/wave-header.png`,
-    dragon: `${import.meta.env.BASE_URL}images/dragon-header.png`,
-    sakura: `${import.meta.env.BASE_URL}images/sakura-header.png`,
-    arctic: `${import.meta.env.BASE_URL}images/arctic-header.png`,
-    anime: `${import.meta.env.BASE_URL}images/anime-header.png`,
-    space: `${import.meta.env.BASE_URL}images/space-header.png`,
-    mono: `${import.meta.env.BASE_URL}images/mono-header.png`,
-    dev: `${import.meta.env.BASE_URL}images/dev-header.png`,
-    cat: `${import.meta.env.BASE_URL}images/cat-header.png`,
-    dog: `${import.meta.env.BASE_URL}images/dog-header.png`,
-    neonnebula: `${import.meta.env.BASE_URL}images/neonnebula-header.png`,
-    hacker: `${import.meta.env.BASE_URL}images/hacker-header.png`,
-    vintage: `${import.meta.env.BASE_URL}images/vintage-header.png`,
-    lofi: `${import.meta.env.BASE_URL}images/lofi-header.png`,
-    ghibli: `${import.meta.env.BASE_URL}images/ghibli-header.png`,
-    custom: `${import.meta.env.BASE_URL}images/custom-header.png`, // fill your blog header Img path in here
+    default: `${import.meta.env.BASE_URL}images/system/themes/wave-header.png`,
+    dragon: `${import.meta.env.BASE_URL}images/system/themes/dragon-header.png`,
+    sakura: `${import.meta.env.BASE_URL}images/system/themes/sakura-header.png`,
+    arctic: `${import.meta.env.BASE_URL}images/system/themes/arctic-header.png`,
+    anime: `${import.meta.env.BASE_URL}images/system/themes/anime-header.png`,
+    space: `${import.meta.env.BASE_URL}images/system/themes/space-header.png`,
+    mono: `${import.meta.env.BASE_URL}images/system/themes/mono-header.png`,
+    dev: `${import.meta.env.BASE_URL}images/system/themes/dev-header.png`,
+    cat: `${import.meta.env.BASE_URL}images/system/themes/cat-header.png`,
+    dog: `${import.meta.env.BASE_URL}images/system/themes/dog-header.png`,
+    neonnebula: `${import.meta.env.BASE_URL}images/system/themes/neonnebula-header.png`,
+    hacker: `${import.meta.env.BASE_URL}images/system/themes/hacker-header.png`,
+    vintage: `${import.meta.env.BASE_URL}images/system/themes/vintage-header.png`,
+    lofi: `${import.meta.env.BASE_URL}images/system/themes/lofi-header.png`,
+    ghibli: `${import.meta.env.BASE_URL}images/system/themes/ghibli-header.png`,
+    custom: `${import.meta.env.BASE_URL}images/system/themes/custom-header.png`, // fill your blog header Img path in here
 };
 
 // BlogHeader.tsx
