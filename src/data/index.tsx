@@ -234,6 +234,17 @@ export const helpGuideMetaDataList = [
         ],
     },
     {
+        title: 'Home Page Descriptions',
+        images: [
+            `${import.meta.env.BASE_URL}images/system/help/helpHomePageDesc1.png`,
+            `${import.meta.env.BASE_URL}images/system/help/helpHomePageDesc2.png`,
+        ],
+        descriptions: [
+            '1. The Home Page includes the following features. First the sort button at the top right of the post list toggles between ascending and descending order by date. Second posts can be filtered by category and by tags. Third clicking the graph-like button in the blog header opens a modal that shows blog growth and a summary.',
+            '2. In the Blog Growth modal, you can check your growth in a fun way with arcade-style animated GIFs. The modal displays your blog level, the top 3 categories, and a post count summary UI similar to GitHub’s contribution graph. You level up once for every 5 posts published.',
+        ],
+    },
+    {
         title: 'Footer Features Descriptions',
         images: [
             `${import.meta.env.BASE_URL}images/system/help/helpFooterDesc1.png`,
