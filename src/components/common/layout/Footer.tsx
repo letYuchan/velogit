@@ -25,7 +25,7 @@ const Footer = () => {
             {/* copyright, license */}
             <div className='text-md flex flex-col gap-1'>
                 <p className='text-sm font-bold text-foreground'>
-                    © 2025 Velogit — Created
+                    © 2025 velogit — Created&nbsp;
                     <a
                         href='https://github.com/letYuchan/'
                         className='text-primary underline decoration-dotted hover:decoration-solid active:decoration-solid'

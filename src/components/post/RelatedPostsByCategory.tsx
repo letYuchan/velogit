@@ -23,7 +23,7 @@ const RelatedPostsByCategory = ({ currentSlug, category }: RelatedPostsByCategor
 
     return (
         <section className='my-5 w-full max-w-3xl p-4'>
-            {/* header */}
+            {/* Header */}
             <div
                 className='mb-4 flex cursor-pointer items-center justify-between border-t border-t-primary py-4'
                 onClick={() => setIsOpen(prev => !prev)}

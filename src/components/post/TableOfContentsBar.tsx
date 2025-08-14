@@ -19,12 +19,12 @@ const TableOfContentsBar = ({ tableOfContentsTree }: TableOfContentsBarProps) =>
     if (!tableOfContentsTree.length) return null;
 
     return (
-        <aside className='fixed right-8 top-8 hidden w-60 translate-y-1/2 transform flex-col items-start justify-between overflow-hidden rounded-xl bg-background px-2 py-4 shadow-md xl:flex'>
+        <aside className='fixed right-8 top-20 z-50 hidden w-60 flex-col items-start justify-between overflow-hidden rounded-xl bg-background px-2 py-4 shadow-md xl:flex'>
             <h1 className='mb-4 self-center font-title text-xl font-bold text-foreground'>
                 On this page
             </h1>
             <ul className='ml-4 flex w-full flex-col flex-nowrap items-start justify-around gap-2 border-l border-border pl-4 font-semibold text-muted'>
-                {/* start mapping */}
+                {/* Start mapping */}
                 {tableOfContentsTree.map(h1 => (
                     <li key={h1.id} className='w-full'>
                         <a
