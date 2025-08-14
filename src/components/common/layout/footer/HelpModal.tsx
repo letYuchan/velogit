@@ -86,9 +86,9 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                                     />
                                 ))}
                             </div>
-                            <div className='flex max-w-2xl flex-col gap-2 text-center'>
+                            <div className='flex w-full max-w-2xl flex-col gap-2 text-center'>
                                 {descriptions[lang].map((desc, idx) => (
-                                    <p key={idx} className='text-muted'>
+                                    <p key={idx} className='leading-relaxed text-muted'>
                                         {desc}
                                     </p>
                                 ))}
