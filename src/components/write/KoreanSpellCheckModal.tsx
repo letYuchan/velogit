@@ -1,5 +1,6 @@
 import { useArrowIndexNavigation } from '@/hooks/useArrowIndexNavigation';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { useKoreanSpellCheckMutation } from '@/services/spellCheck.queries';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { copyCorrectedTextToClipboard, getHighlightedFragments, mapKoChange } from '@/utils/write';
@@ -28,6 +29,7 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
     const total = changes.length;
     const current = total ? changes[currentIndex] : undefined;
 
+    const isMobile = useIsMobile();
     useArrowIndexNavigation({
         enabled: true,
         total,
@@ -35,7 +37,6 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
         setCurrentIndex,
         loop: false,
     });
-
     useEscapeToCloseModal(() => setIsKoreanModalOpen(false));
 
     const correctedText = useMemo(() => {
@@ -63,9 +64,11 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
 
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-            <button onClick={handleCloseModal} className='absolute left-4 top-4'>
-                <X size={32} className='text-main hover:text-primary' />
-            </button>
+            {!isMobile && (
+                <button onClick={handleCloseModal} className='absolute left-4 top-4'>
+                    <X size={32} className='text-main hover:text-primary' />
+                </button>
+            )}
             <div className='w-full max-w-6xl rounded-2xl bg-background p-6 shadow-xl'>
                 {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
@@ -79,7 +82,9 @@ const KoreanSpellCheckModal = ({ setIsKoreanModalOpen }: KoreanSpellCheckModalPr
                         >
                             Model - Soyoung97 &#40;gec_kr&#41;
                         </a>
-                        <span className='self-end text-xs text-muted'>ESC to close</span>
+                        {!isMobile && (
+                            <span className='self-end text-xs text-muted'>ESC to close</span>
+                        )}
                     </div>
                 </div>
 

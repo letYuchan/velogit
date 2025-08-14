@@ -5,6 +5,7 @@ import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
 import { X } from 'lucide-react';
 import { THEMES } from '@/data';
 import { SELECTED_THEME_STORAGE_KEY } from '@/constants';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface ThemeSelectorModal {
     setIsThemeSelectorModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,6 +13,7 @@ interface ThemeSelectorModal {
 const ThemeSelectorModal = ({ setIsThemeSelectorModalOpen }: ThemeSelectorModal) => {
     const [currentTheme, setCurrentTheme] = useState<string>('default');
 
+    const isMobile = useIsMobile();
     useEscapeToCloseModal(() => setIsThemeSelectorModalOpen(false));
 
     const handleCloseModal = () => {
@@ -34,14 +36,16 @@ const ThemeSelectorModal = ({ setIsThemeSelectorModalOpen }: ThemeSelectorModal)
 
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-            <button onClick={handleCloseModal} className='absolute left-4 top-4'>
-                <X size={32} className='text-main hover:text-primary' />
-            </button>
+            {!isMobile && (
+                <button onClick={handleCloseModal} className='absolute left-4 top-4'>
+                    <X size={32} className='text-main hover:text-primary' />
+                </button>
+            )}
             <div className='w-full max-w-lg rounded-2xl bg-background p-6 shadow-xl'>
                 {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>Theme Selector</h2>
-                    <span className='text-xs text-muted'>ESC to close</span>
+                    {!isMobile && <span className='text-xs text-muted'>ESC to close</span>}
                 </div>
                 {/* theme select buttons */}
                 <div className='grid grid-cols-2 gap-2 xl:grid-cols-3'>

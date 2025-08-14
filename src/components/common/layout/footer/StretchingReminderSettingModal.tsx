@@ -1,5 +1,6 @@
 import { STRETCHING_SEC_OPTIONS, POPUP_MIN_OPTIONS } from '@/constants';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { useStretchingReminderStore } from '@/store/useStretchingReminderStore';
 import clsx from 'clsx';
 import { X } from 'lucide-react';
@@ -15,6 +16,7 @@ const StretchingReminderSettingModal = ({
         useStretchingReminderStore();
 
     useEscapeToCloseModal(() => setIsStretchingReminderSettingModalOpen(false));
+    const isMobile = useIsMobile();
 
     const handleCloseModal = () => setIsStretchingReminderSettingModalOpen(false);
 
@@ -23,16 +25,18 @@ const StretchingReminderSettingModal = ({
 
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-            <button onClick={handleCloseModal} className='absolute left-4 top-4'>
-                <X size={32} className='text-main hover:text-primary' />
-            </button>
+            {!isMobile && (
+                <button onClick={handleCloseModal} className='absolute left-4 top-4'>
+                    <X size={32} className='text-main hover:text-primary' />
+                </button>
+            )}
             <div className='w-full max-w-lg rounded-2xl bg-background p-6 shadow-xl'>
                 {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>
                         Stretching Setting
                     </h2>
-                    <span className='text-xs text-muted'>ESC to close</span>
+                    {!isMobile && <span className='text-xs text-muted'>ESC to close</span>}
                 </div>
                 {/* Modal-mainFeature: stretching duration */}
                 <section className='mb-10 flex flex-col gap-1'>

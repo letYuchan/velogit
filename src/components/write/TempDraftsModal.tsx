@@ -1,5 +1,6 @@
 import { DRAFT_STORAGE_KEY } from '@/constants/write';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { X } from 'lucide-react';
 
@@ -16,6 +17,7 @@ const TempDraftsModal = ({
 }: TempDraftsModalProps) => {
     const { restoreFastDraftsFromLocal, setField } = usePostWriteStore();
 
+    const isMobile = useIsMobile();
     useEscapeToCloseModal(() => setIsTempDraftsModalOpen(false));
 
     const handleCloseModal = () => {
@@ -38,14 +40,16 @@ const TempDraftsModal = ({
 
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-            <button onClick={handleCloseModal} className='absolute left-4 top-4'>
-                <X size={32} className='text-main hover:text-primary' />
-            </button>
+            {!isMobile && (
+                <button onClick={handleCloseModal} className='absolute left-4 top-4'>
+                    <X size={32} className='text-main hover:text-primary' />
+                </button>
+            )}
             <div className='w-full max-w-md rounded-2xl bg-background p-6 shadow-xl'>
                 {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>Saved Drafts</h2>
-                    <span className='text-xs text-muted'>ESC to close</span>
+                    {!isMobile && <span className='text-xs text-muted'>ESC to close</span>}
                 </div>
                 {/* Temp Posts */}
                 <ul className='space-y-3'>

@@ -1,5 +1,6 @@
 import MarkdownRenderer from '@/components/common/MarkdownRenderer';
 import { useEscapeToCloseModal } from '@/hooks/useEscapeToCloseModal';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { usePostWriteStore } from '@/store/usePostWriteStore';
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
@@ -15,6 +16,7 @@ const UserViewPreview = ({
 }: UserViewPreviewProps) => {
     const { category, content, date, tags, title } = usePostWriteStore();
 
+    const isMobile = useIsMobile();
     useEscapeToCloseModal(() => setIsUserViewPreviewModalOpen(false));
 
     const handleCloseModal = () => {
@@ -42,9 +44,11 @@ const UserViewPreview = ({
 
     return (
         <div className='fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-black/50 p-4'>
-            <button onClick={handleCloseModal} className='absolute left-4 top-4'>
-                <X size={32} className='text-main hover:text-primary' />
-            </button>
+            {!isMobile && (
+                <button onClick={handleCloseModal} className='absolute left-4 top-4'>
+                    <X size={32} className='text-main hover:text-primary' />
+                </button>
+            )}
             <div className='h-[90vh] w-full max-w-4xl overflow-y-auto bg-background-second shadow-xl'>
                 <MarkdownRenderer parsedFrontMatter={parsedFrontMatter} content={content} />
             </div>

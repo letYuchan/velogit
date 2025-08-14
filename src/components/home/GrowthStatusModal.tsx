@@ -10,6 +10,7 @@ import {
 } from '@/utils/home';
 import { posts } from '@/utils';
 import { POSTS_PER_PAGE } from '@/constants/home';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface GrowthStatusModalProps {
     setIsGrowthStatusModalOepn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,6 +31,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
         return sortedPosts.slice(start, start + POSTS_PER_PAGE);
     }, [sortedPosts, currentIndex]);
 
+    const isMobile = useIsMobile();
     useEscapeToCloseModal(() => setIsGrowthStatusModalOepn(false));
     useArrowIndexNavigation({
         enabled: true,
@@ -54,13 +56,11 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
 
     return createPortal(
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-            <button
-                onClick={handleCloseModal}
-                className='absolute left-4 top-4'
-                aria-label='Close growth status'
-            >
-                <X size={32} className='text-main hover:text-primary' />
-            </button>
+            {!isMobile && (
+                <button onClick={handleCloseModal} className='absolute left-4 top-4'>
+                    <X size={32} className='text-main hover:text-primary' />
+                </button>
+            )}
 
             <div className='w-full max-w-lg rounded-2xl border border-border bg-background p-5 shadow-2xl'>
                 {/* Header */}
@@ -68,7 +68,7 @@ const GrowthStatusModal = ({ setIsGrowthStatusModalOepn }: GrowthStatusModalProp
                     <h2 className='font-title text-xl font-bold text-foreground'>
                         🚀 My Growth Status
                     </h2>
-                    <span className='text-xs text-muted'>ESC to close</span>
+                    {!isMobile && <span className='text-xs text-muted'>ESC to close</span>}
                 </div>
 
                 {/* Level Info */}
