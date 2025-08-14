@@ -314,4 +314,24 @@ export const helpGuideMetaDataList = [
             ],
         },
     },
+    {
+        title: {
+            ko: '메타데이터 오픈그래프 설정',
+            en: 'Open Graph Metadata Setup',
+        },
+        images: [
+            `${import.meta.env.BASE_URL}images/system/help/helpMetaDataDesc1.png`,
+            `${import.meta.env.BASE_URL}images/system/help/helpMetaDataDesc2.png`,
+        ],
+        descriptions: {
+            ko: [
+                '1. Open Graph 설정을 위해 velogit/index.html 파일로 들어가 주세요.',
+                '2. https://letyuchan.github.io 가 들어간 부분에서 letyuchan을 여러분의 깃허브 사용자 이름으로 교체해주세요. 나머지 코드는 절대 수정하지 마세요.',
+            ],
+            en: [
+                '1. To configure Open Graph metadata, open the velogit/index.html file.',
+                '2. In any URL containing https://letyuchan.github.io, replace "letyuchan" with your own GitHub username. Do not modify any other parts of the code.',
+            ],
+        },
+    },
 ];

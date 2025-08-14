@@ -1,4 +1,5 @@
 // BlogHeader.tsx
+// here ↓
 export const profileImgPath = `${import.meta.env.BASE_URL}images/system/test/test.jpg`;
 export const blogOwnerDesc = `Your-name(github-name)'s Velog`;
 export const blogDesc = `Briefly summarize your blog topic and description`;

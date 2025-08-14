@@ -4,14 +4,14 @@ const CategoryListSideBar = () => {
     if (!categories || categories.length === 0) return null;
 
     return (
-        <aside className='w-30 fixed left-36 top-20 hidden rounded-xl bg-background px-4 py-6 shadow-md xl:flex'>
+        <aside className='fixed left-24 top-20 line-clamp-1 hidden w-52 overflow-auto whitespace-pre-wrap break-words rounded-xl bg-background px-4 py-6 shadow-md xl:flex'>
             <div className='flex w-full flex-col gap-4'>
                 <h2 className='text-center text-xl font-bold text-foreground'>Categories</h2>
                 <ul className='flex flex-col gap-1 font-semibold text-muted'>
                     {categories.map(category => (
                         <li
                             key={category}
-                            className='text-center text-sm transition-colors hover:text-primary active:text-primary'
+                            className='border-b border-b-border text-center text-sm transition-colors hover:text-primary active:text-primary'
                         >
                             {category}
                         </li>
