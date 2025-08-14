@@ -76,7 +76,7 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                                 key={idx}
                                 src={src}
                                 alt={`${title[lang]}-img-${idx}`}
-                                className='h-60 w-60 rounded-lg border border-border bg-background-second object-contain object-center shadow transition-transform ease-in-out hover:scale-110 active:scale-110'
+                                className='h-44 w-44 rounded-lg border border-border bg-background-second object-contain object-center shadow transition-transform ease-in-out hover:scale-110 active:scale-110 md:h-60 md:w-60'
                             />
                         ))}
                     </div>
