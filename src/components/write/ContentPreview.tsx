@@ -16,7 +16,7 @@ const ContentPreview = ({ mode }: ContentPreviewProps) => {
     };
 
     return (
-        <section className='flex w-full flex-1 flex-col justify-between gap-4 border-r border-border bg-background-second p-4 sm:w-1/2'>
+        <section className='flex w-full flex-col justify-between gap-4 border-r border-border bg-background-second p-4 lg:w-auto lg:min-w-[801px]'>
             <MarkdownRenderer
                 content={
                     mode === 'edit' ? content.replace(/^---\n[\s\S]*?\n---/, '').trim() : content
