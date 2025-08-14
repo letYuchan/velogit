@@ -32,13 +32,13 @@ const FrontMatterPreview = () => {
                                 tags.map((tag, idx) => (
                                     <span
                                         key={`${tag}-${idx}`}
-                                        className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
+                                        className='flex h-6 items-center justify-center rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
                                     >
                                         #{tag}
                                     </span>
                                 ))
                             ) : (
-                                <span className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'>
+                                <span className='flex h-6 items-center justify-center rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'>
                                     #No #tag
                                 </span>
                             )}
@@ -124,7 +124,7 @@ export default FrontMatterPreview;
  *    - Footer:
  *      - "Read more" 텍스트 + 화살표 아이콘
  *
- * 2) **구분선(contour)**: 회색 1px 라인
+ * 2) **구분선(contour)**: primary 1px 라인
  *
  * 3) **Post Header 미리보기**
  *    - <PostPageHeader /> 컴포넌트 호출

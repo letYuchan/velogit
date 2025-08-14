@@ -23,13 +23,13 @@ const PostCard = ({ post }: { post: PostData }) => {
                         post.tags.map((tag, idx) => (
                             <span
                                 key={`${post.slug}-${tag}-${idx}`}
-                                className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
+                                className='flex h-6 items-center justify-center rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'
                             >
                                 #{tag}
                             </span>
                         ))
                     ) : (
-                        <span className='rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'>
+                        <span className='flex h-6 items-center justify-center rounded-md bg-primary px-2 py-1 text-sm font-semibold text-main'>
                             #No #tag
                         </span>
                     )}
