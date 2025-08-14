@@ -33,7 +33,7 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
             <button onClick={handleCloseModal} className='absolute left-4 top-4'>
                 <X size={32} className='text-main hover:text-primary' />
             </button>
-            <div className='flex w-full max-w-3xl flex-col rounded-2xl bg-background p-6 shadow-xl'>
+            <div className='flex max-h-[90vh] w-full max-w-3xl flex-col overflow-y-auto rounded-2xl bg-background p-6 shadow-xl'>
                 {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>
@@ -76,7 +76,7 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                                 key={idx}
                                 src={src}
                                 alt={`${title[lang]}-img-${idx}`}
-                                className='h-44 w-44 rounded-lg border border-border bg-background-second object-contain object-center shadow transition-transform ease-in-out hover:scale-110 active:scale-110 sm:h-60 sm:w-60'
+                                className='h-32 w-32 rounded-lg border border-border bg-background-second object-contain object-center shadow transition-transform ease-in-out hover:scale-110 active:scale-110 sm:h-60 sm:w-60'
                             />
                         ))}
                     </div>
