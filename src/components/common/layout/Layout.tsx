@@ -10,15 +10,16 @@ const Layout = () => {
     const location = useLocation();
 
     const isActive = (path: string) => location.pathname === path;
+    const isWritePage = isActive('/write');
+    const isEditPage = location.pathname.startsWith('/edit/');
 
     return (
         <div className='flex h-screen w-full shrink-0 flex-col flex-nowrap justify-start'>
-            {isActive('/write') ? <LayoutHeaderForWritePage /> : <Header />}
+            {isWritePage || isEditPage ? <LayoutHeaderForWritePage /> : <Header />}{' '}
             <div className='mt-16 flex-1 bg-background-second sm:mt-[70px]'>
                 <Outlet />
             </div>
-            {!isActive('/write') && <Footer />}
-            <LandingIntro />
+            {!isWritePage && !isEditPage && <Footer />} <LandingIntro />
             <ToastContainer autoClose={2000} position='top-center' />
             <StretchingReminderController />
         </div>

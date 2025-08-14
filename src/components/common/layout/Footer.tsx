@@ -30,9 +30,13 @@ const Footer = () => {
                         href='https://github.com/letYuchan/'
                         className='text-primary underline decoration-dotted hover:decoration-solid active:decoration-solid'
                     >
-                        letYuchan
+                        letYuchan&nbsp;
                     </a>
-                    . Licensed under CC BY-NC 4.0 &#40;Personal and non-commercial use only&#41;.
+                    &#124; Licensed under CC BY-NC 4.0 &#40;Personal and non-commercial use
+                    only&#41;
+                </p>
+                <p className='text-sm font-bold text-foreground'>
+                    velogit v1.0.0 &#40;Beta&#41; — Official release
                 </p>
                 <p className='text-xs font-semibold text-muted'>
                     Fonts: SUIT and Pretendard are used under the SIL Open Font License.
