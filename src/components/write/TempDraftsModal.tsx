@@ -98,13 +98,13 @@ const TempDraftsModal = ({
                 {/* Modal-footer */}
                 <div className='mt-6 flex w-full flex-nowrap items-center justify-between gap-2'>
                     <button
-                        className='h-8 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
+                        className='h-9 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-primary hover:text-main active:bg-primary active:text-main'
                         onClick={handleCloseModal}
                     >
                         Close
                     </button>
                     <button
-                        className='h-8 w-20 rounded-md border border-error bg-error px-3 py-1 text-sm text-main hover:bg-error/70 active:bg-error/70'
+                        className='h-9 w-20 rounded-md border border-error bg-error px-3 py-1 text-sm text-main hover:bg-error/70 active:bg-error/70'
                         onClick={async () => {
                             await localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify([]));
                             const emptyArray = await restoreFastDraftsFromLocal();

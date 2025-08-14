@@ -11,6 +11,7 @@ interface HelpModalProps {
 
 const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [lang, setLang] = useState<'ko' | 'en'>('en');
     const totalSections = helpGuideMetaDataList.length;
 
     useEscapeToCloseModal(() => setIsHelpModalOpen(false));
@@ -23,6 +24,7 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
     });
 
     const handleCloseModal = () => setIsHelpModalOpen(false);
+    const handleDescriptionsLanguage = (lang: 'ko' | 'en') => setLang(lang);
 
     const { title, images, descriptions } = helpGuideMetaDataList[currentIndex];
 
@@ -31,14 +33,41 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
             <button onClick={handleCloseModal} className='absolute left-4 top-4'>
                 <X size={32} className='text-main hover:text-primary' />
             </button>
-            <div className='w-full max-w-3xl rounded-2xl bg-background p-6 shadow-xl'>
+            <div className='flex w-full max-w-3xl flex-col rounded-2xl bg-background p-6 shadow-xl'>
                 {/* Modal-header */}
                 <div className='mb-3 flex items-start justify-between'>
                     <h2 className='font-title text-xl font-bold text-foreground'>
-                        {title} ({currentIndex + 1}/{totalSections})
+                        {title[lang]} ({currentIndex + 1}/{totalSections})
                     </h2>
-                    <span className='self-end text-xs text-muted'>ESC / ← → Move</span>
+
+                    <span className='ml-1 text-xs text-muted'>ESC / ← → Move</span>
                 </div>
+                <div className='mb-4 flex items-center gap-2'>
+                    {/*  Language toggle */}
+                    <button
+                        onClick={() => handleDescriptionsLanguage('ko')}
+                        className={clsx(
+                            'rounded border px-2 py-1 text-xs',
+                            lang === 'ko'
+                                ? 'border-primary bg-primary text-main'
+                                : 'border-border bg-background text-foreground hover:bg-primary-light active:bg-primary-light',
+                        )}
+                    >
+                        한
+                    </button>
+                    <button
+                        onClick={() => handleDescriptionsLanguage('en')}
+                        className={clsx(
+                            'rounded border px-2 py-1 text-xs',
+                            lang === 'en'
+                                ? 'border-primary bg-primary text-main'
+                                : 'border-border bg-background text-foreground hover:bg-primary-light active:bg-primary-light',
+                        )}
+                    >
+                        EN
+                    </button>
+                </div>
+
                 {/* Desc about velogit system (Img + Text) */}
                 <div className='flex flex-col items-center gap-6'>
                     <div className='flex flex-wrap justify-center gap-4'>
@@ -46,13 +75,13 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                             <img
                                 key={idx}
                                 src={src}
-                                alt={`${title}-img-${idx}`}
+                                alt={`${title[lang]}-img-${idx}`}
                                 className='h-60 w-60 rounded-lg border border-border bg-background-second object-contain object-center shadow transition-transform ease-in-out hover:scale-110 active:scale-110'
                             />
                         ))}
                     </div>
                     <div className='flex max-w-2xl flex-col gap-2 text-center'>
-                        {descriptions.map((desc, idx) => (
+                        {descriptions[lang].map((desc, idx) => (
                             <p key={idx} className='text-muted'>
                                 {desc}
                             </p>
@@ -80,10 +109,10 @@ const HelpModal = ({ setIsHelpModalOpen }: HelpModalProps) => {
                 {/* Modal-footer */}
                 <div className='mt-4 text-center'>
                     <button
-                        className='h-9 w-full rounded-md border border-border bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
+                        className='h-9 w-full rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-primary hover:text-main active:bg-primary active:text-main'
                         onClick={handleCloseModal}
                     >
-                        Close
+                        {lang === 'ko' ? '닫기' : 'Close'}
                     </button>
                 </div>
             </div>

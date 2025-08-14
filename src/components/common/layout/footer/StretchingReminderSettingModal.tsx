@@ -85,13 +85,13 @@ const StretchingReminderSettingModal = ({
                 {/* Modal-footer */}
                 <div className='mt-6 flex w-full items-center justify-between gap-2'>
                     <button
-                        className='h-8 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-backgroundDark/70 active:bg-backgroundDark/70'
+                        className='h-9 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-primary hover:text-main active:bg-primary active:text-main'
                         onClick={handleCloseModal}
                     >
                         Close
                     </button>
                     <button
-                        className='h-8 w-20 rounded-md border border-primary bg-primary px-3 py-1 text-sm text-main hover:bg-primary-deep active:bg-primary-deep'
+                        className='h-9 w-20 rounded-md border border-primary bg-primary px-3 py-1 text-sm text-main hover:bg-primary-deep active:bg-primary-deep'
                         onClick={toggleEnabled}
                     >
                         {enabled ? 'On' : 'Off'}

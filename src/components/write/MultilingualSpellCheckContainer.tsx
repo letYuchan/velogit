@@ -245,7 +245,7 @@ const MultilingualSpellCheckModal = ({
                 <div className='mt-6 text-right'>
                     <button
                         onClick={handleCloseModal}
-                        className='text-md rounded-md border border-primary bg-primary px-4 py-1.5 text-main shadow transition-all hover:bg-primary-deep hover:shadow-md'
+                        className='h-9 w-20 rounded-md border border-borderDark bg-backgroundDark px-3 py-1 text-sm text-foreground hover:bg-primary hover:text-main active:bg-primary active:text-main'
                     >
                         Close
                     </button>
