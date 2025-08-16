@@ -107,7 +107,7 @@ const MultilingualSpellCheckModal = ({
                         >
                             LanguageTool
                         </a>
-                        <span className='self-end text-xs text-muted'>ESC to close</span>
+                    {!isMobile && <span className='self-end stext-xs text-muted'>ESC to close</span>}
                     </div>
                 </div>
                 {/* Language & Check */}

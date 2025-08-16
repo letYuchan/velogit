@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware';
 export const useStretchingReminderStore = create<StretchingReminderState>()(
     persist(
         (set, get) => ({
-            enabled: true,
+            enabled: false,
             popupInterval: 15 * 60 * 1000,
             stretchingDuration: 60 * 1000,
 

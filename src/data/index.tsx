@@ -289,11 +289,11 @@ export const helpGuideMetaDataList = [
         descriptions: {
             ko: [
                 '1. 푸터에는 라이트/다크 모드 토글, 테마 선택, 스트레칭 설정, 배경음악 컨트롤러, velogit GitHub 이동, 제작자 연락처, 도움말 모달 열기 기능이 있습니다.',
-                '2. 스트레칭 버튼은 개발자의 자세 개선을 돕기 위해 스트레칭을 유도합니다. 스트레칭 시간과 알림 간격을 설정할 수 있으며, On 표시 시 활성, Off 표시 시 비활성입니다.',
+                '2. 스트레칭 모달은 개발자의 자세 개선을 돕기 위해 스트레칭을 유도합니다. 스트레칭 시간과 알림 간격을 설정할 수 있으며, On 표시 시 활성, Off 표시 시 비활성입니다.',
             ],
             en: [
                 '1. The Footer section contains a light/dark mode toggle button, a theme selection button, a stretching settings button, a blog background music controller, a link to the Velogit GitHub repository, a creator contact function, and a help modal trigger.',
-                '2. The Stretching button helps developers improve posture by encouraging regular stretching. You can set the stretch duration and reminder interval. “On” means active; “Off” means inactive.',
+                '2. The Stretching modal helps developers improve posture by encouraging regular stretching. You can set the stretch duration and reminder interval. “On” means active; “Off” means inactive.',
             ],
         },
     },
@@ -311,6 +311,23 @@ export const helpGuideMetaDataList = [
             en: [
                 '1. When entering Write/Edit mode, you will first be taken to the FrontMatter Data entry page. The post’s title, publish date, and category are required fields. For the thumbnail path, use the placeholder format. The two buttons at the top right allow you to temporarily save the post’s information, with up to five entries stored in order of most recent.',
                 '2. The next step is the Content Writing page. The toolbar contains Markdown/HTML insertion tools, two image buttons (Markdown, HTML), <details><summary> tags, downloadable file links, and table insertion. Supports pasting external image links, floating toolbar, basic spell-checking (beta), User Preview, and automatic deployment via the Publish button.',
+            ],
+        },
+    },
+    {
+        title: { ko: '한국어 교정 Docker 세팅', en: 'Docker Setup for Korean Grammar Correction' },
+        images: [
+            `${import.meta.env.BASE_URL}images/system/help/helpDockerSettingDesc1.png`,
+            `${import.meta.env.BASE_URL}images/system/help/helpDockerSettingDesc2.png`,
+        ],
+        descriptions: {
+            ko: [
+                '1. 한국어 교정 서비스를 이용하기 위해서는 우선 도커를 설치해주세요. 도커 설치를 위해서 mac 유저는 `brew install --cask docker` 명령어를 터미널에서 실행하는 걸 권장합니다. 윈도우 유저는 공식사이트(https://www.docker.com/get-started/)에서 다운로드받아주세요. 설치가 완료되면 다음 명령어로 Docker가 정상 설치되었는지 확인하세요: `docker -v`, `docker run hello-world`.',
+                '2. 포크 후 최초 이용시에는 `docker compose up --build -d server` 해당 명령어를 먼저 실행 후 이미지 빌드가 완료되면, `pnpm run dev` 명령어를 실행하여 velogit을 이용하시면 됩니다. 이미지 빌드시 다소 시간이 소요될 수 있습니다.',
+            ],
+            en: [
+                '1. To use the Korean grammar correction service, please install Docker first. For Mac users, it is recommended to run `brew install --cask docker` in the terminal. For Windows users, please download and install Docker Desktop from the official website (https://www.docker.com/get-started/). After the installation is complete, verify that Docker is installed correctly by running the following commands: `docker -v`, `docker run hello-world`.',
+                '2. After forking the project, when running it for the first time, execute `docker compose up --build -d server` to build the image. Once the build is complete, you can run `pnpm run dev` to start Velogit. Note: The image build process may take some time.',
             ],
         },
     },

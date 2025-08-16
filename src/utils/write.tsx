@@ -321,9 +321,7 @@ export const handlePasteImageUrl = (e: React.ClipboardEvent<HTMLTextAreaElement>
 
     const asHtml = confirm('Image URL detected.\nOK = HTML <img>, Cancel = Markdown ![]()');
 
-    const snippet = asHtml
-        ? `<img src="${plain}" alt="image" height="300px" width="200px" />`
-        : `![image](${plain})`;
+    const snippet = asHtml ? `<img src="${plain}" alt="image" height="300px" width="200px" />` : `![image](${plain})`;
 
     insertAtCursor(ta, snippet);
     return true;

@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+    server:
+        build: .
+        image: velogit-server
+        container_name: velogit-server
+        ports:
+            - '4000:4000'
+        environment:
+            - MODEL_NAME=Soyoung97/gec_kr
+        restart: unless-stopped

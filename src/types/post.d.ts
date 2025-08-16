@@ -18,3 +18,12 @@ interface CommentData {
     date: string;
     content: string;
 }
+
+interface ActiveTocIdOptions  {
+    rootMargin?: string;
+    thresholds?: number[];
+    enableScrollFallback?: boolean;
+    activateLastOnBottom?: boolean;
+    syncHash?: boolean;
+};
+

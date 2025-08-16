@@ -1,6 +1,5 @@
 import { flattenToc } from '@/utils/post';
 import { useEffect, useState } from 'react';
-
 /**
  * Hook: Tracks which Table of Contents (TOC) heading is currently "active" based on scroll position.
  *

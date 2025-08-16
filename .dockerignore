@@ -1,0 +1,18 @@
+# 일반
+.git
+.gitignore
+README.md
+
+# Node/React
+node_modules
+dist
+build
+
+# Python
+__pycache__/
+*.pyc
+.venv
+venv
+
+# OS
+.DS_Store

@@ -11,7 +11,7 @@ const languageToolApi = axios.create({
 });
 
 // default axios instance for hanspell
-const bareunApi = axios.create({
+const soyoung97Api = axios.create({
     baseURL: 'http://127.0.0.1:4000/api',
     timeout: 10000,
     headers: {
@@ -41,6 +41,6 @@ export const postMultilingualSpellCheck = async (
 export const postKoreanSpellCheck = async (
     payload: KoreanSpellCheckPayloadType,
 ): Promise<KoreanSpellCheckResponse> => {
-    const response = await bareunApi.post('/check', payload);
+    const response = await soyoung97Api.post('/check', payload);
     return response.data;
 };

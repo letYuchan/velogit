@@ -4,7 +4,10 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "concurrently \"vite\" \"bash -c 'source venv/bin/activate && python server.py'\"",
+        "dev": "docker compose up -d server && vite",
+        "dev:server": "docker compose up server",
+        "dev:logs": "docker compose logs -f server",
+        "server:down": "docker compose stop server",
         "build": "vite build",
         "preview": "vite preview",
         "deploy": "gh-pages -d dist"

@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
+// ContentEditor.tsx
 export const muiTheme = createTheme({
     palette: {
         primary: {
