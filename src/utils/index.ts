@@ -1,15 +1,23 @@
-export const posts: PostData[] = Object.entries(
-    import.meta.glob('/posts/*.md', { eager: true, as: 'raw' }),
-).map(([path, content]) => {
-    const slug = path.split('/').pop()?.replace('.md', '') || '';
+const postModules = import.meta.glob<string>('/posts/*.md', {
+    eager: true,
+    query: '?raw',
+    import: 'default',
+});
+
+export const posts: PostData[] = Object.entries(postModules).map(([path, content]) => {
+    const slug = path.split('/').pop()?.replace('.md', '') ?? '';
 
     const title = content.match(/title:\s*['"](.*)['"]/)?.[1] ?? '';
     const date = content.match(/date:\s*['"](.*)['"]/)?.[1] ?? '';
     const summary = content.match(/summary:\s*['"](.*)['"]/)?.[1] ?? '';
-    const tagsRaw = content.match(/tags:\s*\[(.*)\]/)?.[1] ?? '';
-    const tags = tagsRaw.split(',').map(tag => tag.trim().replace(/['"]/g, ''));
     const category = content.match(/category:\s*['"](.*)['"]/)?.[1] ?? '';
     const thumbnail = content.match(/thumbnail:\s*['"](.*)['"]/)?.[1] ?? '';
+
+    const tagsRaw = content.match(/tags:\s*\[(.*)\]/)?.[1] ?? '';
+    const tags = tagsRaw
+        .split(',')
+        .map(t => t.trim().replace(/['"]/g, ''))
+        .filter(Boolean);
 
     return {
         slug,
@@ -31,11 +39,11 @@ export const applyThemeClass = (theme: string) => {
 };
 
 export const getAudioFileUrls = (): string[] => {
-    const audioModules = import.meta.glob('@/assets/audio/*.mp3', {
+    const audioModules = import.meta.glob<string>('@/assets/audio/*.mp3', {
         eager: true,
-        as: 'url',
+        query: '?url',
+        import: 'default',
     });
-
     return Object.values(audioModules);
 };
 
