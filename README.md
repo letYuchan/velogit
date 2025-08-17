@@ -7,7 +7,8 @@ GitHub Pages와 Markdown 기반의 **기술/개발 블로그 플랫폼**
 
 velogit은 단순한 블로그 프로젝트가 아니라, **누구나 쉽게 설치하고 운영할 수 있는 개발 블로그 플랫폼**입니다.  
 여러분 자신을 소개하고, 습득한 지식과 테크닉을 기록하며 공유하세요.  
-정적 서버 기반으로 동작하여 빠르고 안정적이며, 자동화된 기능과 강력한 커스터마이징을 제공합니다.  
+정적 서버 기반으로 동작하여 빠르고 안정적이며, 자동화된 기능과 강력한 커스터마이징을 제공합니다.
+모바일 환경에서도 완벽한 반응형 대응을 보여줍니다.
 
 EN:
 
@@ -16,6 +17,7 @@ A **tech/development blog platform** based on GitHub Pages and Markdown.
 velogit is not just a blog project, but a **developer blog platform that anyone can easily install and operate**.  
 Introduce yourself, record your knowledge and techniques, and share them with others.  
 It runs on a static server, ensuring speed and stability, while providing automation and powerful customization.  
+It provides a fully responsive design on mobile environments as well.
 
 ---
 
