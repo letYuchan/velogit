@@ -120,7 +120,13 @@ docker compose up --build -d server
 ```
 
 ### 3. 개발 서버 실행
-프론트엔드를 실행하려면:
+프론트엔드를 실행하려면
+
+최초 실행 시 먼저 의존성을 설치합니다:
+```bash
+pnpm install
+```
+이후 개발 서버를 실행합니다:
 ```bash
 pnpm run dev
 ```
@@ -367,7 +373,13 @@ docker compose up --build -d server
 ```
 
 ### 3. Start Dev Server
-Run the frontend locally:  
+Run the frontend locally
+
+When running for the first time, install dependencies:
+```bash
+pnpm install
+```
+Then, start the development server:
 ```bash
 pnpm run dev
 ```
