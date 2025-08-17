@@ -52,9 +52,10 @@ Please change the parent <Route path="${C}"> to <Route path="${C==="/"?"*":`${C}
 title: 'test'
 date: '2025-08-21'
 category: 'test'
+tags: ['']
 ---
 
-test`,VL=`---
+test 2`,VL=`---
 title: 'TOC 기능 테스트 글'
 date: '2025-08-02'
 category: 'Dev'
