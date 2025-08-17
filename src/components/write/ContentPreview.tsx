@@ -59,7 +59,7 @@ export default ContentPreview;
  * UI 구성:
  * - section:
  *   - 좌측 경계(border-r), 배경색 background-second
- *   - 내부 패딩 p-4, flex 레이아웃으로 1/2 폭(sm 이상)
+ *   - 내부 패딩 p-4, flex 레이아웃으로  MarkdownRenderer만큼의 폭(sm 이상)
  * - MarkdownRenderer:
  *   - props:
  *     - content: 변환할 마크다운 문자열
