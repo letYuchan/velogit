@@ -2,19 +2,8 @@
 import { FaGithub, FaEnvelope, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import HaloGlow from '@/components/about/HaloGlow';
-import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { ABOUT_STORAGE_KEY } from '@/data/about';
 
 const AboutPage = () => {
-    useEffect(() => {
-        if (!sessionStorage.getItem(ABOUT_STORAGE_KEY)) {
-            toast.info(
-                'This is just my style 😄 Use it as reference and make it your own! / 해당 페이지를 각자의 취향대로 꾸며주세요!',
-            );
-            sessionStorage.setItem(ABOUT_STORAGE_KEY, '1');
-        }
-    }, []);
     return (
         <main
             aria-label='An animated and expressive about page introducing the developer.'
