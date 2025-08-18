@@ -165,6 +165,4 @@ def check():
 
 
 if __name__ == "__main__":
-    # 도커에서 외부 접근 허용
-    # prod에서는 gunicorn 사용 권장(예: gunicorn -w 1 -b 0.0.0.0:4000 app:app)
     app.run(host="0.0.0.0", port=4000, debug=False)

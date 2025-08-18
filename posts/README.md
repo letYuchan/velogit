@@ -1,3 +1,12 @@
+---
+title: 'README'
+date: '2025-08-18'
+category: 'velogit'
+tags: ['welcome to velogit']
+summary: 'Descriptions about velogit'
+thumbnail: 'images/system/logo/logo.png'
+---
+
 # velogit
 
 <img width="256" height="256" alt="logo" src="https://github.com/user-attachments/assets/149afc7b-4711-43db-a87d-88b56840b0ef" />

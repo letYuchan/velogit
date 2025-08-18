@@ -42,7 +42,12 @@ const UtterancesComments = () => {
         commentRef.current.appendChild(scriptEl);
     }, [slug]);
 
-    return <div ref={commentRef} className='mx-auto w-full max-w-3xl px-4' />;
+    return (
+        <div className='mx-auto w-full max-w-3xl px-4'>
+            <h2 className='text-xl font-bold text-foreground sm:text-2xl'>Comments</h2>
+            <div ref={commentRef} className='w-full' />
+        </div>
+    );
 };
 
 export default UtterancesComments;
@@ -75,10 +80,12 @@ export default UtterancesComments;
  *   5) slug 변경 시 다시 실행
  *
  * UI 구성:
- * - <div> (댓글 영역 컨테이너)
+ * - <div> (최상위 부모 컨테이너)
  *   - ref: commentRef
  *   - 최대 폭: max-w-3xl, 중앙 정렬(margin auto), 좌우 패딩 px-4
- *
+ * - <h2>
+ *   - 댓글창 명시
+ * - <div> (utterances 댓글 영역)
  * 동작 흐름:
  * 1) 컴포넌트 마운트 또는 slug 변경 시 Utterances script 삽입
  * 2) GitHub repo의 해당 issue-term(slug) 기반 댓글 로드
