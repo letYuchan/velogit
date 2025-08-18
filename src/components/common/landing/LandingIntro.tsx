@@ -7,6 +7,7 @@ const LandingIntro = () => {
     const [isDismissed, setIsDismissed] = useState(false);
     const [isGone, setIsGone] = useState(false);
     const [currentTheme, setCurrentTheme] = useState('default');
+    const [hasVisitedBefore, setHasVisitedBefore] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
     const controls = useAnimation();
@@ -19,7 +20,13 @@ const LandingIntro = () => {
         const saved = localStorage.getItem('theme');
         const theme = saved || 'default';
         setCurrentTheme(theme);
-        window.scrollTo({ top: 20, behavior: 'smooth' });
+        
+        const hasVisited = localStorage.getItem('hasVisitedBefore') === 'true';
+        setHasVisitedBefore(hasVisited);
+        
+        if (!hasVisited) {
+            window.scrollTo({ top: 20, behavior: 'smooth' });
+        }
     }, []);
 
     useEffect(() => {
@@ -29,11 +36,14 @@ const LandingIntro = () => {
                     y: '-100%',
                     transition: { duration: 1.2, ease: 'easeInOut' },
                 })
-                .then(() => setIsGone(true));
+                .then(() => {
+                    setIsGone(true);
+                    localStorage.setItem('hasVisitedBefore', 'true');
+                });
         }
     }, [isDismissed, controls]);
 
-    if (isGone) return null;
+    if (hasVisitedBefore || isGone) return null;
 
     const bgImage = landingBackgroundMap[currentTheme] || landingBackgroundMap.default;
 
