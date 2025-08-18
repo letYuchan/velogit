@@ -19,6 +19,13 @@ interface ArrowIndexNavOptions {
     pageStep?: number;
 }
 
+interface ConfirmOnBackOptions {
+    when: boolean;
+    message?: string;
+    askOnce?: boolean;
+    guardBeforeUnload?: boolean;
+}
+
 interface ToolItem {
     name: string;
     icon: LucideIcon;
