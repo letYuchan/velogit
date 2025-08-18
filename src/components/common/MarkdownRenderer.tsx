@@ -149,7 +149,7 @@ const MarkdownRenderer = ({ parsedFrontMatter, content }: MarkdownRendererProps)
                                     window.URL.revokeObjectURL(url);
                                 })
                                 .catch(err => {
-                                    alert('다운로드 실패!');
+                                    alert('다운로드 실패! / Download failed!');
                                     console.error(err);
                                 });
                         };
