@@ -61,6 +61,9 @@ velogit은 단순히 Markdown을 지원하는 수준을 넘어, **개발자 친�
 - **다국어 교정 + 한국어 교정 기능**
     - 영어, 일본어 등 다양한 언어 교정
     - 베타 기능이지만, 한국어 문법 교정도 자동화 가능
+- **작성 내용 유실 방지 기능**
+    - 최대 5개의 임시글 저장 가능
+    - 실수로 뒤로가기 / 새로고침 / 탭 닫기를 했을 때, 작성 중인 내용을 잃지 않도록 확인 메시지를 표시
 
 ---
 
@@ -110,6 +113,26 @@ velogit은 단순 블로그 이상으로 **건강까지 챙길 수 있는 스트
 - 글 작성 수(Post 개수)에 따라 블로그가 **레벨업**
 - 귀여운 아케이드풍 용 캐릭터로 성장 시각화
 - **Top 3 카테고리**와 누적 게시글 수도 한눈에 확인 가능
+
+---
+
+### 💬 댓글 기능 (Utterances 기반)
+
+블로그에 **이슈 기반 댓글 시스템**을 추가했습니다.  
+이는 [Utterances](https://utteranc.es/)를 활용하며, 사용자는 **GitHub 계정 인증**만으로 댓글을 작성할 수 있습니다.
+
+- **특징**:
+
+    - 댓글은 GitHub Repository의 **Issue**로 관리됩니다.
+    - GitHub 계정을 가진 누구나 댓글 작성 가능.
+    - 깔끔하고 블로그 스타일에 잘 어울리는 UI 제공.
+
+- **사용 시 주의사항**:
+    - 최초 댓글 작성 시 **GitHub 인증 과정**이 필요합니다.
+    - 인증 후에는 **블로그 Home 화면으로 리다이렉트**됩니다.  
+      → 다시 댓글을 달고 싶다면, 글 상세 페이지로 **재진입**해야 합니다.
+
+👉 인증만 마치면 이후로는 편리하게 댓글을 달 수 있습니다.
 
 </details>
 
@@ -352,6 +375,7 @@ velogit goes beyond basic Markdown support by providing **developer-friendly aut
 - **Multilingual + Korean Grammar Correction**
     - Supports multiple languages such as English and Japanese
     - Beta: automatic Korean grammar correction
+- **Unsaved Content Protection** - You can keep up to 5 draft posts - Shows a confirmation dialog when the user accidentally navigates back, refreshes, or closes the tab, preventing loss of unsaved content
 
 ---
 
@@ -398,6 +422,26 @@ Make blogging fun with gamified growth features:
 - Blog levels up based on post count
 - Cute arcade-style dragon visualizes progress
 - Track **Top 3 categories** and total posts at a glance
+
+---
+
+### 💬 Comment System (Powered by Utterances)
+
+We have added an **issue-based comment system** using [Utterances](https://utteranc.es/).  
+This allows users to leave comments with a simple **GitHub account authentication**.
+
+- **Features**:
+
+    - Comments are stored and managed as **GitHub Issues**.
+    - Anyone with a GitHub account can post comments.
+    - Provides a clean UI that integrates seamlessly with the blog.
+
+- **Important Notes**:
+    - When posting a comment for the first time, **GitHub authentication** is required.
+    - After authentication, you will be redirected to the **Home page**.  
+      → To continue commenting, you need to **re-enter the post detail page**.
+
+👉 Once authenticated, commenting will be smooth and convenient from then on.
 
 </details>
 
