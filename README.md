@@ -110,17 +110,18 @@ velogit은 단순 블로그 이상으로 **건강까지 챙길 수 있는 스트
 ### 💬 댓글 기능 (Utterances 기반)
 
 블로그에 **이슈 기반 댓글 시스템**을 추가했습니다.  
-이는 [Utterances](https://utteranc.es/)를 활용하며, 사용자는 **GitHub 계정 인증**만으로 댓글을 작성할 수 있습니다.  
+이는 [Utterances](https://utteranc.es/)를 활용하며, 사용자는 **GitHub 계정 인증**만으로 댓글을 작성할 수 있습니다.
 
 - **특징**:
-  - 댓글은 GitHub Repository의 **Issue**로 관리됩니다.
-  - GitHub 계정을 가진 누구나 댓글 작성 가능.
-  - 깔끔하고 블로그 스타일에 잘 어울리는 UI 제공.
+
+    - 댓글은 GitHub Repository의 **Issue**로 관리됩니다.
+    - GitHub 계정을 가진 누구나 댓글 작성 가능.
+    - 깔끔하고 블로그 스타일에 잘 어울리는 UI 제공.
 
 - **사용 시 주의사항**:
-  - 최초 댓글 작성 시 **GitHub 인증 과정**이 필요합니다.
-  - 인증 후에는 **블로그 Home 화면으로 리다이렉트**됩니다.  
-    → 다시 댓글을 달고 싶다면, 글 상세 페이지로 **재진입**해야 합니다.
+    - 최초 댓글 작성 시 **GitHub 인증 과정**이 필요합니다.
+    - 인증 후에는 **블로그 Home 화면으로 리다이렉트**됩니다.  
+      → 다시 댓글을 달고 싶다면, 글 상세 페이지로 **재진입**해야 합니다.
 
 👉 인증만 마치면 이후로는 편리하게 댓글을 달 수 있습니다.
 
@@ -216,6 +217,7 @@ git remote add upstream https://github.com/author/velogit.git
 <summary><h2>⚙️ 블로그 세팅</h2></summary>
 
 아래 설정은 Velogit을 처음 사용할 때 반드시 진행해야 하는 필수 세팅입니다.
+이 외의 설정을 임의로 변경한 뒤 배포하여 사용하는 경우, 저작권 침해에 해당할 수 있습니다.
 
 ---
 
@@ -293,9 +295,11 @@ git remote add upstream https://github.com/author/velogit.git
 ---
 
 📌 해당 내용을 GitHub Pages에도 반영하려면, 모든 설정을 마친 후 아래 명령어를 실행해주세요:
+
 ```bash
 pnpm run deploy
 ```
+
 📌 위 설명은 실제 앱의 **Help 모달**에서도 확인 가능합니다.
 
 </details>
@@ -369,9 +373,7 @@ velogit goes beyond basic Markdown support by providing **developer-friendly aut
 - **Multilingual + Korean Grammar Correction**
     - Supports multiple languages such as English and Japanese
     - Beta: automatic Korean grammar correction
-- **Unsaved Content Protection**
-  	- You can keep up to 5 draft posts
-  	- Shows a confirmation dialog when the user accidentally navigates back, refreshes, or closes the tab, preventing loss of unsaved content
+- **Unsaved Content Protection** - You can keep up to 5 draft posts - Shows a confirmation dialog when the user accidentally navigates back, refreshes, or closes the tab, preventing loss of unsaved content
 
 ---
 
@@ -424,17 +426,18 @@ Make blogging fun with gamified growth features:
 ### 💬 Comment System (Powered by Utterances)
 
 We have added an **issue-based comment system** using [Utterances](https://utteranc.es/).  
-This allows users to leave comments with a simple **GitHub account authentication**.  
+This allows users to leave comments with a simple **GitHub account authentication**.
 
 - **Features**:
-  - Comments are stored and managed as **GitHub Issues**.
-  - Anyone with a GitHub account can post comments.
-  - Provides a clean UI that integrates seamlessly with the blog.
+
+    - Comments are stored and managed as **GitHub Issues**.
+    - Anyone with a GitHub account can post comments.
+    - Provides a clean UI that integrates seamlessly with the blog.
 
 - **Important Notes**:
-  - When posting a comment for the first time, **GitHub authentication** is required.
-  - After authentication, you will be redirected to the **Home page**.  
-    → To continue commenting, you need to **re-enter the post detail page**.
+    - When posting a comment for the first time, **GitHub authentication** is required.
+    - After authentication, you will be redirected to the **Home page**.  
+      → To continue commenting, you need to **re-enter the post detail page**.
 
 👉 Once authenticated, commenting will be smooth and convenient from then on.
 
@@ -528,6 +531,8 @@ git push origin master
 <details>
 <summary><h2>⚙️ Blog Setup</h2></summary>
 
+Modifying configurations beyond the provided settings and deploying the application may constitute a copyright violation.
+
 ### 1. Theme Setup
 
 - Path: `velogit/public/images/system/themes`
@@ -593,9 +598,11 @@ git push origin master
 ---
 
 📌 To apply these changes to GitHub Pages, please finish all configurations first, then run:
+
 ```bash
 pnpm run deploy
 ```
+
 📌 These setup instructions are also available in the app’s **Help modal**.
 
 </details>

@@ -226,6 +226,7 @@ git remote add upstream https://github.com/author/velogit.git
 <summary><h2>⚙️ 블로그 세팅</h2></summary>
 
 아래 설정은 Velogit을 처음 사용할 때 반드시 진행해야 하는 필수 세팅입니다.
+이 외의 설정을 임의로 변경한 뒤 배포하여 사용하는 경우, 저작권 침해에 해당할 수 있습니다.
 
 ---
 
@@ -538,6 +539,10 @@ git push origin master
 
 <details>
 <summary><h2>⚙️ Blog Setup</h2></summary>
+
+Modifying configurations beyond the provided settings and deploying the application may constitute a copyright violation.
+
+---
 
 ### 1. Theme Setup
 
