@@ -52,6 +52,9 @@ velogit은 단순히 Markdown을 지원하는 수준을 넘어, **개발자 친�
 - **다국어 교정 + 한국어 교정 기능**
     - 영어, 일본어 등 다양한 언어 교정
     - 베타 기능이지만, 한국어 문법 교정도 자동화 가능
+- **작성 내용 유실 방지 기능**
+    - 최대 5개의 임시글 저장 가능
+    - 실수로 뒤로가기 / 새로고침 / 탭 닫기를 했을 때, 작성 중인 내용을 잃지 않도록 확인 메시지를 표시
 
 ---
 
@@ -343,6 +346,9 @@ velogit goes beyond basic Markdown support by providing **developer-friendly aut
 - **Multilingual + Korean Grammar Correction**
     - Supports multiple languages such as English and Japanese
     - Beta: automatic Korean grammar correction
+- **Unsaved Content Protection**
+  	- You can keep up to 5 draft posts
+  	- Shows a confirmation dialog when the user accidentally navigates back, refreshes, or closes the tab, preventing loss of unsaved content
 
 ---
 
