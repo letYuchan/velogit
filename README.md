@@ -337,6 +337,12 @@ Licensed under **CC BY-NC 4.0** (Personal and Non-Commercial Use Only)
 
 - velogit은 더 나은 플랫폼을 지향합니다.
 - 버그 제보, 기능 제안, 코드 기여 모두 환영합니다!
+- PR -> 승인 후 기여가 최종 반영됩니다.
+- 다음 예시와 같은 커밋메시지 형식를 지켜주세요.
+
+```bash
+e.g., feat: A기능 추가
+```
 
 </details>
 
@@ -533,6 +539,8 @@ git push origin master
 
 Modifying configurations beyond the provided settings and deploying the application may constitute a copyright violation.
 
+---
+
 ### 1. Theme Setup
 
 - Path: `velogit/public/images/system/themes`
@@ -640,5 +648,11 @@ Licensed under **CC BY-NC 4.0** (Personal and Non-Commercial Use Only)
 
 - velogit aims to evolve into a better platform.
 - Bug reports, feature requests, and contributions are welcome!
+- PR → Contributions will be reflected only **after approval**.
+- Please follow the commit message format as shown in the examples below.
+
+```bash
+e.g., feat: add feature A
+```
 
 </details>
