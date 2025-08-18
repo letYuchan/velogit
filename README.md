@@ -292,6 +292,10 @@ git remote add upstream https://github.com/author/velogit.git
 
 ---
 
+📌 해당 내용을 GitHub Pages에도 반영하려면, 모든 설정을 마친 후 아래 명령어를 실행해주세요:
+```bash
+pnpm run deploy
+```
 📌 위 설명은 실제 앱의 **Help 모달**에서도 확인 가능합니다.
 
 </details>
@@ -588,6 +592,10 @@ git push origin master
 
 ---
 
+📌 To apply these changes to GitHub Pages, please finish all configurations first, then run:
+```bash
+pnpm run deploy
+```
 📌 These setup instructions are also available in the app’s **Help modal**.
 
 </details>
