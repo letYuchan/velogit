@@ -20,6 +20,9 @@ Introduce yourself, record your knowledge and techniques, and share them with ot
 It runs on a static server, ensuring speed and stability, while providing automation and powerful customization.  
 It provides a fully responsive design on mobile environments as well.
 
+Recommended environment: Chrome
+Tested environment: Chrome, Safari
+
 ---
 
 <details>

@@ -29,6 +29,9 @@ Introduce yourself, record your knowledge and techniques, and share them with ot
 It runs on a static server, ensuring speed and stability, while providing automation and powerful customization.  
 It provides a fully responsive design on mobile environments as well.
 
+Recommended environment: Chrome
+Tested environment: Chrome, Safari
+
 ---
 
 <details>
@@ -155,7 +158,7 @@ pnpm install
 pnpm run dev
 ```
 
-### 4. POST 등록
+### 4. POST 등록/삭제
 
 - 블로그에서 새 글 작성(혹은 수정) 후 **`publish/edit` 버튼**을 누르면,  
   자동으로 **배포 스크립트 실행 코드**가 클립보드에 복사됩니다.
@@ -164,7 +167,16 @@ pnpm run dev
 
 👉 사용자는 글 작성 후 버튼을 누르고 명령어 한 줄 실행으로 `빌드 → 커밋 → 푸시 → 배포`까지 한 번에 진행됩니다.
 
-### 5. 추후 플랫폼 업데이트
+- 글 삭제는 `velogit/posts`에서 원하는 파일을 삭제하면 됩니다.
+
+### 5. 깃허브 페이지 설정
+
+- 최초 글 등록을 한번 해주세요. 등록 시 gh-pages 브렌치가 자동으로 생성 및 배포됩니다.
+- 이후 Settings > Pages에 들어가 아래 사진과 같이 branch를 gh-pages로 페이지를 설정해주세요.
+  <img width="1239" height="596" alt="image" src="https://github.com/user-attachments/assets/a065bd1b-6057-4f0f-abc2-ec51f4317264" />
+- 일반적인 주소: https://github-name.github.io/velogit
+
+### 6. 추후 플랫폼 업데이트
 
 velogit 원본 저장소의 최신 업데이트를 내 저장소에 반영하려면  
 `upstream`을 설정하고, 주기적으로 원본을 가져와 병합해야 합니다.
@@ -435,7 +447,7 @@ Then, start the development server:
 pnpm run dev
 ```
 
-### 4. Post Publishing
+### 4. Post Publishing/Delete
 
 - After creating/editing a post, click **`publish/edit` button**.  
   A deployment script command will be copied to your clipboard.
@@ -444,7 +456,17 @@ pnpm run dev
 
 👉 With one command, you can handle `build → commit → push → deploy`.
 
-### 5. Keeping Updated
+- To delete a post, simply remove the desired file from velogit/posts.
+
+### 5. GitHub Pages Setup
+
+- Please register (publish) at least one post for the first time.
+  When you do, the gh-pages branch will be automatically created and deployed.
+- Then go to Settings > Pages in your repository and configure it as shown below, by selecting the gh-pages branch as the Pages source.
+  <img width="1239" height="596" alt="image" src="https://github.com/user-attachments/assets/a065bd1b-6057-4f0f-abc2-ec51f4317264" />
+- The default site address will be: https://github-username.github.io/velogit
+
+### 6. Keeping Updated
 
 To sync with the original repository, set `upstream` and pull updates:
 

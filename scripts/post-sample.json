@@ -1,3 +1,0 @@
-{
-  "to-publish-post": "---\ntitle: 'test'\ndate: '2025-08-20'\ncategory: 'test'\ntags: ['tag1', 'tag2', 'tag3', 'tag4', '안녕']\nsummary: '안녕하세용'\nthumbnail: 'images/system/logo/logo.png'\n---\n\n테스트 글\n```bash\n테스트\n```"
-}
