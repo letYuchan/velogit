@@ -68,6 +68,21 @@ const Footer = () => {
                         languagetool
                     </a>
                 </p>
+                <p className='text-xs font-semibold text-muted'>
+                    This application uses the
+                    <a
+                        href='https://utteranc.es'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-primary underline decoration-dotted hover:decoration-solid active:decoration-solid'
+                    >
+                        &nbsp;Utterances
+                    </a>
+                    &nbsp;comment system, which is GitHub Issue–based and distributed under the MIT
+                    License. <br />
+                    Comments are stored in GitHub Issues and remain the property of their respective
+                    authors.
+                </p>
                 {/* features/setting */}
                 <div className='flex flex-wrap justify-start gap-5'>
                     <DarkmodeToggleButton />

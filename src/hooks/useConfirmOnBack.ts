@@ -97,7 +97,7 @@ export const useConfirmOnBack = ({
                 try {
                     history.pushState({ __velogit_block__: Date.now() }, '', location.href);
                 } catch (e) {
-                    console.log(e);
+                    console.log('Error message:', e);
                 }
             }
         };
