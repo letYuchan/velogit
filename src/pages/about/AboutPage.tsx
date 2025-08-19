@@ -2,8 +2,11 @@
 import { FaGithub, FaEnvelope, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import HaloGlow from '@/components/about/HaloGlow';
+import { useIsDesktop } from '@/hooks/useIsDesktop';
 
 const AboutPage = () => {
+    const isDesktop = useIsDesktop();
+
     return (
         <main
             aria-label='An animated and expressive about page introducing the developer.'
@@ -41,7 +44,7 @@ const AboutPage = () => {
                         Put your contact button text here
                     </a>
                 </div>
-                <HaloGlow />
+                {isDesktop && <HaloGlow />}
             </motion.section>
 
             {/* Strength Keywords */}
